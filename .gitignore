@@ -1,4 +1,17 @@
 .cache
 node_modules
-public
-.htaccess
+admin/.admin-password
+
+# Laravel
+laravel/.env
+laravel/vendor/
+laravel/node_modules/
+laravel/storage/logs/*.log
+laravel/storage/framework/cache/data/*
+laravel/storage/framework/sessions/*
+laravel/storage/framework/views/*
+laravel/public/hot
+laravel/public/storage
+laravel/.phpunit.result.cache
+laravel/database/database.sqlite
+composer.phar

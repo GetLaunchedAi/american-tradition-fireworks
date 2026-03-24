@@ -1,0 +1,49 @@
+<div id="navigation">
+    <div aria-hidden="true" class="background-color-div"></div>
+    <div class="container">
+        <a class="logo" aria-label="Go to home page" href="{{ route('home') }}">
+            <img class="light" aria-hidden="true" src="{{ asset('assets/images/logo_dark.png') }}" decoding="async" alt="American Tradition LLC logo" width="332" height="99">
+            <img class="dark"  aria-hidden="true" src="{{ asset('assets/images/logo_light.png') }}" decoding="async" loading="lazy" alt="American Tradition LLC logo" width="332" height="99">
+        </a>
+
+        <button class="hamburger-menu" aria-expanded="false" aria-controls="navbar-menu">
+            <span aria-hidden="true"></span>
+        </button>
+
+        <nav id="navbar-menu" aria-label="main navigation">
+            <ul>
+                <li id="Home"><a {{ request()->is('/') ? 'class=active' : '' }} href="{{ route('home') }}">Home</a></li>
+                <li id="Shop"><a {{ request()->is('shop*') ? 'class=active' : '' }} href="{{ route('shop') }}">Shop</a></li>
+                <li id="About"><a {{ request()->is('about') ? 'class=active' : '' }} href="{{ route('about') }}">About</a></li>
+                <li id="Contact"><a {{ request()->is('contact') ? 'class=active' : '' }} href="{{ route('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-actions" role="group" aria-label="User actions">
+            <button id="dark-mode-toggle" class="icon-btn" aria-label="Toggle dark mode">
+                <svg class="moon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="currentColor" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+                </svg>
+                <img class="sun" aria-hidden="true" src="{{ asset('assets/svgs/sun.svg') }}" alt="">
+            </button>
+
+            @auth
+                <a class="icon-btn login-btn" href="{{ route('admin.dashboard') }}" aria-label="Admin dashboard">
+            @else
+                <a class="icon-btn login-btn" href="{{ route('login') }}" aria-label="Login">
+            @endauth
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 5C13.66 5 15 6.34 15 8C15 9.66 13.66 11 12 11C10.34 11 9 9.66 9 8C9 6.34 10.34 5 12 5ZM12 19.2C9.5 19.2 7.29 17.92 6 15.94C6.03 13.98 9.01 12.9 12 12.9C14.99 12.9 17.97 13.98 18 15.94C16.71 17.92 14.5 19.2 12 19.2Z" />
+                </svg>
+            </a>
+
+            <button class="icon-btn cart-btn cart-checkout" aria-label="Open cart">
+                <svg class="cart-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path fill="currentColor" d="M7 18a2 2 0 1 0 0 4a2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4a2 2 0 0 0 0-4ZM3 2h2.21l1.2 3H21a1 1 0 0 1 .92 1.39l-2.4 6A2 2 0 0 1 17.62 14H8.03l-.6 1.2A2 2 0 0 1 5.25 16H5a1 1 0 0 1 0-2h.25l1.9-3.8L5.12 4H3a1 1 0 1 1 0-2Zm6.07 8h8.45l1.6-4H7.6l1.47 4Z" />
+                </svg>
+                <span class="badge cart-items-count" aria-live="polite"></span>
+                <span class="cart-total cart-total-price"></span>
+            </button>
+        </div>
+    </div>
+</div>

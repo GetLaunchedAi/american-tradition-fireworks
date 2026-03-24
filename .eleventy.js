@@ -56,11 +56,17 @@ ${Object.values(metadata)
   // allows css, assets, robots.txt and CMS config files to be passed into /public
   eleventyConfig.addPassthroughCopy('./src/css/**/*.css');
   eleventyConfig.addPassthroughCopy('./src/assets');
-  eleventyConfig.addPassthroughCopy('./src/admin'); // (kept; if you prefer /admin root, use mapping below instead)
   eleventyConfig.addPassthroughCopy('./src/_redirects');
   eleventyConfig.addPassthroughCopy({ './src/robots.txt': '/robots.txt' });
   eleventyConfig.addPassthroughCopy('src/images');
-  eleventyConfig.addPassthroughCopy({ 'src/admin': 'admin' }); // copies to /admin
+  
+  // Copy root admin and api folders to public
+  eleventyConfig.addPassthroughCopy({ './admin': 'admin' });
+  eleventyConfig.addPassthroughCopy({ './api': 'api' });
+  
+  // Copy .htaccess to public
+  eleventyConfig.addPassthroughCopy({ './.htaccess': '.htaccess' });
+  
   eleventyConfig.addPassthroughCopy({ 'src/_data/products.json': 'products.json' });
   eleventyConfig.addWatchTarget('src/_data/products.json');
 
@@ -79,6 +85,39 @@ ${Object.values(metadata)
   // friendlier post date filter
   eleventyConfig.addFilter('postDate', (dateObj) => {
     return DateTime.fromJSDate(dateObj).toLocaleString(DateTime.DATE_MED);
+  });
+
+  // Filter product catalog by collection/tag/category.
+  eleventyConfig.addFilter('filterByCollection', (items, key) => {
+    if (!Array.isArray(items)) return [];
+    if (!key) return items;
+
+    const needle = String(key).toLowerCase();
+
+    return items.filter((item) => {
+      if (!item) return false;
+
+      const collections = item.collections || item.collection || item.categories || [];
+      const tags = item.tags || [];
+      const category = item.category;
+
+      const hasNeedle = (arr) =>
+        Array.isArray(arr) && arr.map((v) => String(v).toLowerCase()).includes(needle);
+
+      if (hasNeedle(collections) || hasNeedle(tags)) return true;
+      if (category && String(category).toLowerCase() === needle) return true;
+
+      return false;
+    });
+  });
+
+  // Serialize data for use in templates/scripts.
+  eleventyConfig.addFilter('jsonify', (value, spaces = 0) => {
+    try {
+      return JSON.stringify(value, null, spaces);
+    } catch (e) {
+      return '[]';
+    }
   });
 
   return {

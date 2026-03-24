@@ -1,0 +1,105 @@
+---
+layout: base.html
+preloadCSS: /css/product.css
+---
+
+{% set allProducts = products.products or [] %}
+{% set currentCategory = product.category if product and product.category else "" %}
+{% set relatedShown = 0 %}
+
+<section class="pdp" id="pdp" data-product-page>
+  <div class="pdp__gallery">
+    <div class="pdp__media">
+      <img
+        id="pdpImg"
+        alt="{{ (product.title if product else 'Product') }}"
+        loading="lazy"
+        src="{{ (product.image if product and product.image else '/images/placeholder.png') }}"
+      />
+    </div>
+    <div id="pdpVideoContainer" class="pdp__video" style="display: none;">
+    </div>
+  </div>
+
+  <div class="pdp__meta">
+    <nav class="crumbs">
+      <a href="/shop/">Shop</a>
+      {% if product and product.category %}
+        / <span>{{ product.category }}</span>
+      {% endif %}
+      / <span id="pdpCrumb">{{ (product.title if product else "Product") }}</span>
+    </nav>
+
+    <h1 id="pdpTitle">{{ (product.title if product else "Product") }}</h1>
+    <p id="pdpPrice" class="pdp__price">
+      {% if product and product.price %}${{ product.price }}{% endif %}
+    </p>
+    <p id="pdpDesc" class="pdp__desc">{{ (product.description if product and product.description else "") }}</p>
+
+    <form id="pdpOptions" class="pdp__options">
+      {% if product and product.options and product.options.length %}
+        {% for opt in product.options %}
+          <label>
+            <span class="pdp__opt-name">{{ opt.name }}</span>
+            <select data-opt-index="{{ loop.index0 }}">
+              {% for val in opt.values or [] %}
+                <option
+                  value="{{ val.value }}"
+                  data-delta="{{ val.price_delta or 0 }}"
+                  data-label="{{ val.value }}"
+                >
+                  {{ val.value }}{% if val.price_delta %} (+${{ val.price_delta }}){% endif %}
+                </option>
+              {% endfor %}
+            </select>
+          </label>
+        {% endfor %}
+      {% endif %}
+    </form>
+
+    <button
+      id="addToCartBtn"
+      class="cart-add-item cta"
+      data-item-id="{{ product.id if product else '' }}"
+      data-item-name="{{ product.title if product else '' }}"
+      data-item-url="{{ '/product/?slug=' ~ product.slug if product and product.slug else '/product/' }}"
+      data-item-image="{{ product.image if product and product.image else '' }}"
+      data-item-description="{{ product.description if product and product.description else '' }}"
+      data-item-price="{{ product.price if product and product.price else '' }}"
+    >
+      Add to cart
+    </button>
+  </div>
+</section>
+
+<section id="related-products" class="rp" data-src="/products.json" aria-label="Related products">
+  <div class="rp-head">
+    <h2>Related products</h2>
+    <div class="rp-nav">
+      <button class="rp-btn prev" aria-label="Scroll left" disabled>‹</button>
+      <button class="rp-btn next" aria-label="Scroll right">›</button>
+    </div>
+  </div>
+
+  <div class="rp-viewport">
+    <div class="rp-track" id="rpTrack">
+      {% if product and currentCategory %}
+        {% for rp in allProducts %}
+          {% if relatedShown < 8 and rp.slug != product.slug and (rp.category == currentCategory or (rp.categories and currentCategory in rp.categories)) %}
+            {% set relatedShown = relatedShown + 1 %}
+            <article class="rel-card">
+              <a class="rel-card__img" href="/product/?slug={{ rp.slug }}">
+                <img src="{{ rp.image or '/images/placeholder.png' }}" alt="{{ rp.title }}" loading="lazy">
+              </a>
+              <h3 class="rel-card__title"><a href="/product/?slug={{ rp.slug }}">{{ rp.title }}</a></h3>
+              <div class="rel-card__price">${{ rp.price or "0.00" }}</div>
+              <a class="rel-card__cta" href="/product/?slug={{ rp.slug }}">Add to cart</a>
+            </article>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<script src="/assets/js/product.js" defer></script>

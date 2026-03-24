@@ -1,0 +1,78 @@
+{#
+  Product card component.
+  Usage:
+    {% from "components/product-card.html" import productCard %}
+    {{ productCard(product) }}
+#}
+
+{% macro productCard(product, opts={}) %}
+  {% set variant = opts.variant or "default" %}
+  {% set url = product.url or "#" %}
+  {% if product.slug %}
+    {% set url = "/product/?slug=" ~ product.slug %}
+  {% endif %}
+
+  <article
+    class="product-card"
+    data-variant="{{ variant }}"
+    data-title="{{ product.title }}"
+    data-price="{{ product.price }}"
+  >
+    <a class="product-card__link" href="{{ url }}">
+      <div class="product-card__media">
+        <img
+          class="product-card__img"
+          src="{{ product.image or '/images/placeholder.png' }}"
+          alt="{{ product.title }}"
+          loading="lazy"
+          decoding="async"
+        />
+
+        {% if product.badges and (product.badges | length) %}
+          <div class="product-card__badges" aria-label="Product badges">
+            {% for b in product.badges %}
+              {% set label = (b or "") | string %}
+              {% set l = label | lower %}
+              {% set cls = "badge--neutral" %}
+              {% if "sale" in l %}{% set cls = "badge--sale" %}{% endif %}
+              {% if "new" in l %}{% set cls = "badge--new" %}{% endif %}
+              <span class="badge {{ cls }}">{{ label }}</span>
+            {% endfor %}
+          </div>
+        {% elseif product.badge %}
+          <div class="product-card__badges" aria-label="Product badge">
+            {% set label = product.badge %}
+            {% set l = (label | lower) %}
+            {% set cls = "badge--neutral" %}
+            {% if "sale" in l %}{% set cls = "badge--sale" %}{% endif %}
+            {% if "new" in l %}{% set cls = "badge--new" %}{% endif %}
+            {% if "best" in l %}{% set cls = "badge--best" %}{% endif %}
+            <span class="badge {{ cls }}">{{ label }}</span>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="product-card__body">
+        <h3 class="product-card__title">{{ product.title }}</h3>
+
+        {% if product.subtitle %}
+          <p class="product-card__meta">{{ product.subtitle }}</p>
+        {% endif %}
+
+        <div class="product-card__price" aria-label="Price">
+          <span class="price-current">${{ product.price }}</span>
+          {% if product.compareAt %}
+            <span class="price-compare">${{ product.compareAt }}</span>
+          {% endif %}
+          {% if product.discount %}
+            <span class="price-discount">{{ product.discount }}</span>
+          {% endif %}
+        </div>
+      </div>
+    </a>
+
+    <div class="product-card__actions">
+      <a class="btn btn-outline btn-sm product-card__quick" href="{{ url }}">Add to cart</a>
+    </div>
+  </article>
+{% endmacro %}

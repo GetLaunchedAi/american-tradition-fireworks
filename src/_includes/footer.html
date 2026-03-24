@@ -6,7 +6,7 @@
   <div class="container">
     <div class="left-section">
       <a class="logo" href="/"><img loading="lazy" decoding="async" src="/assets/images/logo_dark.png" alt="logo"
-          width="264" height="78" /></a>
+          width="396" height="117" /></a>
     </div>
     <div class="right-section">
       <div class="lists">
@@ -14,16 +14,11 @@
           <li>
             <h2>Information</h2>
           </li>
+          {%- for entry in collections.all | eleventyNavigation %}
           <li>
-            <a href="/">Home</a>
+            <a href="{{ entry.url }}">{{ entry.title }}</a>
           </li>
-          <li>
-            <a href="/about">About Us</a>
-          </li>
-
-          <li>
-            <a href="/contact">Contact</a>
-          </li>
+          {%- endfor %}
         </ul>
         <!-- <ul>
           <li>

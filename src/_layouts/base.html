@@ -48,13 +48,14 @@
 
     <link rel="stylesheet" href="/css/root.css">
     <link rel="stylesheet" href="/css/dark.css">
-    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.6.0/default/snipcart.css" />
-    <script async src="https://cdn.snipcart.com/themes/v3.6.0/default/snipcart.js"></script>
     <link rel="preload" as="image" href="{{ preloadImg }}" />
 
     <!-- Loading in page specific CSS sheets from css block -->
     <link rel="stylesheet" href="/css/critical.css" />
     <link rel="stylesheet" href="{{ preloadCSS }}">
+
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!--Put analytics tag here at the bottom to prevent it from render blocking-->
 
@@ -68,7 +69,7 @@
     </title>
 </head>
 
-<body>
+<body class="{% if page.url == '/product/' %}nav-solid{% endif %}">
     <!--Screen reader skip main nav-->
     <a class="skip" aria-label="skip to main content" href="#main">Click To Skip To Main Content</a>
 
@@ -78,6 +79,7 @@
 
     <script defer src="/assets/js/nav.js"></script>
     <script defer src="/assets/js/dark.js"></script>
+    <script defer src="/assets/js/local-cart.js"></script>
 
     <!--
         This script adds a class to the body after scrolling 100px
@@ -100,8 +102,15 @@
             }
         });
     </script>
-    <script>
 
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
     </script>
 </body>
 
