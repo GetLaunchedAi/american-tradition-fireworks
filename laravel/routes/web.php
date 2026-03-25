@@ -69,10 +69,10 @@ Route::prefix('admin')
         Route::prefix('products')->name('products.')->group(function () {
             Route::get('/', [AdminProductController::class, 'index'])->name('index');
             Route::get('/create', [AdminProductController::class, 'create'])->name('create');
+            Route::get('/export', [AdminProductController::class, 'export'])->name('export');
             Route::post('/', [AdminProductController::class, 'store'])->name('store');
             Route::get('/{product}/edit', [AdminProductController::class, 'edit'])->name('edit');
             Route::put('/{product}', [AdminProductController::class, 'update'])->name('update');
             Route::delete('/{product}', [AdminProductController::class, 'destroy'])->name('destroy');
-            Route::get('/export', [AdminProductController::class, 'export'])->name('export');
         });
     });

@@ -122,6 +122,14 @@ class Product extends Model
 
     public function relatedProducts(int $limit = 8)
     {
+        if (empty($this->category)) {
+            return static::active()
+                ->where('id', '!=', $this->id)
+                ->where('brand', $this->brand)
+                ->limit($limit)
+                ->get();
+        }
+
         return static::active()
             ->where('id', '!=', $this->id)
             ->where('category', $this->category)

@@ -44,17 +44,18 @@ class ProductRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
-        // Auto-generate slug if not provided
         if (empty($this->slug) && !empty($this->title)) {
             $this->merge(['slug' => \Illuminate\Support\Str::slug($this->title)]);
         }
 
-        // Normalise checkboxes (HTML forms send nothing for unchecked)
+        // HTML checkboxes send nothing when unchecked; default is_active to true on create
+        $isCreate = !$this->route('product');
+
         $this->merge([
             'is_featured' => $this->boolean('is_featured'),
             'is_new'      => $this->boolean('is_new'),
             'is_on_sale'  => $this->boolean('is_on_sale'),
-            'is_active'   => $this->boolean('is_active', true),
+            'is_active'   => $this->has('is_active') ? $this->boolean('is_active') : $isCreate,
         ]);
     }
 }

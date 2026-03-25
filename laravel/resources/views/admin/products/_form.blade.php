@@ -112,7 +112,7 @@
     <div class="form-group">
         <label for="image">Product Image</label>
         <input id="image" type="file" name="image" accept="image/*" class="input">
-        @if(!empty($product->image))
+        @if($product && !empty($product->image))
             <div style="margin-top:8px;">
                 <img src="{{ $product->image_url }}" alt="Current image" style="height:64px; border-radius:6px; border:1px solid var(--border);" onerror="this.style.display='none'">
                 <p style="font-size:11px; color:var(--muted); margin-top:4px;">Current: {{ $product->image }}</p>

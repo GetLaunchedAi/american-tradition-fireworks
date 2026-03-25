@@ -1,6 +1,6 @@
 .cache
 node_modules
-admin/.admin-password
+src/admin/.admin-password
 
 # Laravel
 laravel/.env

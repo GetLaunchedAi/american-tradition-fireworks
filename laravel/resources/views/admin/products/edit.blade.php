@@ -29,13 +29,16 @@
         <div style="margin-top:28px; display:flex; gap:12px; align-items:center;">
             <button type="submit" class="btn btn-primary">Save Changes</button>
             <a href="{{ route('product.show', $product->slug) }}" target="_blank" class="btn btn-outline">View on Site</a>
-            <form method="POST" action="{{ route('admin.products.destroy', $product) }}" style="margin-left:auto;"
-                  onsubmit="return confirm('Permanently delete \'{{ addslashes($product->title) }}\'?')">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete Product</button>
-            </form>
         </div>
+    </form>
+</div>
+
+<div style="margin-top:16px;">
+    <form method="POST" action="{{ route('admin.products.destroy', $product) }}"
+          onsubmit="return confirm('Permanently delete \'{{ addslashes($product->title) }}\'?')">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger">Delete Product</button>
     </form>
 </div>
 @endsection

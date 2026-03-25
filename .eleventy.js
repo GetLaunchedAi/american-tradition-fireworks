@@ -58,11 +58,14 @@ ${Object.values(metadata)
   eleventyConfig.addPassthroughCopy('./src/assets');
   eleventyConfig.addPassthroughCopy('./src/_redirects');
   eleventyConfig.addPassthroughCopy({ './src/robots.txt': '/robots.txt' });
-  eleventyConfig.addPassthroughCopy('src/images');
+  eleventyConfig.addPassthroughCopy('src/images/products');
+  eleventyConfig.addPassthroughCopy({ 'src/images/*.*': 'images' });
   
-  // Copy root admin and api folders to public
-  eleventyConfig.addPassthroughCopy({ './admin': 'admin' });
-  eleventyConfig.addPassthroughCopy({ './api': 'api' });
+  // Admin & API live in src/ but should NOT be processed as templates
+  eleventyConfig.ignores.add('src/admin/**');
+  eleventyConfig.ignores.add('src/api/**');
+  eleventyConfig.addPassthroughCopy('src/admin');
+  eleventyConfig.addPassthroughCopy('src/api');
   
   // Copy .htaccess to public
   eleventyConfig.addPassthroughCopy({ './.htaccess': '.htaccess' });
