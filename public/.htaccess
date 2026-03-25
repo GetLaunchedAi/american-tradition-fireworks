@@ -1,5 +1,4 @@
 <IfModule mod_rewrite.c>
-  SetEnv ADMIN_PASSWORD "changeme123!"
   RewriteEngine On
 
   # Force HTTPS
