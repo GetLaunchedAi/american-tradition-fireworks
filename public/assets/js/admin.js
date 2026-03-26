@@ -43,6 +43,11 @@
   function hide(el) { if (el) el.hidden = true; }
   function setText(el, txt) { if (el) el.textContent = txt; }
 
+  function pid(p) {
+    if (!p) return '';
+    return p.sku || p.id || '';
+  }
+
   async function api(url, opts) {
     const res = await fetch(url, Object.assign({
       credentials: 'include',
@@ -93,7 +98,7 @@
   }
 
   function currentProduct() {
-    return products.find(p => String(p.id) === String(activeId)) || null;
+    return products.find(p => String(pid(p)) === String(activeId)) || null;
   }
 
   function renderList() {
@@ -102,15 +107,15 @@
     const rows = products
       .filter(p => {
         if (!q) return true;
-        const hay = `${p.title || ''} ${p.slug || ''} ${(p.collections || []).join(' ')} ${(p.tags || []).join(' ')}`.toLowerCase();
+        const hay = `${p.title || ''} ${p.slug || ''} ${p.sku || ''} ${p.category || ''} ${p.brand || ''} ${(p.collections || []).join(' ')} ${(p.tags || []).join(' ')}`.toLowerCase();
         return hay.includes(q);
       })
       .map(p => {
-        const isActive = String(p.id) === String(activeId);
+        const isActive = String(pid(p)) === String(activeId);
         return `
-          <div class="admin-item ${isActive ? 'is-active' : ''}" data-pick-id="${escapeAttr(p.id)}">
+          <div class="admin-item ${isActive ? 'is-active' : ''}" data-pick-id="${escapeAttr(pid(p))}">
             <div class="admin-item__title">${escapeHtml(p.title || 'Untitled')}</div>
-            <div class="admin-item__meta">/${escapeHtml(p.slug || '')} · $${escapeHtml(String(p.price || '0'))}</div>
+            <div class="admin-item__meta">${escapeHtml(p.sku || '')} · ${escapeHtml(p.category || '')} · /${escapeHtml(p.slug || '')}</div>
           </div>
         `;
       }).join('');
@@ -133,9 +138,14 @@
     hide(formErr);
 
     setVal('id', p.id || '');
+    setVal('sku', p.sku || '');
     setVal('slug', p.slug || '');
     setVal('title', p.title || '');
     setVal('subtitle', p.subtitle || '');
+    setVal('category', p.category || '');
+    setVal('brand', p.brand || '');
+    setVal('casePack', p.casePack || '');
+    setVal('youtubeUrl', p.youtubeUrl || '');
     setVal('price', p.price || '');
     setVal('compareAt', p.compareAt || '');
     setVal('badge', p.badge || '');
@@ -172,9 +182,14 @@
   function newProduct() {
     return {
       id: `p_${Date.now()}_${Math.random().toString(16).slice(2, 10)}`,
+      sku: '',
       slug: '',
       title: 'New product',
       subtitle: '',
+      category: '',
+      brand: '',
+      casePack: '',
+      youtubeUrl: '',
       price: '0.00',
       compareAt: '',
       badge: '',
@@ -268,10 +283,10 @@
     addBtn.addEventListener('click', async () => {
       const p = newProduct();
       const next = [p, ...products];
-      activeId = p.id;
+      activeId = pid(p);
       products = next;
       renderList();
-      openEditor(p.id);
+      openEditor(pid(p));
       setText(statusEl, 'New product added (not saved yet)');
     });
   }
@@ -321,11 +336,15 @@
       const p = currentProduct();
       if (!p) return;
 
-      // Update only the editable fields, preserve unknown keys.
       p.id = val('id').trim() || p.id;
+      p.sku = val('sku').trim();
       p.slug = val('slug').trim();
       p.title = val('title').trim();
       p.subtitle = val('subtitle').trim();
+      p.category = val('category').trim();
+      p.brand = val('brand').trim();
+      p.casePack = val('casePack').trim();
+      p.youtubeUrl = val('youtubeUrl').trim();
       p.price = val('price').trim();
       p.compareAt = val('compareAt').trim();
       p.badge = val('badge').trim();
@@ -353,7 +372,7 @@
       const ok = window.confirm(`Delete "${p.title || 'this product'}"?`);
       if (!ok) return;
 
-      const next = products.filter(x => String(x.id) !== String(activeId));
+      const next = products.filter(x => String(pid(x)) !== String(activeId));
       activeId = null;
       try {
         await saveAll(next);
