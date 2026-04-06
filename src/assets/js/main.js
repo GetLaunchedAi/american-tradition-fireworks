@@ -21,6 +21,19 @@
   const closeBtn = plp.querySelector('[data-filters-close]');
   const backdrop = document.querySelector('[data-filters-backdrop]');
   const sortSelects = Array.from(plp.querySelectorAll('[data-sort-select]'));
+  const CATEGORY_ALIASES = new Map([
+    ['350g cake', '350g Cake'],
+    ['350g cake, assorted case', '350g Cake, Assorted Case'],
+    ['500g cake', '500g Cake'],
+    ['500g cake, assorted case', '500g Cake, Assorted Case'],
+    ['air spinner', 'Air Spinners'],
+    ['air spinners', 'Air Spinners'],
+    ['artillery shell', 'Artillery Shells'],
+    ['artillery shells', 'Artillery Shells'],
+    ['assorted case', 'Assorted Case'],
+    ['roman candle', 'Roman Candles'],
+    ['roman candles', 'Roman Candles'],
+  ]);
 
   let all = [];
   let searchTimer = 0;
@@ -41,16 +54,45 @@
     return Number.isFinite(n) ? n : 0;
   }
 
+  function cleanText(value) {
+    return String(value || '')
+      .normalize('NFKC')
+      .replace(/[\u2018\u2019]/g, "'")
+      .replace(/[\u201C\u201D]/g, '"')
+      .replace(/[\u2013\u2014]/g, '-')
+      .replace(/\s*,\s*/g, ', ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
   function normalizeText(value) {
-    return String(value || '').trim().toLowerCase();
+    return cleanText(value).toLowerCase();
+  }
+
+  function normalizeSearchText(value) {
+    return normalizeText(value)
+      .replace(/['"]/g, '')
+      .replace(/[&+./-]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
   }
 
   function toArr(value) {
     if (Array.isArray(value)) return value.map(String);
     if (typeof value === 'string') {
-      return value.split(',').map((entry) => entry.trim()).filter(Boolean);
+      return cleanText(value).split(',').map((entry) => entry.trim()).filter(Boolean);
     }
     return [];
+  }
+
+  function formatCategory(value) {
+    const cleaned = cleanText(value);
+    if (!cleaned) return '';
+    return CATEGORY_ALIASES.get(normalizeText(cleaned)) || cleaned;
+  }
+
+  function categoryKey(value) {
+    return normalizeText(formatCategory(value));
   }
 
   function valuesFor(product) {
@@ -94,14 +136,14 @@
 
   function matchesCategory(product, category) {
     if (!category) return true;
-    return normalizeText(product.category) === normalizeText(category);
+    return categoryKey(product.category) === categoryKey(category);
   }
 
   function matchesQuery(product, query) {
     if (!query) return true;
 
     const values = valuesFor(product);
-    const haystack = [
+    const haystack = normalizeSearchText([
       product.title,
       product.subtitle,
       product.slug,
@@ -113,9 +155,9 @@
       values.tags.join(' '),
       values.collections.join(' '),
       values.badges.join(' '),
-    ].join(' ').toLowerCase();
+    ].join(' '));
 
-    return haystack.includes(normalizeText(query));
+    return haystack.includes(normalizeSearchText(query));
   }
 
   function escapeHtml(value) {
@@ -156,7 +198,7 @@
     const img = product.image || '/images/placeholder.png';
     const title = product.title || 'Untitled';
     const subtitle = product.subtitle || '';
-    const category = product.category || product.brand || '';
+    const category = formatCategory(product.category) || product.brand || '';
     const price = product.price || '0.00';
     const compare = product.compareAt ? String(product.compareAt) : '';
 
@@ -249,7 +291,7 @@
       const pressed =
         (type === 'filter' && value === state.filter) ||
         (type === 'price' && value === state.price) ||
-        (type === 'category' && value === state.category);
+        (type === 'category' && categoryKey(value) === categoryKey(state.category));
 
       chip.setAttribute('aria-pressed', pressed ? 'true' : 'false');
     });
@@ -263,14 +305,19 @@
     const counts = new Map();
 
     items.forEach((item) => {
-      const label = String(item.category || '').trim();
-      if (!label) return;
-      counts.set(label, (counts.get(label) || 0) + 1);
+      const label = formatCategory(item.category);
+      const key = categoryKey(item.category);
+      if (!label || !key) return;
+
+      if (!counts.has(key)) {
+        counts.set(key, { label, count: 0 });
+      }
+
+      counts.get(key).count += 1;
     });
 
-    return Array.from(counts.entries())
-      .sort((a, b) => a[0].localeCompare(b[0], undefined, { sensitivity: 'base' }))
-      .map(([label, count]) => ({ label, count }));
+    return Array.from(counts.values())
+      .sort((a, b) => a.label.localeCompare(b.label, undefined, { sensitivity: 'base' }));
   }
 
   function renderCategoryChips(state) {
@@ -283,7 +330,7 @@
     }
 
     categoryChipsEl.innerHTML = categories.map(({ label, count }) => `
-      <button class="chip chip--category" type="button" data-filter-chip data-filter-type="category" data-filter-value="${escapeHtml(label)}" aria-pressed="${label === state.category ? 'true' : 'false'}">
+      <button class="chip chip--category" type="button" data-filter-chip data-filter-type="category" data-filter-value="${escapeHtml(label)}" aria-pressed="${categoryKey(label) === categoryKey(state.category) ? 'true' : 'false'}">
         <span>${escapeHtml(label)}</span>
         <span class="chip__count">${count}</span>
       </button>
@@ -295,7 +342,7 @@
 
     const tokens = [];
     if (state.query) tokens.push({ key: 'q', label: `Search: ${state.query}` });
-    if (state.category) tokens.push({ key: 'category', label: state.category });
+    if (state.category) tokens.push({ key: 'category', label: formatCategory(state.category) });
     if (state.filter) tokens.push({ key: 'filter', label: state.filter });
     if (state.price) tokens.push({ key: 'price', label: state.price });
 
