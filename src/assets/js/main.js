@@ -11,6 +11,7 @@
   const countEl = plp.querySelector('[data-plp-count]');
   const activeFiltersEl = plp.querySelector('[data-active-filters]');
   const categoryChipsEl = plp.querySelector('[data-category-chips]');
+  const embeddedProductsEl = plp.querySelector('[data-products-json]');
   const searchInputs = Array.from(plp.querySelectorAll('[data-search-input]'));
   const refreshButtons = Array.from(plp.querySelectorAll('[data-products-refresh]'));
   const clearBtn = plp.querySelector('[data-filters-clear]');
@@ -23,6 +24,17 @@
 
   let all = [];
   let searchTimer = 0;
+
+  function readEmbeddedProducts() {
+    if (!embeddedProductsEl) return [];
+
+    try {
+      const parsed = JSON.parse(embeddedProductsEl.textContent || '[]');
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+      return [];
+    }
+  }
 
   function readNumber(value) {
     const n = parseFloat(String(value || '').replace(/[^0-9.]/g, ''));
@@ -351,7 +363,8 @@
   async function fetchProducts() {
     const response = await fetch('/products.json', { cache: 'no-store' });
     const data = await response.json();
-    all = Array.isArray(data) ? data : (Array.isArray(data.products) ? data.products : []);
+    const next = Array.isArray(data) ? data : (Array.isArray(data.products) ? data.products : []);
+    all = next.filter(inCollection);
   }
 
   async function refresh() {
@@ -359,7 +372,10 @@
       await fetchProducts();
       applyState();
     } catch (error) {
-      // Keep static server-rendered list if refresh fails.
+      if (!all.length) {
+        all = readEmbeddedProducts();
+        applyState();
+      }
     }
   }
 
@@ -451,5 +467,7 @@
   refreshButtons.forEach((button) => button.addEventListener('click', refresh));
   window.addEventListener('popstate', applyState);
 
+  all = readEmbeddedProducts();
+  applyState();
   refresh();
 })();

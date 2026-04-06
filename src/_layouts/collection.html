@@ -88,21 +88,6 @@ preloadCSS: /css/shop.css
       </aside>
 
       <div class="plp__main">
-        <div class="plp__summary">
-          <div class="plp__summary-copy">
-            <p class="plp__eyebrow">Shop smarter</p>
-            <h2 class="plp__summary-title">Search, sort, and filter the full catalog in one place.</h2>
-          </div>
-
-          <p class="muted plp__count" data-plp-count>
-            {% if filteredProducts.length %}
-              Showing {{ filteredProducts.length }} product{% if filteredProducts.length != 1 %}s{% endif %}
-            {% else %}
-              No products found
-            {% endif %}
-          </p>
-        </div>
-
         <div class="plp__toolbar">
           <div class="plp__search">
             <label class="sr-only" for="shop-search">Search products</label>
@@ -140,6 +125,8 @@ preloadCSS: /css/shop.css
             {{ productCard(product) }}
           {% endfor %}
         </div>
+
+        <script type="application/json" data-products-json>{{ filteredProducts | jsonify | safe }}</script>
       </div>
     </div>
   </div>
