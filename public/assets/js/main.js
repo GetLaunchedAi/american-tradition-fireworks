@@ -1,6 +1,7 @@
 // Collection page enhancement:
 // - Sort products
-// - Filter chips + price chips
+// - Search by keyword
+// - Filter by badges, price, and category
 // - Refresh from /products.json without rebuild
 (function () {
   const plp = document.querySelector('[data-collection-page]');
@@ -8,68 +9,105 @@
 
   const grid = plp.querySelector('[data-product-grid]');
   const countEl = plp.querySelector('[data-plp-count]');
+  const activeFiltersEl = plp.querySelector('[data-active-filters]');
+  const categoryChipsEl = plp.querySelector('[data-category-chips]');
+  const searchInputs = Array.from(plp.querySelectorAll('[data-search-input]'));
   const refreshButtons = Array.from(plp.querySelectorAll('[data-products-refresh]'));
-  const chips = Array.from(plp.querySelectorAll('[data-filter-chip]'));
   const clearBtn = plp.querySelector('[data-filters-clear]');
   const collectionKey = (plp.getAttribute('data-collection-key') || '').trim();
 
   const toggleBtn = plp.querySelector('[data-filters-toggle]');
   const closeBtn = plp.querySelector('[data-filters-close]');
   const backdrop = document.querySelector('[data-filters-backdrop]');
+  const sortSelects = Array.from(plp.querySelectorAll('[data-sort-select]'));
 
   let all = [];
+  let searchTimer = 0;
 
   function readNumber(value) {
     const n = parseFloat(String(value || '').replace(/[^0-9.]/g, ''));
     return Number.isFinite(n) ? n : 0;
   }
 
-  function toArr(v) {
-    if (Array.isArray(v)) return v.map(String);
-    if (typeof v === 'string') return v.split(',').map((s) => s.trim()).filter(Boolean);
+  function normalizeText(value) {
+    return String(value || '').trim().toLowerCase();
+  }
+
+  function toArr(value) {
+    if (Array.isArray(value)) return value.map(String);
+    if (typeof value === 'string') {
+      return value.split(',').map((entry) => entry.trim()).filter(Boolean);
+    }
     return [];
   }
 
-  function valuesFor(p) {
-    const tags = toArr(p.tags);
-    const cols = toArr(p.collections || p.collection || p.categories || []);
-    const badges = toArr(p.badges);
-    if (p.badge) badges.push(String(p.badge));
+  function valuesFor(product) {
+    const tags = toArr(product.tags);
+    const collections = toArr(product.collections || product.collection || product.categories || []);
+    const badges = toArr(product.badges);
+    if (product.badge) badges.push(String(product.badge));
+
     return {
-      tags: tags.map((s) => s.toLowerCase()),
-      collections: cols.map((s) => s.toLowerCase()),
-      badges: badges.map((s) => s.toLowerCase()),
+      tags: tags.map(normalizeText),
+      collections: collections.map(normalizeText),
+      badges: badges.map(normalizeText),
     };
   }
 
-  function inCollection(p) {
+  function inCollection(product) {
     if (!collectionKey) return true;
-    const needle = collectionKey.toLowerCase();
-    const v = valuesFor(p);
-    const category = String(p.category || '').toLowerCase();
-    return v.collections.includes(needle) || v.tags.includes(needle) || category === needle;
+    const needle = normalizeText(collectionKey);
+    const values = valuesFor(product);
+    const category = normalizeText(product.category);
+    return values.collections.includes(needle) || values.tags.includes(needle) || category === needle;
   }
 
-  function matchesFilter(p, filter) {
+  function matchesFilter(product, filter) {
     if (!filter) return true;
-    const needle = String(filter).toLowerCase();
-    const v = valuesFor(p);
-    const category = String(p.category || '').toLowerCase();
-    const anyIncludes = (arr) => arr.some((x) => x.includes(needle));
-    return anyIncludes(v.tags) || anyIncludes(v.collections) || anyIncludes(v.badges) || category.includes(needle);
+    const needle = normalizeText(filter);
+    const values = valuesFor(product);
+    const category = normalizeText(product.category);
+    const includesNeedle = (entries) => entries.some((entry) => entry.includes(needle));
+    return includesNeedle(values.tags) || includesNeedle(values.collections) || includesNeedle(values.badges) || category.includes(needle);
   }
 
-  function matchesPrice(p, priceKey) {
+  function matchesPrice(product, priceKey) {
     if (!priceKey) return true;
-    const price = readNumber(p.price);
+    const price = readNumber(product.price);
     if (priceKey === '0-25') return price >= 0 && price <= 25;
     if (priceKey === '25-75') return price >= 25 && price <= 75;
     if (priceKey === '75+') return price >= 75;
     return true;
   }
 
-  function escapeHtml(str) {
-    return String(str || '')
+  function matchesCategory(product, category) {
+    if (!category) return true;
+    return normalizeText(product.category) === normalizeText(category);
+  }
+
+  function matchesQuery(product, query) {
+    if (!query) return true;
+
+    const values = valuesFor(product);
+    const haystack = [
+      product.title,
+      product.subtitle,
+      product.slug,
+      product.sku,
+      product.brand,
+      product.category,
+      product.casePack,
+      product.badge,
+      values.tags.join(' '),
+      values.collections.join(' '),
+      values.badges.join(' '),
+    ].join(' ').toLowerCase();
+
+    return haystack.includes(normalizeText(query));
+  }
+
+  function escapeHtml(value) {
+    return String(value || '')
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
@@ -77,29 +115,48 @@
       .replace(/'/g, '&#039;');
   }
 
-  function productUrl(p) {
-    const slug = String(p.slug || p.id || '').trim();
+  function productUrl(product) {
+    const slug = String(product.slug || product.id || '').trim();
     if (!slug) return '/product/';
     return `/product/?slug=${encodeURIComponent(slug)}`;
   }
 
-  function cardHtml(p, idx) {
-    const img = p.image || '/images/placeholder.png';
-    const title = p.title || 'Untitled';
-    const subtitle = p.subtitle || '';
-    const price = p.price || '0.00';
-    const compare = p.compareAt ? String(p.compareAt) : '';
-    const badgeText = (p.badge && String(p.badge).trim()) || (Array.isArray(p.badges) && p.badges.length ? p.badges[0] : '');
-    const badge = badgeText ? `<span class="badge">${escapeHtml(badgeText)}</span>` : '';
+  function badgeMarkup(product) {
+    const labels = toArr(product.badges);
+    if (!labels.length && product.badge) labels.push(String(product.badge));
+    if (!labels.length) return '';
+
+    return `
+      <div class="product-card__badges">
+        ${labels.map((label) => {
+          const lower = label.toLowerCase();
+          let cls = 'badge--neutral';
+          if (lower.includes('sale')) cls = 'badge--sale';
+          if (lower.includes('new')) cls = 'badge--new';
+          if (lower.includes('best')) cls = 'badge--best';
+          return `<span class="badge ${cls}">${escapeHtml(label)}</span>`;
+        }).join('')}
+      </div>
+    `;
+  }
+
+  function cardHtml(product, idx) {
+    const img = product.image || '/images/placeholder.png';
+    const title = product.title || 'Untitled';
+    const subtitle = product.subtitle || '';
+    const category = product.category || product.brand || '';
+    const price = product.price || '0.00';
+    const compare = product.compareAt ? String(product.compareAt) : '';
 
     return `
       <article class="product-card" data-title="${escapeHtml(title)}" data-price="${escapeHtml(price)}" data-original-index="${idx}">
-        <a class="product-card__link" href="${escapeHtml(productUrl(p))}">
+        <a class="product-card__link" href="${escapeHtml(productUrl(product))}">
           <div class="product-card__media">
             <img class="product-card__img" src="${escapeHtml(img)}" alt="${escapeHtml(title)}" loading="lazy" decoding="async" />
-            ${badge ? `<div class="product-card__badges">${badge}</div>` : ''}
+            ${badgeMarkup(product)}
           </div>
           <div class="product-card__body">
+            ${category ? `<p class="product-card__eyebrow">${escapeHtml(category)}</p>` : ''}
             <h3 class="product-card__title">${escapeHtml(title)}</h3>
             ${subtitle ? `<p class="product-card__meta">${escapeHtml(subtitle)}</p>` : ''}
             <div class="product-card__price">
@@ -109,64 +166,199 @@
           </div>
         </a>
         <div class="product-card__actions">
-          <a class="btn btn-outline btn-sm product-card__quick" href="${escapeHtml(productUrl(p))}">Add to cart</a>
+          <a class="btn btn-outline btn-sm product-card__quick" href="${escapeHtml(productUrl(product))}">View product</a>
         </div>
       </article>
     `;
   }
 
-  function updateChipState(filter, priceKey) {
-    chips.forEach((chip) => {
-      const type = chip.getAttribute('data-filter-type');
-      const value = chip.getAttribute('data-filter-value');
-      const pressed = (type === 'filter' && value === (filter || '')) || (type === 'price' && value === (priceKey || ''));
-      chip.setAttribute('aria-pressed', pressed ? 'true' : 'false');
-    });
-  }
-
-  function setCount(n) {
-    if (!countEl) return;
-    countEl.textContent = n ? `Showing ${n} item${n === 1 ? '' : 's'}` : 'No products found';
+  function emptyStateHtml() {
+    return `
+      <div class="plp__empty">
+        <h3>No products match those filters</h3>
+        <p>Try a different keyword, switch categories, or clear the current filters.</p>
+        <button class="btn btn-outline" type="button" data-clear-all>Clear all filters</button>
+      </div>
+    `;
   }
 
   function sortMode() {
-    const sel = plp.querySelector('[data-sort-select]');
-    return sel ? (sel.value || 'featured') : 'featured';
+    const select = sortSelects[0];
+    return select ? (select.value || 'featured') : 'featured';
   }
 
   function sortProducts(items, mode) {
     if (mode === 'price-asc') return items.slice().sort((a, b) => readNumber(a.price) - readNumber(b.price));
     if (mode === 'price-desc') return items.slice().sort((a, b) => readNumber(b.price) - readNumber(a.price));
-    if (mode === 'title-asc') return items.slice().sort((a, b) => String(a.title || '').localeCompare(String(b.title || ''), undefined, { sensitivity: 'base' }));
-    if (mode === 'title-desc') return items.slice().sort((a, b) => String(b.title || '').localeCompare(String(a.title || ''), undefined, { sensitivity: 'base' }));
+    if (mode === 'title-asc') {
+      return items.slice().sort((a, b) => String(a.title || '').localeCompare(String(b.title || ''), undefined, { sensitivity: 'base' }));
+    }
+    if (mode === 'title-desc') {
+      return items.slice().sort((a, b) => String(b.title || '').localeCompare(String(a.title || ''), undefined, { sensitivity: 'base' }));
+    }
     return items;
   }
 
-  function applyFromUrl() {
+  function readState() {
     const params = new URLSearchParams(window.location.search);
-    const filter = params.get('filter') || '';
-    const priceKey = params.get('price') || '';
-    updateChipState(filter, priceKey);
+    return {
+      filter: params.get('filter') || '',
+      price: params.get('price') || '',
+      category: params.get('category') || '',
+      query: params.get('q') || '',
+    };
+  }
 
-    const scoped = all.filter(inCollection);
-    const filtered = scoped.filter((p) => matchesFilter(p, filter) && matchesPrice(p, priceKey));
+  function writeState(nextState, replacePath) {
+    const params = new URLSearchParams(window.location.search);
+    ['filter', 'price', 'category', 'q'].forEach((key) => {
+      const value = (nextState[key] || '').trim();
+      if (value) params.set(key, value);
+      else params.delete(key);
+    });
+
+    const nextUrl = replacePath
+      ? replacePath
+      : `${window.location.pathname}${params.toString() ? `?${params.toString()}` : ''}`;
+
+    window.history.replaceState({}, '', nextUrl);
+  }
+
+  function syncSearchInputs(query) {
+    searchInputs.forEach((input) => {
+      if (input.value !== query) input.value = query;
+    });
+  }
+
+  function updateChipState(state) {
+    Array.from(plp.querySelectorAll('[data-filter-chip]')).forEach((chip) => {
+      const type = chip.getAttribute('data-filter-type');
+      const value = chip.getAttribute('data-filter-value') || '';
+      const pressed =
+        (type === 'filter' && value === state.filter) ||
+        (type === 'price' && value === state.price) ||
+        (type === 'category' && value === state.category);
+
+      chip.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+    });
+  }
+
+  function scopedProducts() {
+    return all.filter(inCollection);
+  }
+
+  function uniqueCategories(items) {
+    const counts = new Map();
+
+    items.forEach((item) => {
+      const label = String(item.category || '').trim();
+      if (!label) return;
+      counts.set(label, (counts.get(label) || 0) + 1);
+    });
+
+    return Array.from(counts.entries())
+      .sort((a, b) => a[0].localeCompare(b[0], undefined, { sensitivity: 'base' }))
+      .map(([label, count]) => ({ label, count }));
+  }
+
+  function renderCategoryChips(state) {
+    if (!categoryChipsEl) return;
+
+    const categories = uniqueCategories(scopedProducts());
+    if (!categories.length) {
+      categoryChipsEl.innerHTML = '<span class="chip-row__empty">Categories will appear once products load.</span>';
+      return;
+    }
+
+    categoryChipsEl.innerHTML = categories.map(({ label, count }) => `
+      <button class="chip chip--category" type="button" data-filter-chip data-filter-type="category" data-filter-value="${escapeHtml(label)}" aria-pressed="${label === state.category ? 'true' : 'false'}">
+        <span>${escapeHtml(label)}</span>
+        <span class="chip__count">${count}</span>
+      </button>
+    `).join('');
+  }
+
+  function renderActiveFilters(state) {
+    if (!activeFiltersEl) return;
+
+    const tokens = [];
+    if (state.query) tokens.push({ key: 'q', label: `Search: ${state.query}` });
+    if (state.category) tokens.push({ key: 'category', label: state.category });
+    if (state.filter) tokens.push({ key: 'filter', label: state.filter });
+    if (state.price) tokens.push({ key: 'price', label: state.price });
+
+    activeFiltersEl.hidden = tokens.length === 0;
+    if (!tokens.length) {
+      activeFiltersEl.innerHTML = '';
+      return;
+    }
+
+    activeFiltersEl.innerHTML = `
+      <span class="plp__active-label">Active filters</span>
+      ${tokens.map((token) => `
+        <button class="active-filter" type="button" data-active-clear="${token.key}">
+          ${escapeHtml(token.label)}
+          <span aria-hidden="true">x</span>
+        </button>
+      `).join('')}
+      <button class="active-filter active-filter--clear" type="button" data-clear-all>Clear all</button>
+    `;
+  }
+
+  function setCount(visible, total) {
+    if (!countEl) return;
+
+    if (!total) {
+      countEl.textContent = 'No products found';
+      return;
+    }
+
+    if (!visible) {
+      countEl.textContent = `No matches in ${total} product${total === 1 ? '' : 's'}`;
+      return;
+    }
+
+    countEl.textContent = visible === total
+      ? `Showing ${visible} product${visible === 1 ? '' : 's'}`
+      : `Showing ${visible} of ${total} products`;
+  }
+
+  function applyState() {
+    const state = readState();
+    syncSearchInputs(state.query);
+    renderCategoryChips(state);
+    updateChipState(state);
+    renderActiveFilters(state);
+
+    const scoped = scopedProducts();
+    const filtered = scoped.filter((product) => (
+      matchesFilter(product, state.filter) &&
+      matchesPrice(product, state.price) &&
+      matchesCategory(product, state.category) &&
+      matchesQuery(product, state.query)
+    ));
     const sorted = sortProducts(filtered, sortMode());
 
-    if (grid) grid.innerHTML = sorted.map((p, idx) => cardHtml(p, idx)).join('');
-    setCount(sorted.length);
+    if (grid) {
+      grid.innerHTML = sorted.length
+        ? sorted.map((product, idx) => cardHtml(product, idx)).join('')
+        : emptyStateHtml();
+    }
+
+    setCount(sorted.length, scoped.length);
   }
 
   async function fetchProducts() {
-    const res = await fetch('/products.json', { cache: 'no-store' });
-    const data = await res.json();
+    const response = await fetch('/products.json', { cache: 'no-store' });
+    const data = await response.json();
     all = Array.isArray(data) ? data : (Array.isArray(data.products) ? data.products : []);
   }
 
   async function refresh() {
     try {
       await fetchProducts();
-      applyFromUrl();
-    } catch (e) {
+      applyState();
+    } catch (error) {
       // Keep static server-rendered list if refresh fails.
     }
   }
@@ -175,54 +367,89 @@
     if (open) {
       document.body.setAttribute('data-filters-open', 'true');
       if (backdrop) backdrop.hidden = false;
-    } else {
-      document.body.removeAttribute('data-filters-open');
-      if (backdrop) backdrop.hidden = true;
+      return;
     }
+
+    document.body.removeAttribute('data-filters-open');
+    if (backdrop) backdrop.hidden = true;
+  }
+
+  function clearAll() {
+    writeState({ filter: '', price: '', category: '', q: '' }, window.location.pathname);
+    applyState();
+    setDrawer(false);
   }
 
   if (toggleBtn) toggleBtn.addEventListener('click', () => setDrawer(true));
   if (closeBtn) closeBtn.addEventListener('click', () => setDrawer(false));
   if (backdrop) backdrop.addEventListener('click', () => setDrawer(false));
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') setDrawer(false);
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setDrawer(false);
   });
 
-  chips.forEach((chip) => {
-    chip.addEventListener('click', () => {
+  plp.addEventListener('click', (event) => {
+    const chip = event.target.closest('[data-filter-chip]');
+    if (chip) {
       const type = chip.getAttribute('data-filter-type');
       const value = chip.getAttribute('data-filter-value') || '';
-      const params = new URLSearchParams(window.location.search);
-      const key = type === 'price' ? 'price' : 'filter';
-      const current = params.get(key) || '';
-      if (current === value) params.delete(key);
-      else params.set(key, value);
-      const next = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
-      window.history.replaceState({}, '', next);
-      applyFromUrl();
+      const state = readState();
+      const key = type === 'price' ? 'price' : type === 'category' ? 'category' : 'filter';
+      const nextState = Object.assign({}, state, {
+        [key]: state[key] === value ? '' : value,
+      });
+
+      writeState(nextState);
+      applyState();
       setDrawer(false);
-    });
+      return;
+    }
+
+    const activeClear = event.target.closest('[data-active-clear]');
+    if (activeClear) {
+      const key = activeClear.getAttribute('data-active-clear');
+      const state = readState();
+      state[key] = '';
+      writeState(state);
+      applyState();
+      return;
+    }
+
+    if (event.target.closest('[data-clear-all]')) {
+      clearAll();
+    }
   });
 
   if (clearBtn) {
-    clearBtn.addEventListener('click', () => {
-      window.history.replaceState({}, '', window.location.pathname);
-      applyFromUrl();
-      setDrawer(false);
-    });
+    clearBtn.addEventListener('click', clearAll);
   }
 
-  const sortSelects = Array.from(plp.querySelectorAll('[data-sort-select]'));
-  sortSelects.forEach((sel) => {
-    sel.addEventListener('change', () => {
-      sortSelects.forEach((other) => {
-        if (other !== sel) other.value = sel.value;
-      });
-      applyFromUrl();
+  searchInputs.forEach((input) => {
+    input.addEventListener('input', () => {
+      const query = input.value.trim();
+      syncSearchInputs(query);
+
+      window.clearTimeout(searchTimer);
+      searchTimer = window.setTimeout(() => {
+        const state = readState();
+        state.query = query;
+        writeState(state);
+        applyState();
+      }, 120);
     });
   });
 
-  refreshButtons.forEach((btn) => btn.addEventListener('click', refresh));
+  sortSelects.forEach((select) => {
+    select.addEventListener('change', () => {
+      sortSelects.forEach((other) => {
+        if (other !== select) other.value = select.value;
+      });
+      applyState();
+    });
+  });
+
+  refreshButtons.forEach((button) => button.addEventListener('click', refresh));
+  window.addEventListener('popstate', applyState);
 
   refresh();
 })();

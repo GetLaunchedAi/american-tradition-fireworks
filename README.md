@@ -356,6 +356,16 @@ If you get any errors, the most common reason is because the port 8081 is used. 
 
 # Things to do before deployment
 <a name="#pre-deployment-things" />
+
+### Cloudways admin password
+
+If this site is deployed on Cloudways, keep the admin password out of the repo.
+
+- Set `ADMIN_PASSWORD` on the live server only.
+- Preferred: store the password in `private_html/.admin-password` on the server as a one-line file that is not tracked by git.
+- The app also supports a Cloudways-managed environment setting, or a live-only `public/.htaccess` entry via `SetEnv ADMIN_PASSWORD "..."` if needed.
+- Do not store the real password in the repo root `.htaccess`, `public/.htaccess`, or any tracked file.
+- `private_html/.admin-password` is the safest option here because Cloudways Git deploys should not overwrite it.
 ### Adding the sitemap
 
 If you need to create a sitemap, use this tool to do so and download the file: https://www.xml-sitemaps.com/

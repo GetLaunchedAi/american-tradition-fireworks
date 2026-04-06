@@ -30,14 +30,14 @@ layout: base.html
           Filters
         </button>
 
-        <div class="plp__sort" style="display:flex; gap:10px; align-items:center;">
+        <div class="plp__mobile-actions">
           <label class="sr-only" for="sort-select">Sort</label>
           <select id="sort-select" class="select" data-sort-select>
             <option value="featured" selected>Sort: Featured</option>
-            <option value="price-asc">Price: Low → High</option>
-            <option value="price-desc">Price: High → Low</option>
-            <option value="title-asc">Name: A → Z</option>
-            <option value="title-desc">Name: Z → A</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="title-asc">Name: A to Z</option>
+            <option value="title-desc">Name: Z to A</option>
           </select>
 
           <button class="btn btn-ghost btn-sm" type="button" data-products-refresh>Refresh</button>
@@ -45,14 +45,17 @@ layout: base.html
       </div>
 
       <aside class="plp__sidebar" aria-label="Filters">
-        <div class="card">
-          <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
-            <h2 class="card__title">Filters</h2>
+        <div class="card plp__panel">
+          <div class="plp__panel-head">
+            <div>
+              <p class="plp__eyebrow">Refine results</p>
+              <h2 class="card__title">Shop filters</h2>
+            </div>
             <button class="btn btn-ghost btn-sm" type="button" data-filters-close>Close</button>
           </div>
-          <p class="muted card__text">Tap a chip to filter products. Filters update the URL so you can share the view.</p>
+          <p class="muted card__text">Use category, price, and badge filters to narrow the catalog. Your current view stays shareable through the URL.</p>
 
-          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px;">
+          <div class="plp__panel-actions">
             <button class="btn btn-outline btn-sm" type="button" data-filters-clear>Clear</button>
           </div>
 
@@ -68,39 +71,66 @@ layout: base.html
           <div class="filter-group">
             <p class="filter-label">Price</p>
             <div class="chip-row">
-              <button class="chip" type="button" data-filter-chip data-filter-type="price" data-filter-value="0-25" aria-pressed="false">$0–$25</button>
-              <button class="chip" type="button" data-filter-chip data-filter-type="price" data-filter-value="25-75" aria-pressed="false">$25–$75</button>
+              <button class="chip" type="button" data-filter-chip data-filter-type="price" data-filter-value="0-25" aria-pressed="false">$0-$25</button>
+              <button class="chip" type="button" data-filter-chip data-filter-type="price" data-filter-value="25-75" aria-pressed="false">$25-$75</button>
               <button class="chip" type="button" data-filter-chip data-filter-type="price" data-filter-value="75+" aria-pressed="false">$75+</button>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <p class="filter-label">Categories</p>
+            <div class="chip-row chip-row--categories" data-category-chips>
+              <span class="chip-row__empty">Loading categories...</span>
             </div>
           </div>
         </div>
       </aside>
 
       <div class="plp__main">
-        <div class="plp__toolbar">
+        <div class="plp__summary">
+          <div class="plp__summary-copy">
+            <p class="plp__eyebrow">Shop smarter</p>
+            <h2 class="plp__summary-title">Search, sort, and filter the full catalog in one place.</h2>
+          </div>
+
           <p class="muted plp__count" data-plp-count>
             {% if filteredProducts.length %}
-              Showing {{ filteredProducts.length }} item{% if filteredProducts.length != 1 %}s{% endif %}
+              Showing {{ filteredProducts.length }} product{% if filteredProducts.length != 1 %}s{% endif %}
             {% else %}
               No products found
             {% endif %}
           </p>
+        </div>
 
-          <div style="display:flex; gap:10px; align-items:center;">
+        <div class="plp__toolbar">
+          <div class="plp__search">
+            <label class="sr-only" for="shop-search">Search products</label>
+            <input
+              id="shop-search"
+              class="plp__search-input"
+              type="search"
+              placeholder="Search by name, SKU, brand, or category"
+              data-search-input
+            />
+          </div>
+
+          <div class="plp__toolbar-actions">
             <button class="btn btn-ghost btn-sm" type="button" data-products-refresh>Refresh</button>
 
             <div class="plp__sort plp__sort--desktop">
-              <label class="muted" for="sort-select-desktop">Sort</label>
+              <label class="muted plp__sort-label" for="sort-select-desktop">Sort</label>
               <select id="sort-select-desktop" class="select" data-sort-select>
                 <option value="featured" selected>Featured</option>
-                <option value="price-asc">Price: Low → High</option>
-                <option value="price-desc">Price: High → Low</option>
-                <option value="title-asc">Name: A → Z</option>
-                <option value="title-desc">Name: Z → A</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="title-asc">Name: A to Z</option>
+                <option value="title-desc">Name: Z to A</option>
               </select>
             </div>
           </div>
         </div>
+
+        <div class="plp__active" data-active-filters hidden></div>
 
         {{ content | safe }}
 

@@ -36,6 +36,7 @@
               {% set cls = "badge--neutral" %}
               {% if "sale" in l %}{% set cls = "badge--sale" %}{% endif %}
               {% if "new" in l %}{% set cls = "badge--new" %}{% endif %}
+              {% if "best" in l %}{% set cls = "badge--best" %}{% endif %}
               <span class="badge {{ cls }}">{{ label }}</span>
             {% endfor %}
           </div>
@@ -53,6 +54,10 @@
       </div>
 
       <div class="product-card__body">
+        {% if product.category or product.brand %}
+          <p class="product-card__eyebrow">{{ product.category or product.brand }}</p>
+        {% endif %}
+
         <h3 class="product-card__title">{{ product.title }}</h3>
 
         {% if product.subtitle %}
@@ -72,7 +77,7 @@
     </a>
 
     <div class="product-card__actions">
-      <a class="btn btn-outline btn-sm product-card__quick" href="{{ url }}">Add to cart</a>
+      <a class="btn btn-outline btn-sm product-card__quick" href="{{ url }}">View product</a>
     </div>
   </article>
 {% endmacro %}

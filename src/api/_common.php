@@ -43,10 +43,22 @@ function bb_read_json_body(): array {
 }
 
 function bb_admin_password(): string {
-  // Cloudways: SetEnv ADMIN_PASSWORD "..." (Application Settings/.htaccess)
+  // Cloudways: set ADMIN_PASSWORD in the live app settings or deployed public/.htaccess.
+  // Do not commit the real password to the repository.
   $p = getenv('ADMIN_PASSWORD');
   if (is_string($p) && strlen(trim($p)) > 0) return trim($p);
   if (!empty($_ENV['ADMIN_PASSWORD'])) return trim((string) $_ENV['ADMIN_PASSWORD']);
+  // Cloudways fallback: keep a server-only file outside the deployed public tree.
+  $serverPassFiles = [
+    dirname(__DIR__, 3) . '/private_html/.admin-password',
+    dirname(__DIR__, 2) . '/private_html/.admin-password',
+  ];
+  foreach ($serverPassFiles as $serverPassFile) {
+    if (is_file($serverPassFile)) {
+      $raw = @file_get_contents($serverPassFile);
+      if (is_string($raw) && trim($raw) !== '') return trim($raw);
+    }
+  }
   // Local dev fallback: plaintext file with one line password (gitignored).
   $localPassFile = __DIR__ . '/../admin/.admin-password';
   if (is_file($localPassFile)) {
