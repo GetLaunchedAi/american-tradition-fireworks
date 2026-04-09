@@ -17,24 +17,54 @@ preloadCSS: /css/product.css
         src="{{ (product.image if product and product.image else '/images/placeholder.png') }}"
       />
     </div>
-    <div id="pdpVideoContainer" class="pdp__video" style="display: none;">
-    </div>
+    <div id="pdpVideoContainer" class="pdp__video" style="display: none;"></div>
   </div>
 
   <div class="pdp__meta">
     <nav class="crumbs">
       <a href="/shop/">Shop</a>
+      {% if product and product.group %}
+        / <span>{{ product.group }}</span>
+      {% endif %}
       {% if product and product.category %}
         / <span>{{ product.category }}</span>
       {% endif %}
       / <span id="pdpCrumb">{{ (product.title if product else "Product") }}</span>
     </nav>
 
-    <h1 id="pdpTitle">{{ (product.title if product else "Product") }}</h1>
-    <p id="pdpPrice" class="pdp__price">
-      {% if product and product.price %}${{ product.price }}{% endif %}
+    <p id="pdpGroup" class="pdp__eyebrow">
+      {{ product.group if product and product.group else "" }}
     </p>
-    <p id="pdpDesc" class="pdp__desc">{{ (product.description if product and product.description else "") }}</p>
+    <h1 id="pdpTitle">{{ (product.title if product else "Product") }}</h1>
+
+    <div class="pdp__pricing">
+      <div class="pdp__price-row">
+        <p id="pdpPrice" class="pdp__price">
+          {% if product and (product.priceEa or product.price) %}${{ product.priceEa or product.price }}{% endif %}
+        </p>
+        <p id="pdpCasePrice" class="pdp__case-price">
+          {% if product and product.casePrice %}Case ${{ product.casePrice }}{% endif %}
+        </p>
+      </div>
+      <p id="pdpPack" class="pdp__pack">
+        {% if product and (product.packCase or product.casePack) %}
+          Pack/Case: {{ product.packCase or product.casePack }}
+        {% endif %}
+      </p>
+      <div id="pdpStock" class="pdp__stock"></div>
+    </div>
+
+    <div id="pdpNotice" class="pdp__notice" hidden>
+      <p class="pdp__notice-title">Restricted fireworks documentation required</p>
+      <p id="pdpNoticeText" class="pdp__notice-copy"></p>
+      <a class="pdp__notice-link" href="/requirements-shipping/">
+        View full requirements and shipping policy
+      </a>
+    </div>
+
+    <p id="pdpDesc" class="pdp__desc">
+      {{ (product.description if product and product.description else "") }}
+    </p>
 
     <form id="pdpOptions" class="pdp__options">
       {% if product and product.options and product.options.length %}
@@ -57,20 +87,98 @@ preloadCSS: /css/product.css
       {% endif %}
     </form>
 
-    <button
-      id="addToCartBtn"
-      class="cart-add-item cta"
-      data-item-id="{{ product.id if product else '' }}"
-      data-item-name="{{ product.title if product else '' }}"
-      data-item-url="{{ '/product/?slug=' ~ product.slug if product and product.slug else '/product/' }}"
-      data-item-image="{{ product.image if product and product.image else '' }}"
-      data-item-description="{{ product.description if product and product.description else '' }}"
-      data-item-price="{{ product.price if product and product.price else '' }}"
-    >
-      Add to cart
-    </button>
+    <div class="pdp__cta-row">
+      <a
+        id="pdpVideoLink"
+        class="btn btn-outline pdp__video-link"
+        href="#pdpVideoContainer"
+        hidden
+      >
+        Watch video
+      </a>
+
+      <button
+        id="addToCartBtn"
+        class="cart-add-item cta"
+        data-item-id="{{ product.id if product else '' }}"
+        data-item-name="{{ product.title if product else '' }}"
+        data-item-url="{{ '/product/?slug=' ~ product.slug if product and product.slug else '/product/' }}"
+        data-item-image="{{ product.image if product and product.image else '' }}"
+        data-item-description="{{ product.description if product and product.description else '' }}"
+        data-item-price="{{ product.priceEa if product and product.priceEa else (product.price if product and product.price else '') }}"
+      >
+        Add to cart
+      </button>
+    </div>
   </div>
 </section>
+
+<div id="pdpDisclaimer" class="pdp-disclaimer" hidden aria-hidden="true">
+  <div class="pdp-disclaimer__backdrop"></div>
+  <div
+    class="pdp-disclaimer__dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="pdpDisclaimerTitle"
+    aria-describedby="pdpDisclaimerDesc"
+  >
+    <p class="pdp-disclaimer__eyebrow">Restricted Fireworks Disclaimer</p>
+    <h2 id="pdpDisclaimerTitle" class="pdp-disclaimer__title">
+      Professional and Display Fireworks Requirements
+    </h2>
+    <p id="pdpDisclaimerDesc" class="pdp-disclaimer__intro">
+      Before we can start an order, hold product, arrange shipping, or release
+      pickup for restricted fireworks, we need to review the required
+      documentation.
+    </p>
+
+    <div class="pdp-disclaimer__grid">
+      <article class="pdp-disclaimer__card">
+        <h3>1.4g Articles Pyrotechnic Fireworks</h3>
+        <p>
+          Requires either a PGI or certified training-course certificate, or a
+          Federal Explosives License to purchase.
+        </p>
+        <p>
+          These products do not require federal storage compliance for the
+          buyer.
+        </p>
+      </article>
+      <article class="pdp-disclaimer__card">
+        <h3>1.3g Display Fireworks</h3>
+        <p>Requires a Federal Explosives License to purchase.</p>
+        <p>
+          Federal storage requirements apply when these products are stored
+          beyond one day.
+        </p>
+      </article>
+    </div>
+
+    <ul class="pdp-disclaimer__list">
+      <li>Send your documentation before we can process the order.</li>
+      <li>
+        If you do not have the required paperwork yet, contact our sales team
+        and we can help point you in the right direction.
+      </li>
+      <li>
+        Read the full requirements and shipping policy for freight, claims, and
+        documentation details.
+      </li>
+    </ul>
+
+    <div class="pdp-disclaimer__actions">
+      <a class="pdp-disclaimer__link" href="/requirements-shipping/">
+        Full policy
+      </a>
+      <a class="pdp-disclaimer__link pdp-disclaimer__link--ghost" href="/contact/">
+        Contact sales
+      </a>
+      <button id="pdpDisclaimerAccept" class="button-solid pdp-disclaimer__button" type="button">
+        Continue to product
+      </button>
+    </div>
+  </div>
+</div>
 
 <section id="related-products" class="rp" data-src="/products.json" aria-label="Related products">
   <div class="rp-head">
@@ -91,9 +199,23 @@ preloadCSS: /css/product.css
               <a class="rel-card__img" href="/product/?slug={{ rp.slug }}">
                 <img src="{{ rp.image or '/images/placeholder.png' }}" alt="{{ rp.title }}" loading="lazy">
               </a>
-              <h3 class="rel-card__title"><a href="/product/?slug={{ rp.slug }}">{{ rp.title }}</a></h3>
-              <div class="rel-card__price">${{ rp.price or "0.00" }}</div>
-              <a class="rel-card__cta" href="/product/?slug={{ rp.slug }}">Add to cart</a>
+              <div class="rel-card__body">
+                {% if rp.group %}<p class="rel-card__eyebrow">{{ rp.group }}</p>{% endif %}
+                <h3 class="rel-card__title"><a href="/product/?slug={{ rp.slug }}">{{ rp.title }}</a></h3>
+                {% if rp.category %}<p class="rel-card__meta">{{ rp.category }}</p>{% endif %}
+                <div class="rel-card__price">
+                  {% if rp.priceEa or rp.price %}
+                    <span class="rel-card__price-ea">Each ${{ rp.priceEa or rp.price }}</span>
+                  {% endif %}
+                  {% if rp.casePrice %}
+                    <span class="rel-card__price-case">Case ${{ rp.casePrice }}</span>
+                  {% endif %}
+                </div>
+                {% if rp.stockLabel %}
+                  <span class="rel-card__stock rel-card__stock--{{ rp.stockState }}">{{ rp.stockLabel }}</span>
+                {% endif %}
+              </div>
+              <a class="rel-card__cta" href="/product/?slug={{ rp.slug }}">View product</a>
             </article>
           {% endif %}
         {% endfor %}

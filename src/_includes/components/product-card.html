@@ -11,12 +11,17 @@
   {% if product.slug %}
     {% set url = "/product/?slug=" ~ product.slug %}
   {% endif %}
+  {% set priceEa = product.priceEa if product.priceEa is not none else product.price %}
+  {% set casePrice = product.casePrice %}
+  {% set packCase = product.packCase if product.packCase is not none else product.casePack %}
+  {% set stockState = product.stockState or "" %}
 
   <article
     class="product-card"
     data-variant="{{ variant }}"
     data-title="{{ product.title }}"
-    data-price="{{ product.price }}"
+    data-price="{{ priceEa }}"
+    data-stock-state="{{ stockState }}"
   >
     <a class="product-card__link" href="{{ url }}">
       <div class="product-card__media">
@@ -51,33 +56,52 @@
             <span class="badge {{ cls }}">{{ label }}</span>
           </div>
         {% endif %}
+
+        {% if product.youtubeUrl %}
+          <span class="product-card__video-chip">Video</span>
+        {% endif %}
       </div>
 
       <div class="product-card__body">
-        {% if product.category or product.brand %}
-          <p class="product-card__eyebrow">{{ product.category or product.brand }}</p>
+        {% if product.group or product.brand %}
+          <p class="product-card__eyebrow">{{ product.group or product.brand }}</p>
         {% endif %}
 
         <h3 class="product-card__title">{{ product.title }}</h3>
 
-        {% if product.subtitle %}
-          <p class="product-card__meta">{{ product.subtitle }}</p>
+        {% if product.category %}
+          <p class="product-card__meta">{{ product.category }}</p>
         {% endif %}
 
-        <div class="product-card__price" aria-label="Price">
-          <span class="price-current">${{ product.price }}</span>
-          {% if product.compareAt %}
-            <span class="price-compare">${{ product.compareAt }}</span>
+        <div class="product-card__facts">
+          {% if packCase %}
+            <span>Pack/Case: {{ packCase }}</span>
           {% endif %}
-          {% if product.discount %}
-            <span class="price-discount">{{ product.discount }}</span>
+          {% if product.stockLabel %}
+            <span class="product-card__stock product-card__stock--{{ stockState }}">{{ product.stockLabel }}</span>
           {% endif %}
+        </div>
+
+        <div class="product-card__price" aria-label="Pricing">
+          <div class="product-card__price-row">
+            {% if priceEa is not none %}
+              <span class="price-current">Each ${{ priceEa }}</span>
+            {% else %}
+              <span class="price-current price-current--unset">Call for pricing</span>
+            {% endif %}
+            {% if casePrice is not none %}
+              <span class="price-case">Case ${{ casePrice }}</span>
+            {% endif %}
+          </div>
         </div>
       </div>
     </a>
 
     <div class="product-card__actions">
       <a class="btn btn-outline btn-sm product-card__quick" href="{{ url }}">View product</a>
+      {% if product.youtubeUrl %}
+        <a class="btn btn-ghost btn-sm product-card__video-link" href="{{ url }}#pdpVideoContainer">Video</a>
+      {% endif %}
     </div>
   </article>
 {% endmacro %}

@@ -31,14 +31,19 @@
           <li>
             <h2>Contact</h2>
           </li>
-          <!-- <li>
-                        <a href="/contact">First Address Line<br>Denver CO 80206</a>
-                    </li> -->
+          {% if client.address.lineOne %}
           <li>
-            <a href="tel:266-731-4311">Tel: (266) 731-4311 </a>
+            <a href="{{ client.address.mapLink or '/contact/' }}">
+              {{ client.address.lineOne }}<br>
+              {{ client.address.city }}, MI {{ client.address.postcode }}
+            </a>
+          </li>
+          {% endif %}
+          <li>
+            <a href="tel:{{ client.phone }}">Tel: {{ client.phoneFormatted }}</a>
           </li>
           <li>
-            <a href="mailto:americantradition@yahoo.com">Click to Email</a>
+            <a href="mailto:{{ client.email }}">{{ client.email }}</a>
           </li>
         </ul>
       </div>

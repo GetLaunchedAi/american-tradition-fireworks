@@ -143,6 +143,17 @@ body[data-filters-open="true"] {
   box-shadow: var(--shadow);
 }
 
+.catalog-note {
+  margin: 0 0 1rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid rgba(193, 28, 42, 0.18);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(193, 28, 42, 0.07), rgba(255, 255, 255, 0.96));
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
 .plp__search {
   flex: 1 1 18rem;
   position: relative;
@@ -340,6 +351,12 @@ body.dark-mode .chip {
   color: #e5e7eb;
 }
 
+body.dark-mode .catalog-note {
+  background: linear-gradient(135deg, rgba(193, 28, 42, 0.2), rgba(17, 24, 39, 0.96));
+  border-color: rgba(248, 113, 113, 0.2);
+  color: #f9fafb;
+}
+
 body.dark-mode .chip:hover {
   background: rgba(193, 28, 42, 0.14);
 }
@@ -499,6 +516,41 @@ body.dark-mode .product-card__media {
   flex: 1 1 auto;
 }
 
+.product-card__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.1rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.product-card__stock {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.55rem;
+  padding: 0 0.55rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.06);
+  color: var(--text);
+}
+
+.product-card__stock--in-stock {
+  background: rgba(22, 101, 52, 0.12);
+  color: #166534;
+}
+
+.product-card__stock--waiting-for-stock {
+  background: rgba(180, 83, 9, 0.12);
+  color: #b45309;
+}
+
+.product-card__stock--out-of-stock {
+  background: rgba(100, 116, 139, 0.12);
+  color: #475569;
+}
+
 .product-card__price {
   display: flex;
   align-items: baseline;
@@ -508,9 +560,26 @@ body.dark-mode .product-card__media {
   font-weight: 800;
 }
 
+.product-card__price-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.75rem;
+  align-items: baseline;
+}
+
 .price-current {
   color: var(--text);
   font-size: 1.15rem;
+}
+
+.price-current--unset {
+  color: var(--muted);
+}
+
+.price-case {
+  color: var(--price);
+  font-weight: 800;
+  font-size: 0.9rem;
 }
 
 .price-compare {
@@ -528,6 +597,28 @@ body.dark-mode .product-card__media {
 
 .product-card__actions {
   padding: 0 1.15rem 1.15rem;
+}
+
+.product-card__video-chip {
+  position: absolute;
+  right: 0.9rem;
+  top: 0.9rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.65rem;
+  padding: 0 0.65rem;
+  border-radius: 999px;
+  background: rgba(17, 24, 39, 0.86);
+  color: #fff;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.product-card__video-link {
+  width: 100%;
 }
 
 .btn {
@@ -608,6 +699,10 @@ body.dark-mode .btn-outline:hover {
 
 body.dark-mode .btn-ghost:hover {
   background: rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .product-card__video-chip {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 @media (min-width: 640px) {

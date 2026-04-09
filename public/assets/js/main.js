@@ -54,6 +54,11 @@
     return Number.isFinite(n) ? n : 0;
   }
 
+  function money(value) {
+    const n = readNumber(value);
+    return Number.isFinite(n) ? n.toFixed(2) : '';
+  }
+
   function cleanText(value) {
     return String(value || '')
       .normalize('NFKC')
@@ -127,7 +132,7 @@
 
   function matchesPrice(product, priceKey) {
     if (!priceKey) return true;
-    const price = readNumber(product.price);
+    const price = readNumber(product.priceEa ?? product.price);
     if (priceKey === '0-25') return price >= 0 && price <= 25;
     if (priceKey === '25-75') return price >= 25 && price <= 75;
     if (priceKey === '75+') return price >= 75;
@@ -149,9 +154,15 @@
       product.slug,
       product.sku,
       product.brand,
+      product.group,
       product.category,
       product.casePack,
+      product.packCase,
+      product.priceEa,
+      product.casePrice,
       product.badge,
+      product.stockLabel,
+      product.restrictionNotice,
       values.tags.join(' '),
       values.collections.join(' '),
       values.badges.join(' '),
@@ -198,29 +209,44 @@
     const img = product.image || '/images/placeholder.png';
     const title = product.title || 'Untitled';
     const subtitle = product.subtitle || '';
-    const category = formatCategory(product.category) || product.brand || '';
-    const price = product.price || '0.00';
-    const compare = product.compareAt ? String(product.compareAt) : '';
+    const group = formatCategory(product.group) || product.brand || '';
+    const category = formatCategory(product.category) || '';
+    const priceEa = product.priceEa ?? product.price;
+    const casePrice = product.casePrice ?? '';
+    const packCase = product.packCase ?? product.casePack ?? '';
+    const stockLabel = product.stockLabel || '';
+    const stockState = product.stockState || '';
 
     return `
-      <article class="product-card" data-title="${escapeHtml(title)}" data-price="${escapeHtml(price)}" data-original-index="${idx}">
+      <article class="product-card" data-title="${escapeHtml(title)}" data-price="${escapeHtml(priceEa || 0)}" data-stock-state="${escapeHtml(stockState)}" data-original-index="${idx}">
         <a class="product-card__link" href="${escapeHtml(productUrl(product))}">
           <div class="product-card__media">
             <img class="product-card__img" src="${escapeHtml(img)}" alt="${escapeHtml(title)}" loading="lazy" decoding="async" />
             ${badgeMarkup(product)}
+            ${product.youtubeUrl ? '<span class="product-card__video-chip">Video</span>' : ''}
           </div>
           <div class="product-card__body">
-            ${category ? `<p class="product-card__eyebrow">${escapeHtml(category)}</p>` : ''}
+            ${group ? `<p class="product-card__eyebrow">${escapeHtml(group)}</p>` : ''}
             <h3 class="product-card__title">${escapeHtml(title)}</h3>
+            ${category ? `<p class="product-card__meta">${escapeHtml(category)}</p>` : ''}
             ${subtitle ? `<p class="product-card__meta">${escapeHtml(subtitle)}</p>` : ''}
+            <div class="product-card__facts">
+              ${packCase ? `<span>Pack/Case: ${escapeHtml(packCase)}</span>` : ''}
+              ${stockLabel ? `<span class="product-card__stock product-card__stock--${escapeHtml(stockState)}">${escapeHtml(stockLabel)}</span>` : ''}
+            </div>
             <div class="product-card__price">
-              <span class="price-current">$${escapeHtml(price)}</span>
-              ${compare ? `<span class="price-compare">$${escapeHtml(compare)}</span>` : ''}
+              <div class="product-card__price-row">
+                ${priceEa !== '' && priceEa !== null && typeof priceEa !== 'undefined'
+                  ? `<span class="price-current">Each $${escapeHtml(money(priceEa))}</span>`
+                  : '<span class="price-current price-current--unset">Call for pricing</span>'}
+                ${casePrice ? `<span class="price-case">Case $${escapeHtml(money(casePrice))}</span>` : ''}
+              </div>
             </div>
           </div>
         </a>
         <div class="product-card__actions">
           <a class="btn btn-outline btn-sm product-card__quick" href="${escapeHtml(productUrl(product))}">View product</a>
+          ${product.youtubeUrl ? `<a class="btn btn-ghost btn-sm product-card__video-link" href="${escapeHtml(productUrl(product))}#pdpVideoContainer">Video</a>` : ''}
         </div>
       </article>
     `;
@@ -242,8 +268,8 @@
   }
 
   function sortProducts(items, mode) {
-    if (mode === 'price-asc') return items.slice().sort((a, b) => readNumber(a.price) - readNumber(b.price));
-    if (mode === 'price-desc') return items.slice().sort((a, b) => readNumber(b.price) - readNumber(a.price));
+    if (mode === 'price-asc') return items.slice().sort((a, b) => readNumber(a.priceEa ?? a.price) - readNumber(b.priceEa ?? b.price));
+    if (mode === 'price-desc') return items.slice().sort((a, b) => readNumber(b.priceEa ?? b.price) - readNumber(a.priceEa ?? a.price));
     if (mode === 'title-asc') {
       return items.slice().sort((a, b) => String(a.title || '').localeCompare(String(b.title || ''), undefined, { sensitivity: 'base' }));
     }

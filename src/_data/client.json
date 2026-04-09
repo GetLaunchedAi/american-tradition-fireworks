@@ -1,15 +1,15 @@
 {
   "name": "American Tradition LLC",
-  "email": "americantradition@yahoo.com",
-  "phone": "2667314311",
-  "phoneFormatted": "(266) 731-4311",
+  "email": "americantraditionfireworksllc@gmail.com",
+  "phone": "2697314311",
+  "phoneFormatted": "269-731-4311",
   "address": {
-    "lineOne": "First Address Line",
-    "lineTwo": "Second Address Line, If Needed",
-    "city": "",
-    "county": "",
-    "postcode": "",
-    "mapLink": ""
+    "lineOne": "12127 E. G Avenue",
+    "lineTwo": "",
+    "city": "Augusta",
+    "county": "Kalamazoo County",
+    "postcode": "49012",
+    "mapLink": "https://maps.google.com/?q=12127+E.+G+Avenue,+Augusta,+MI+49012"
   },
   "domain": "americantraditionfireworks.com"
 }

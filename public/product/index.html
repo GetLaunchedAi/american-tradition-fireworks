@@ -166,41 +166,145 @@
         src="/images/placeholder.png"
       />
     </div>
-    <div id="pdpVideoContainer" class="pdp__video" style="display: none;">
-    </div>
+    <div id="pdpVideoContainer" class="pdp__video" style="display: none;"></div>
   </div>
 
   <div class="pdp__meta">
     <nav class="crumbs">
       <a href="/shop/">Shop</a>
       
+      
       / <span id="pdpCrumb">Product</span>
     </nav>
 
-    <h1 id="pdpTitle">Product</h1>
-    <p id="pdpPrice" class="pdp__price">
+    <p id="pdpGroup" class="pdp__eyebrow">
       
     </p>
-    <p id="pdpDesc" class="pdp__desc"></p>
+    <h1 id="pdpTitle">Product</h1>
+
+    <div class="pdp__pricing">
+      <div class="pdp__price-row">
+        <p id="pdpPrice" class="pdp__price">
+          
+        </p>
+        <p id="pdpCasePrice" class="pdp__case-price">
+          
+        </p>
+      </div>
+      <p id="pdpPack" class="pdp__pack">
+        
+      </p>
+      <div id="pdpStock" class="pdp__stock"></div>
+    </div>
+
+    <div id="pdpNotice" class="pdp__notice" hidden>
+      <p class="pdp__notice-title">Restricted fireworks documentation required</p>
+      <p id="pdpNoticeText" class="pdp__notice-copy"></p>
+      <a class="pdp__notice-link" href="/requirements-shipping/">
+        View full requirements and shipping policy
+      </a>
+    </div>
+
+    <p id="pdpDesc" class="pdp__desc">
+      
+    </p>
 
     <form id="pdpOptions" class="pdp__options">
       
     </form>
 
-    <button
-      id="addToCartBtn"
-      class="cart-add-item cta"
-      data-item-id=""
-      data-item-name=""
-      data-item-url="/product/"
-      data-item-image=""
-      data-item-description=""
-      data-item-price=""
-    >
-      Add to cart
-    </button>
+    <div class="pdp__cta-row">
+      <a
+        id="pdpVideoLink"
+        class="btn btn-outline pdp__video-link"
+        href="#pdpVideoContainer"
+        hidden
+      >
+        Watch video
+      </a>
+
+      <button
+        id="addToCartBtn"
+        class="cart-add-item cta"
+        data-item-id=""
+        data-item-name=""
+        data-item-url="/product/"
+        data-item-image=""
+        data-item-description=""
+        data-item-price=""
+      >
+        Add to cart
+      </button>
+    </div>
   </div>
 </section>
+
+<div id="pdpDisclaimer" class="pdp-disclaimer" hidden aria-hidden="true">
+  <div class="pdp-disclaimer__backdrop"></div>
+  <div
+    class="pdp-disclaimer__dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="pdpDisclaimerTitle"
+    aria-describedby="pdpDisclaimerDesc"
+  >
+    <p class="pdp-disclaimer__eyebrow">Restricted Fireworks Disclaimer</p>
+    <h2 id="pdpDisclaimerTitle" class="pdp-disclaimer__title">
+      Professional and Display Fireworks Requirements
+    </h2>
+    <p id="pdpDisclaimerDesc" class="pdp-disclaimer__intro">
+      Before we can start an order, hold product, arrange shipping, or release
+      pickup for restricted fireworks, we need to review the required
+      documentation.
+    </p>
+
+    <div class="pdp-disclaimer__grid">
+      <article class="pdp-disclaimer__card">
+        <h3>1.4g Articles Pyrotechnic Fireworks</h3>
+        <p>
+          Requires either a PGI or certified training-course certificate, or a
+          Federal Explosives License to purchase.
+        </p>
+        <p>
+          These products do not require federal storage compliance for the
+          buyer.
+        </p>
+      </article>
+      <article class="pdp-disclaimer__card">
+        <h3>1.3g Display Fireworks</h3>
+        <p>Requires a Federal Explosives License to purchase.</p>
+        <p>
+          Federal storage requirements apply when these products are stored
+          beyond one day.
+        </p>
+      </article>
+    </div>
+
+    <ul class="pdp-disclaimer__list">
+      <li>Send your documentation before we can process the order.</li>
+      <li>
+        If you do not have the required paperwork yet, contact our sales team
+        and we can help point you in the right direction.
+      </li>
+      <li>
+        Read the full requirements and shipping policy for freight, claims, and
+        documentation details.
+      </li>
+    </ul>
+
+    <div class="pdp-disclaimer__actions">
+      <a class="pdp-disclaimer__link" href="/requirements-shipping/">
+        Full policy
+      </a>
+      <a class="pdp-disclaimer__link pdp-disclaimer__link--ghost" href="/contact/">
+        Contact sales
+      </a>
+      <button id="pdpDisclaimerAccept" class="button-solid pdp-disclaimer__button" type="button">
+        Continue to product
+      </button>
+    </div>
+  </div>
+</div>
 
 <section id="related-products" class="rp" data-src="/products.json" aria-label="Related products">
   <div class="rp-head">
@@ -260,14 +364,19 @@
           <li>
             <h2>Contact</h2>
           </li>
-          <!-- <li>
-                        <a href="/contact">First Address Line<br>Denver CO 80206</a>
-                    </li> -->
+          
           <li>
-            <a href="tel:266-731-4311">Tel: (266) 731-4311 </a>
+            <a href="https://maps.google.com/?q=12127+E.+G+Avenue,+Augusta,+MI+49012">
+              12127 E. G Avenue<br>
+              Augusta, MI 49012
+            </a>
+          </li>
+          
+          <li>
+            <a href="tel:2697314311">Tel: 269-731-4311</a>
           </li>
           <li>
-            <a href="mailto:americantradition@yahoo.com">Click to Email</a>
+            <a href="mailto:americantraditionfireworksllc@gmail.com">americantraditionfireworksllc@gmail.com</a>
           </li>
         </ul>
       </div>
@@ -280,6 +389,7 @@
     <span class="copyright"> Copyright 2025 - Present</span>
   </div>
 </footer>
+
 
     <script defer src="/assets/js/nav.js"></script>
     <script defer src="/assets/js/dark.js"></script>
