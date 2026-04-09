@@ -108,6 +108,11 @@
                     <a  href="/about/">About Us</a>
                     
                 </li>
+                <li class="" id="Requirements &amp; Shipping">
+                    
+                    <a  href="/requirements-shipping/">Requirements &amp; Shipping</a>
+                    
+                </li>
                 <li class="" id="Contact">
                     
                     <a  href="/contact/">Contact</a>
@@ -158,15 +163,63 @@
 
 <section class="pdp" id="pdp" data-product-page>
   <div class="pdp__gallery">
-    <div class="pdp__media">
-      <img
-        id="pdpImg"
-        alt="Product"
-        loading="lazy"
-        src="/images/placeholder.png"
-      />
+    <div id="pdpMediaStage" class="pdp__media-stage" data-active-media="image">
+      <div class="pdp__panel pdp__panel--image is-active" data-media-panel="image" aria-hidden="false">
+        <div class="pdp__media pdp__media--image">
+          <img
+            id="pdpImg"
+            alt="Product"
+            loading="lazy"
+            src="/images/placeholder.png"
+          />
+        </div>
+      </div>
+      <div
+        id="pdpVideoContainer"
+        class="pdp__panel pdp__panel--video"
+        data-media-panel="video"
+        aria-hidden="true"
+        hidden
+      ></div>
     </div>
-    <div id="pdpVideoContainer" class="pdp__video" style="display: none;"></div>
+    <div id="pdpMediaNav" class="pdp__media-nav" hidden>
+      <button
+        id="pdpMediaTabImage"
+        class="pdp__media-tab is-active"
+        type="button"
+        data-media-tab="image"
+        aria-pressed="true"
+      >
+        <span class="pdp__media-tab-thumb pdp__media-tab-thumb--image">
+          <img
+            id="pdpImgThumb"
+            alt=""
+            loading="lazy"
+            src="/images/placeholder.png"
+          />
+        </span>
+        <span class="pdp__media-tab-copy">
+          <span class="pdp__media-tab-label">Product photo</span>
+          <span class="pdp__media-tab-meta">Main image</span>
+        </span>
+      </button>
+      <button
+        id="pdpMediaTabVideo"
+        class="pdp__media-tab"
+        type="button"
+        data-media-tab="video"
+        aria-pressed="false"
+        hidden
+      >
+        <span class="pdp__media-tab-thumb pdp__media-tab-thumb--video" aria-hidden="true">
+          <span class="pdp__media-video-badge">Video</span>
+        </span>
+        <span class="pdp__media-tab-copy">
+          <span class="pdp__media-tab-label">Product video</span>
+          <span class="pdp__media-tab-meta">Watch the effect</span>
+        </span>
+      </button>
+    </div>
   </div>
 
   <div class="pdp__meta">
@@ -214,15 +267,6 @@
     </form>
 
     <div class="pdp__cta-row">
-      <a
-        id="pdpVideoLink"
-        class="btn btn-outline pdp__video-link"
-        href="#pdpVideoContainer"
-        hidden
-      >
-        Watch video
-      </a>
-
       <button
         id="addToCartBtn"
         class="cart-add-item cta"
@@ -348,6 +392,9 @@
           </li>
           <li>
             <a href="/about/">About Us</a>
+          </li>
+          <li>
+            <a href="/requirements-shipping/">Requirements &amp; Shipping</a>
           </li>
           <li>
             <a href="/contact/">Contact</a>

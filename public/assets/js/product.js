@@ -47,6 +47,40 @@
     el.style.display = hidden ? 'none' : '';
   }
 
+  function setActiveMedia(type) {
+    const stage = $('#pdpMediaStage');
+    const panels = document.querySelectorAll('[data-media-panel]');
+    const tabs = document.querySelectorAll('[data-media-tab]');
+
+    if (stage) {
+      stage.setAttribute('data-active-media', type);
+    }
+
+    panels.forEach((panel) => {
+      const active = panel.getAttribute('data-media-panel') === type && !panel.hidden;
+      panel.classList.toggle('is-active', active);
+      panel.setAttribute('aria-hidden', active ? 'false' : 'true');
+    });
+
+    tabs.forEach((tab) => {
+      const active = tab.getAttribute('data-media-tab') === type && !tab.hidden;
+      tab.classList.toggle('is-active', active);
+      tab.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
+  function initMediaTabs() {
+    const tabs = document.querySelectorAll('[data-media-tab]');
+    tabs.forEach((tab) => {
+      if (tab.dataset.bound === 'true') return;
+      tab.addEventListener('click', () => {
+        const type = tab.getAttribute('data-media-tab');
+        if (type) setActiveMedia(type);
+      });
+      tab.dataset.bound = 'true';
+    });
+  }
+
   function fail(msg) {
     const root = $('#pdp');
     if (!root) return;
@@ -91,36 +125,49 @@
   }
 
   function renderVideo(p) {
+    const mediaNav = $('#pdpMediaNav');
     const videoContainer = $('#pdpVideoContainer');
-    const videoLink = $('#pdpVideoLink');
+    const videoTab = $('#pdpMediaTabVideo');
     const id = parseYoutubeId(p.youtubeUrl || p.videoUrl);
 
-    if (videoLink) {
-      if (id) {
-        videoLink.href = '#pdpVideoContainer';
-        setHidden(videoLink, false);
-      } else {
-        setHidden(videoLink, true);
-      }
-    }
+    initMediaTabs();
 
-    if (!videoContainer) return;
+    if (!videoContainer || !videoTab) return;
 
     if (id) {
+      const params = new URLSearchParams({
+        autoplay: '0',
+        controls: '0',
+        disablekb: '1',
+        fs: '0',
+        iv_load_policy: '3',
+        loop: '1',
+        playlist: id,
+        playsinline: '1',
+        rel: '0',
+      });
       videoContainer.innerHTML = `
-        <iframe
-          src="https://www.youtube.com/embed/${esc(id)}"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
+        <div class="pdp__video">
+          <iframe
+            src="https://www.youtube.com/embed/${esc(id)}?${params.toString()}"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
       `;
       setHidden(videoContainer, false);
+      setHidden(videoTab, false);
+      setHidden(mediaNav, false);
     } else {
       videoContainer.innerHTML = '';
       setHidden(videoContainer, true);
+      setHidden(videoTab, true);
+      setHidden(mediaNav, true);
     }
+
+    setActiveMedia('image');
   }
 
   function renderNotice(p) {
@@ -320,6 +367,7 @@
     const groupEl = $('#pdpGroup');
     const descEl = $('#pdpDesc');
     const imgEl = $('#pdpImg');
+    const imgThumbEl = $('#pdpImgThumb');
 
     if (!pdpEl || !titleEl || !imgEl) return;
 
@@ -331,6 +379,9 @@
 
     imgEl.src = p.image || PLACEHOLDER;
     imgEl.alt = p.imageAlt || title;
+    if (imgThumbEl) {
+      imgThumbEl.src = p.image || PLACEHOLDER;
+    }
 
     renderPriceSection(p);
     renderNotice(p);
