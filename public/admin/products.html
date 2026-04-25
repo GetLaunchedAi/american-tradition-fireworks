@@ -455,6 +455,19 @@
       text-align: center;
     }
 
+    .filter-pills{display:flex;gap:.5rem;margin-bottom:.75rem;flex-wrap:wrap}
+    .pill{padding:.4rem .8rem;border:1px solid #ccc;background:#fff;border-radius:999px;cursor:pointer;font:inherit}
+    .pill.is-active{background:#111;color:#fff;border-color:#111}
+    .pill [data-count]{margin-left:.35rem;opacity:.7;font-size:.85em}
+    .stock-dot{display:inline-block;width:.55rem;height:.55rem;border-radius:50%;margin-right:.4rem;vertical-align:middle;background:#999}
+    .stock-dot--in-stock{background:#1e9e4a}
+    .stock-dot--low-stock{background:#e0a020}
+    .stock-dot--out-of-stock{background:#c0392b}
+    .meta-group{display:inline-block;font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;padding:.05rem .4rem;border-radius:.25rem;margin-right:.4rem;background:#eee;color:#333}
+    .meta-group--pro{background:#3a1d6b;color:#fff}
+    .meta-group--consumer{background:#0a3d62;color:#fff}
+    .admin-item__meta{display:flex;align-items:center;flex-wrap:wrap;gap:.25rem;font-size:.85em;color:#555}
+
     @media (max-width: 1080px) {
       .grid {
         grid-template-columns: 1fr;
@@ -557,6 +570,11 @@
             </div>
 
             <div class="catalog__tools">
+              <div class="filter-pills" data-admin-filter role="tablist">
+                <button type="button" class="pill is-active" data-group-filter="">All <span data-count="all">0</span></button>
+                <button type="button" class="pill" data-group-filter="consumer">Consumer <span data-count="consumer">0</span></button>
+                <button type="button" class="pill" data-group-filter="pro">Pro-Series <span data-count="pro">0</span></button>
+              </div>
               <div class="search-row">
                 <input class="input" type="search" placeholder="Search products..." data-admin-search>
                 <button class="btn btn-primary" type="button" data-admin-add>Add new</button>
@@ -615,12 +633,38 @@
                     <input class="input" data-f="brand" type="text" placeholder="e.g. Winda">
                   </label>
                   <label class="field">
+                    <span>Group</span>
+                    <select class="input" data-f="group">
+                      <option value="">—</option>
+                      <option value="Consumer Fireworks 1.4g">Consumer Fireworks 1.4g</option>
+                      <option value="Professional Fireworks 1.4g">Professional Fireworks 1.4g</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span>Subcategory</span>
+                    <select class="input" data-f="subcategory" data-fill-subcategory>
+                      <option value="">—</option>
+                    </select>
+                  </label>
+                  <label class="field full">
+                    <span>Description</span>
+                    <textarea class="input" data-f="description" rows="4"></textarea>
+                  </label>
+                  <label class="field">
                     <span>Case pack</span>
                     <input class="input" data-f="casePack" type="text" placeholder="e.g. 12/1">
+                  </label>
+                  <label class="field">
+                    <span>Pack/case</span>
+                    <input class="input" data-f="packCase" type="number" min="0" step="1">
                   </label>
                   <label class="field full">
                     <span>YouTube URL</span>
                     <input class="input" data-f="youtubeUrl" type="text" placeholder="https://youtu.be/...">
+                  </label>
+                  <label class="field full">
+                    <span>Video URL</span>
+                    <input class="input" data-f="videoUrl" type="text">
                   </label>
                 </div>
               </section>
@@ -641,6 +685,14 @@
                     <input class="input" data-f="compareAt" type="text">
                   </label>
                   <label class="field">
+                    <span>Price each</span>
+                    <input class="input" data-f="priceEa" type="number" step="0.01" min="0">
+                  </label>
+                  <label class="field">
+                    <span>Case price</span>
+                    <input class="input" data-f="casePrice" type="number" step="0.01" min="0">
+                  </label>
+                  <label class="field">
                     <span>Badge</span>
                     <input class="input" data-f="badge" type="text">
                   </label>
@@ -655,6 +707,40 @@
                   <label class="field full">
                     <span>Tags (CSV)</span>
                     <input class="input" data-f="tags" type="text">
+                  </label>
+                </div>
+              </section>
+
+              <section class="section">
+                <div>
+                  <h3 class="section__title">Inventory</h3>
+                  <p class="section__text">Track stock levels. Leave Stock state / label blank to auto-derive from On hand.</p>
+                </div>
+
+                <div class="form-grid">
+                  <label class="field">
+                    <span>On hand</span>
+                    <input class="input" data-f="onHand" type="number" step="1" min="0">
+                  </label>
+                  <label class="field">
+                    <span>On order</span>
+                    <input class="input" data-f="onOrder" type="number" step="1" min="0">
+                  </label>
+                  <label class="field">
+                    <span>Stock state</span>
+                    <select class="input" data-f="stockState">
+                      <option value="">auto</option>
+                      <option value="in-stock">in-stock</option>
+                      <option value="low-stock">low-stock</option>
+                      <option value="out-of-stock">out-of-stock</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span>Stock label</span>
+                    <input class="input" data-f="stockLabel" type="text" placeholder="Auto from on hand">
+                  </label>
+                  <label class="field full">
+                    <input type="checkbox" data-f="requiresDocumentation"> <span>Requires documentation (Pro disclaimer)</span>
                   </label>
                 </div>
               </section>

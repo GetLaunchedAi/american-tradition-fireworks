@@ -422,6 +422,15 @@ function parseWorkbook() {
     return PLACEHOLDER_IMAGE;
   }
 
+  function prefixSku(sku, title) {
+    const s = String(sku || "").trim();
+    const t = String(title || "").trim();
+    if (!s || !t) return t;
+    const code = /^P\d+$/.test(s) ? s.slice(1) : s;
+    if (t === code || t.startsWith(code + " ")) return t;
+    return `${code} ${t}`;
+  }
+
   function titleFromRow(rowTitle, legacyRecord) {
     const legacyTitle = cleanText(legacyRecord && legacyRecord.title);
     if (legacyTitle) return legacyTitle;
@@ -445,7 +454,7 @@ function parseWorkbook() {
     description,
     badge,
   }) {
-    const titleValue = titleFromRow(title, legacyRecord);
+    const titleValue = prefixSku(sku, titleFromRow(title, legacyRecord));
     const slug = legacyRecord && legacyRecord.slug ? slugify(legacyRecord.slug) : uniqueSlug(titleValue, sku);
     const stock = formatStockState(onHand, onOrder);
     const cleanedGroup = cleanText(group);

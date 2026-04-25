@@ -1,0 +1,107 @@
+---
+layout: "base.html"
+description: "Request wholesale pricing on consumer and Pro-Series fireworks, or ask for the current Display (1.3g) fireworks list and pricing. Documentation reviewed before pricing is sent."
+metaTitle: "Wholesale & Display Pricing | American Tradition LLC"
+tagTitle: "Wholesale"
+preloadCSS: "/css/contact.css"
+permalink: "wholesale/"
+eleventyNavigation:
+  key: Wholesale
+  order: 500
+---
+
+<section id="int-hero" data-aos="fade-in">
+  <h1 id="home-h">Wholesale & Display Pricing</h1>
+  {% image './src/images/contact_banner_img.png', 'wholesale fireworks', '', 'lazy', '(max-width: 400px) 400px, (max-width: 850px) 850px, 1920px' %}
+</section>
+
+<section id="cs-contact-242" data-aos="fade-up">
+  <div class="cs-container">
+    <div class="cs-content">
+      <span class="cs-topper">Bulk Buyers & Show Operators</span>
+      <h2 class="cs-title">Request a Pricing List</h2>
+      <p class="cs-text">
+        Use this form to request a wholesale price list for Consumer or Pro-Series 1.4g items, or to ask for our Display (1.3g) fireworks catalog and pricing. Pricing is shared after we verify the buyer and any required documentation.
+      </p>
+      <div class="cs-policy-note">
+        <p class="cs-policy-title">What we will need</p>
+        <ul class="cs-policy-list">
+          <li><strong>Pro-Series 1.4g:</strong> PGI or certified training certificate, or a Federal Explosives License.</li>
+          <li><strong>Display 1.3g:</strong> Federal Explosives License plus federal storage compliance for storage beyond one day.</li>
+          <li><strong>Wholesale Consumer:</strong> business name, resale or tax exemption details, and ship-to state.</li>
+        </ul>
+        <a class="cs-policy-link" href="/requirements-shipping/">
+          Read full requirements and shipping policy
+        </a>
+      </div>
+    </div>
+
+    <form
+      id="cs-form-wholesale"
+      name="Wholesale Pricing Request"
+      method="post"
+      action="https://submit-form.com/U9CNXTECF"
+      data-aos="fade-right"
+      data-aos-delay="100"
+    >
+      <input type="hidden" name="_subject" value="Wholesale / Display Pricing Request" />
+      <input type="hidden" name="form-source" value="Wholesale Page" />
+
+      <label class="cs-label">
+        Name
+        <input class="cs-input" required type="text" name="name" placeholder="Buyer or contact name" />
+      </label>
+      <label class="cs-label">
+        Business / Operation
+        <input class="cs-input" type="text" name="business" placeholder="Company, retailer, or show operator" />
+      </label>
+      <label class="cs-label">
+        Email
+        <input class="cs-input" required type="email" name="email" placeholder="name@example.com" />
+      </label>
+      <label class="cs-label">
+        Phone
+        <input class="cs-input" required type="tel" name="phone" placeholder="269-731-4311" />
+      </label>
+      <label class="cs-label">
+        Ship-to state
+        <input class="cs-input" type="text" name="state" placeholder="MI, OH, IN, etc." />
+      </label>
+
+      <fieldset class="cs-label" style="border:0;padding:0;margin:0;">
+        <legend>Pricing list requested</legend>
+        <label style="display:flex;align-items:center;gap:.5rem;font-weight:600;">
+          <input type="checkbox" name="list_consumer_wholesale" value="yes" />
+          Consumer Fireworks – Wholesale pricing
+        </label>
+        <label style="display:flex;align-items:center;gap:.5rem;font-weight:600;">
+          <input type="checkbox" name="list_pro_wholesale" value="yes" />
+          Pro-Series 1.4g – Wholesale pricing
+        </label>
+        <label style="display:flex;align-items:center;gap:.5rem;font-weight:600;">
+          <input type="checkbox" name="list_display" value="yes" />
+          Display Fireworks (1.3g) – List & pricing
+        </label>
+      </fieldset>
+
+      <label class="cs-label">
+        Documentation on file?
+        <select class="cs-input" name="documentation">
+          <option value="">Select one</option>
+          <option value="PGI">PGI / certified training certificate</option>
+          <option value="FEL">Federal Explosives License</option>
+          <option value="Both">Both PGI and FEL</option>
+          <option value="Resale">Resale / tax exemption (Consumer wholesale)</option>
+          <option value="None">None yet — need guidance</option>
+        </select>
+      </label>
+
+      <label class="cs-label cs-label-message">
+        Message
+        <textarea class="cs-input cs-textarea" name="Message" placeholder="Tell us volumes, target dates, show locations, or any items of specific interest."></textarea>
+      </label>
+
+      <button class="cs-button-solid cs-submit" type="submit">Request Pricing</button>
+    </form>
+  </div>
+</section>

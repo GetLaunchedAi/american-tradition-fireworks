@@ -327,40 +327,71 @@
     return all.filter(inCollection);
   }
 
-  function uniqueCategories(items) {
-    const counts = new Map();
+  function groupBucket(item) {
+    const g = normalizeText(item.group);
+    if (g.includes('professional') || g.includes('display') || g.includes('1.3g')) return 'pro';
+    return 'consumer';
+  }
+
+  function uniqueCategoriesByGroup(items) {
+    const buckets = { consumer: new Map(), pro: new Map() };
 
     items.forEach((item) => {
       const label = formatCategory(item.category);
       const key = categoryKey(item.category);
       if (!label || !key) return;
-
-      if (!counts.has(key)) {
-        counts.set(key, { label, count: 0 });
-      }
-
-      counts.get(key).count += 1;
+      const bucket = buckets[groupBucket(item)];
+      if (!bucket.has(key)) bucket.set(key, { label, count: 0 });
+      bucket.get(key).count += 1;
     });
 
-    return Array.from(counts.values())
-      .sort((a, b) => a.label.localeCompare(b.label, undefined, { sensitivity: 'base' }));
+    const sortFn = (a, b) => a.label.localeCompare(b.label, undefined, { sensitivity: 'base' });
+    return {
+      consumer: Array.from(buckets.consumer.values()).sort(sortFn),
+      pro: Array.from(buckets.pro.values()).sort(sortFn),
+    };
   }
 
   function renderCategoryChips(state) {
     if (!categoryChipsEl) return;
 
-    const categories = uniqueCategories(scopedProducts());
-    if (!categories.length) {
+    const groups = uniqueCategoriesByGroup(scopedProducts());
+    if (!groups.consumer.length && !groups.pro.length) {
       categoryChipsEl.innerHTML = '<span class="chip-row__empty">Categories will appear once products load.</span>';
       return;
     }
 
-    categoryChipsEl.innerHTML = categories.map(({ label, count }) => `
-      <button class="chip chip--category" type="button" data-filter-chip data-filter-type="category" data-filter-value="${escapeHtml(label)}" aria-pressed="${categoryKey(label) === categoryKey(state.category) ? 'true' : 'false'}">
-        <span>${escapeHtml(label)}</span>
-        <span class="chip__count">${count}</span>
-      </button>
-    `).join('');
+    const activeKey = categoryKey(state.category);
+
+    const renderRow = ({ label, count }) => {
+      const pressed = categoryKey(label) === activeKey;
+      return `
+        <button class="cat-row${pressed ? ' is-active' : ''}" type="button" data-filter-chip data-filter-type="category" data-filter-value="${escapeHtml(label)}" aria-pressed="${pressed ? 'true' : 'false'}">
+          <span class="cat-row__label">${escapeHtml(label)}</span>
+          <span class="cat-row__count">${count}</span>
+        </button>`;
+    };
+
+    const section = (id, heading, sub, list, accent) => {
+      if (!list.length) return '';
+      const hasActive = list.some((c) => categoryKey(c.label) === activeKey);
+      const open = hasActive || !activeKey;
+      const total = list.reduce((s, c) => s + c.count, 0);
+      return `
+        <details class="cat-section${accent ? ' cat-section--pro' : ''}"${open ? ' open' : ''}>
+          <summary class="cat-section__head">
+            <span class="cat-section__heading">${heading}</span>
+            <span class="cat-section__total">${total}</span>
+            <span class="cat-section__chevron" aria-hidden="true"></span>
+          </summary>
+          ${sub ? `<p class="cat-section__sub">${sub}</p>` : ''}
+          <div class="cat-section__list">${list.map(renderRow).join('')}</div>
+        </details>`;
+    };
+
+    categoryChipsEl.innerHTML =
+      section('consumer', 'Consumer Fireworks', 'No documentation required.', groups.consumer, false)
+      + section('pro', 'Pro-Series Fireworks', 'PGI/training cert or FEL required.', groups.pro, true);
   }
 
   function renderActiveFilters(state) {

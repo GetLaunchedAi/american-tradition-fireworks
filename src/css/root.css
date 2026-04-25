@@ -1246,6 +1246,70 @@ body.dark-mode #dark-mode-toggle .sun {
     margin: auto;
   }
 
+  .footer-signup {
+    margin: 1.5rem auto 0;
+    max-width: 26rem;
+    color: #fff;
+    text-align: left;
+  }
+
+  .footer-signup__title {
+    margin: 0 0 0.4rem;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #fff;
+  }
+
+  .footer-signup__copy {
+    margin: 0 0 0.75rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .footer-signup__field {
+    display: flex;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    padding: 0.25rem 0.25rem 0.25rem 1rem;
+    align-items: center;
+  }
+
+  .footer-signup__field input[type="email"] {
+    flex: 1;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: #fff;
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+  }
+
+  .footer-signup__field input[type="email"]::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .footer-signup__btn {
+    border: 0;
+    border-radius: 999px;
+    background: #c11c2a;
+    color: #fff;
+    font-weight: 800;
+    padding: 0.55rem 1.1rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+  }
+
+  .footer-signup__btn:hover { background: #a01622; }
+
+  .footer-signup__note {
+    margin: 0.55rem 0 0;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
   #footer .right-section {
     width: 96%;
     max-width: 25.4375rem;
