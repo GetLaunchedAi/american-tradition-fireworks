@@ -182,6 +182,50 @@ body.dark-mode .local-cart__qty .local-cart__remove {
     --headerFontSize: clamp(1.9375rem, 4.5vw, 3.0625rem);
     /* 60px - 100px top and bottom */
     --sectionPadding: clamp(3.75em, 7.82vw, 6.25em) 1rem;
+
+    /* ============================================
+       HERITAGE DESIGN FOUNDATION
+       Sign-painter / roadside aesthetic tokens.
+       Add alongside legacy tokens; do not remove.
+       ============================================ */
+
+    /* Type stacks */
+    --font-display: 'Tanker', 'Big Shoulders Display', Georgia, serif;
+    --font-body: 'Sentient', Georgia, system-ui, serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+    /* Modular fluid type scale (1.25 ratio, fluid clamp) */
+    --step--1: clamp(0.875rem, 0.84rem + 0.18vw, 1rem);
+    --step-0:  clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    --step-1:  clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+    --step-2:  clamp(1.625rem, 1.4rem + 1vw, 2.125rem);
+    --step-3:  clamp(2.125rem, 1.7rem + 2vw, 3rem);
+    --step-4:  clamp(2.75rem, 2rem + 3.5vw, 4.5rem);
+    --step-5:  clamp(3.5rem, 2.4rem + 5.5vw, 6.5rem);
+    --step-6:  clamp(4.5rem, 3rem + 7.5vw, 9rem);
+
+    /* Heritage palette (oklch, tinted toward crimson hue) */
+    --ink:        oklch(18% 0.02 25);
+    --ink-soft:   oklch(28% 0.02 25);
+    --paper:      oklch(96% 0.012 75);
+    --paper-deep: oklch(92% 0.018 70);
+    --enamel:     oklch(20% 0.05 25);
+    --crimson:    oklch(50% 0.18 27);
+    --crimson-deep: oklch(40% 0.16 27);
+    --gold-leaf:  oklch(78% 0.13 85);
+    --rule:       oklch(35% 0.02 25 / 0.18);
+
+    /* Spacing scale (4pt, semantic) */
+    --space-2xs: 0.25rem;
+    --space-xs:  0.5rem;
+    --space-sm:  0.75rem;
+    --space-md:  1rem;
+    --space-lg:  1.5rem;
+    --space-xl:  2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4.5rem;
+    --space-4xl: 6rem;
+    --space-5xl: 9rem;
   }
 
   /* roboto-regular - latin */
@@ -228,8 +272,10 @@ body.dark-mode .local-cart__qty .local-cart__remove {
     margin: 0;
     padding: 0;
     font-size: 100%;
-    font-family: "Roboto", Arial, sans-serif;
-    color: var(--bodyTextColor);
+    font-family: var(--font-body), "Roboto", Arial, sans-serif;
+    color: var(--ink);
+    background-color: var(--paper);
+    line-height: 1.65;
     overflow-x: hidden;
   }
 
@@ -1206,27 +1252,42 @@ body.dark-mode #dark-mode-toggle .sun {
 /*-- -------------------------- -->
 <---           Footer           -->
 <--- -------------------------- -*/
-/* Mobile */
+/* ============================================
+   FOOTER — Heritage refresh
+   Sign-painter / enamel painted board
+   ============================================ */
 @media only screen and (min-width: 0em) {
   #footer {
-    background: #1c1c1c;
-    padding: 5.25rem 0 1.25rem;
-    font-size: min(4vw, 1.2em);
+    background-color: var(--enamel);
+    color: var(--paper);
+    padding: clamp(3.5rem, 8vw, 6rem) var(--space-md) var(--space-xl);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    border-top: 1px solid var(--gold-leaf);
+    background-image:
+      radial-gradient(circle at 20% 30%, oklch(25% 0.05 25) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, oklch(15% 0.03 25) 0%, transparent 50%);
   }
 
+  #footer .container {
+    width: 92%;
+    max-width: 78rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2.5rem, 6vw, 4rem);
+  }
+
+  /* ---- LEFT (logo + signup) ---- */
   #footer .left-section {
-    margin: auto;
-    margin-bottom: 3.125rem;
-    text-align: center;
+    margin: 0;
+    text-align: left;
   }
 
   #footer .left-section .logo {
     display: inline-block;
-    margin: auto;
-    width: auto;
-    height: 4.6875em;
-    margin-bottom: 1.875em;
-    text-align: center;
+    height: 4.5rem;
+    margin: 0 0 var(--space-lg);
   }
 
   #footer .left-section .logo img {
@@ -1235,46 +1296,41 @@ body.dark-mode #dark-mode-toggle .sun {
     display: block;
   }
 
-  #footer .left-section p {
-    font-size: 0.875rem;
-    line-height: 1.92857143;
-    color: #fff;
-    opacity: 0.9;
-    text-align: center;
-    width: 100%;
-    width: 21.92857143rem;
-    margin: auto;
-  }
-
+  /* Signup — bottom-line input pattern */
   .footer-signup {
-    margin: 1.5rem auto 0;
-    max-width: 26rem;
-    color: #fff;
+    margin: 0;
+    max-width: 28rem;
+    color: var(--paper);
     text-align: left;
   }
 
   .footer-signup__title {
-    margin: 0 0 0.4rem;
-    font-size: 1.05rem;
-    font-weight: 800;
-    color: #fff;
+    margin: 0 0 var(--space-xs);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-leaf);
   }
 
   .footer-signup__copy {
-    margin: 0 0 0.75rem;
-    font-size: 0.85rem;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.78);
+    margin: 0 0 var(--space-md);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: oklch(85% 0.012 75);
   }
 
   .footer-signup__field {
     display: flex;
-    gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 999px;
-    padding: 0.25rem 0.25rem 0.25rem 1rem;
-    align-items: center;
+    align-items: stretch;
+    gap: 0;
+    background: transparent;
+    border: 0;
+    border-bottom: 1.5px solid var(--gold-leaf);
+    border-radius: 0;
+    padding: 0;
   }
 
   .footer-signup__field input[type="email"] {
@@ -1282,237 +1338,185 @@ body.dark-mode #dark-mode-toggle .sun {
     background: transparent;
     border: 0;
     outline: 0;
-    color: #fff;
-    font-size: 0.95rem;
-    padding: 0.5rem 0;
+    color: var(--paper);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    padding: 0.65rem 0;
   }
 
   .footer-signup__field input[type="email"]::placeholder {
-    color: rgba(255, 255, 255, 0.55);
+    color: oklch(75% 0.012 75 / 0.6);
+    font-style: italic;
   }
 
   .footer-signup__btn {
     border: 0;
-    border-radius: 999px;
-    background: #c11c2a;
-    color: #fff;
-    font-weight: 800;
-    padding: 0.55rem 1.1rem;
+    border-radius: 0;
+    background: transparent;
+    color: var(--gold-leaf);
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--step-1);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0 0 0 var(--space-md);
     cursor: pointer;
-    font-size: 0.85rem;
+    transition: color 0.2s ease;
   }
 
-  .footer-signup__btn:hover { background: #a01622; }
+  .footer-signup__btn:hover {
+    color: var(--paper);
+  }
 
   .footer-signup__note {
-    margin: 0.55rem 0 0;
-    font-size: 0.72rem;
-    color: rgba(255, 255, 255, 0.55);
+    margin: var(--space-sm) 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: oklch(70% 0.012 75 / 0.7);
   }
 
+  /* ---- RIGHT (navigation lists) ---- */
   #footer .right-section {
-    width: 96%;
-    max-width: 25.4375rem;
-    margin: auto;
+    width: 100%;
+    max-width: none;
+    margin: 0;
   }
 
   #footer .right-section .lists {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    width: 96%;
-    max-width: 19.1875rem;
-    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    width: 100%;
+    max-width: none;
+    margin: 0;
   }
 
   #footer .right-section .lists ul {
     padding: 0;
-    margin-bottom: 0;
-    margin-top: 0;
+    margin: 0;
+    list-style: none;
   }
 
   #footer .right-section .lists ul:nth-of-type(3) {
-    margin-top: 3.125rem;
+    margin-top: 0;
   }
 
   #footer .right-section .lists ul:nth-of-type(3) li {
-    display: flex;
+    display: block;
+    margin-bottom: var(--space-sm);
     justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-
-  #footer .right-section .lists ul:nth-of-type(3) li:last-of-type {
-    margin-bottom: 0;
+    align-items: stretch;
   }
 
   #footer .right-section .lists ul li {
     list-style: none;
-    margin-bottom: 0.75rem;
-    color: #fff;
-    font-size: 1.125rem;
-    opacity: 0.9;
+    margin-bottom: var(--space-sm);
+    color: var(--paper);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 1;
   }
 
   #footer .right-section .lists ul li a {
     text-decoration: none;
-    color: #fff;
-    line-height: 1.16666667em;
-    transition: color 0.3s;
+    color: oklch(85% 0.012 75);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.5;
+    transition: color 0.2s ease;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 0.1em;
   }
 
   #footer .right-section .lists ul li a:hover {
-    color: var(--primary);
+    color: var(--gold-leaf);
+    border-bottom-color: var(--gold-leaf);
   }
 
   #footer .right-section .lists ul h2 {
-    color: #fff;
-    font-size: 1.125rem;
-    line-height: 1.16666667em;
-    margin-bottom: 2.3125rem;
+    color: var(--gold-leaf);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    font-weight: bold;
-    position: relative;
+    margin: 0 0 var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--gold-leaf);
+    position: static;
   }
 
   #footer .right-section .lists ul h2:before {
-    content: "";
-    position: absolute;
-    display: block;
-    height: 0.125rem;
-    width: 6.0625rem;
-    background: var(--primary);
-    opacity: 1;
-    bottom: -1rem;
-    left: 0;
+    content: none;
+    display: none;
   }
 
-  #footer .right-section .buttons {
-    display: flex;
-    justify-content: center;
-  }
-
-  #footer .right-section .button-solid {
-    margin: 0;
-    height: 3.3125rem;
-    padding-top: 0.1875rem;
-    width: 15.625rem;
-  }
-
+  /* ---- CREDIT (bottom legal line) ---- */
   #footer .credit {
-    color: #fff;
-    width: 96%;
-    margin: auto;
+    color: oklch(70% 0.012 75 / 0.8);
+    width: 100%;
+    max-width: 78rem;
+    margin: clamp(3rem, 6vw, 4.5rem) auto 0;
+    padding-top: var(--space-lg);
+    border-top: 1px solid oklch(60% 0.012 75 / 0.25);
     text-align: center;
-    margin-top: 6.25rem;
-    line-height: 2.25rem;
-    font-size: 1rem;
+    line-height: 1.6;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
   }
 
   #footer .credit a {
-    color: var(--primary);
+    color: var(--gold-leaf);
     text-decoration: none;
-    font-size: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 0 0.4rem;
   }
 
   #footer .credit a:hover {
+    color: var(--paper);
     text-decoration: underline;
   }
 
   #footer .credit .copyright {
     display: block;
-    font-size: 1rem;
+    font-size: 0.7rem;
+    margin-top: 0.25rem;
   }
 }
 
 /* Small Desktop */
 @media only screen and (min-width: 64em) {
   #footer {
-    font-size: min(1.2vw, 1em);
+    font-size: 1rem;
   }
 
   #footer .container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    width: 96%;
-    max-width: 82.5rem;
-    margin: auto;
-    padding: 0;
-  }
-
-  #footer .left-section {
-    width: 25.5625rem;
-    margin: 0;
-    text-align: left;
-  }
-
-  #footer .left-section .logo {
-    text-align: left;
-    margin-left: 0;
-    height: 6.5625rem;
-  }
-
-  #footer .left-section p {
-    text-align: left;
-    margin-left: 0;
-  }
-
-  #footer .right-section {
-    margin: 0;
-    width: 38.0625rem;
-    max-width: none;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: start;
+    column-gap: clamp(3rem, 6vw, 6rem);
   }
 
   #footer .right-section .lists {
-    width: 96%;
-    max-width: 48.0625rem;
-    margin: 0;
-    max-width: initial;
-  }
-
-  #footer .right-section .lists ul:nth-of-type(3) {
-    margin-top: 0;
-  }
-
-  #footer .right-section .lists ul:nth-of-type(3) li:first-of-type {
-    margin-bottom: 0;
-  }
-
-  #footer .right-section .lists ul li a {
-    position: relative;
-  }
-
-  #footer .right-section .lists ul li a:before {
-    content: "";
-    position: absolute;
-    display: block;
-    height: 0.125rem;
-    width: 0%;
-    background: var(--primary);
-    opacity: 1;
-    bottom: -0.1875rem;
-    left: 0;
-    transition: width 0.3s;
-  }
-
-  #footer .right-section .lists ul li a:hover:before {
-    width: 100%;
-  }
-
-  #footer .right-section .buttons {
-    justify-content: flex-start;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
   }
 
   #footer .credit .copyright {
     display: inline-block;
+    margin-top: 0;
   }
 }
 
-/* Dark Mode */
-@media only screen and (min-width: 0em) {
-  body.dark-mode #footer {
-    background: #061623;
-  }
-}
+/* Dark Mode (already enamel — no override needed) */

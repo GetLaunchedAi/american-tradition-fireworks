@@ -24,185 +24,156 @@ eleventyNavigation:
     preload="metadata"
     poster="/images/hero_img.png"
     aria-hidden="true"
-    class="cs-picture"
+    class="hero-video"
   >
     <source src="/images/hero_vid.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
-  <div class="cs-overlay"></div>
-  <div class="cs-container" data-aos="fade-up">
-    <div class="cs-flex-group">
-      <span class="cs-topper">Since 1984 | Veteran Owned</span>
-      <h1 class="cs-title">Direct-Import Fireworks. Two Michigan Stores. Since 1984.</h1>
-      <p class="cs-text">
-        At American Tradition LLC, we've been lighting up celebrations for over
-        40 years. As a direct importer, we organize our lineup around consumer,
-        restricted 1.4g, display, and misc support items, backed by quality
-        brands like Winda, Panda, and Wizard Fireworks.
+  <div class="hero-scrim" aria-hidden="true"></div>
+
+  <div class="hero-inner h-container">
+    <span class="h-topper hero-topper">VETERAN-OWNED &middot; EST. 1984 &middot; KALAMAZOO MI</span>
+    <h1 class="h-headline h-headline--xl hero-title">
+      Direct-Import Fireworks.<br>
+      Two Michigan Stores.<br>
+      <span class="hero-title-mark">Since 1984.</span>
+    </h1>
+    <p class="hero-lede">
+      Importing direct from Winda, Panda, and Wizard for forty years. Consumer, restricted, and display lines under one roof.
+    </p>
+    <div class="hero-actions">
+      <a href="/shop/" class="hero-btn hero-btn--primary">Browse Fireworks</a>
+      <a href="/wholesale/" class="hero-btn hero-btn--ghost">Wholesale &amp; Display</a>
+    </div>
+
+    <span class="h-seal hero-seal" aria-hidden="true">EST &middot; 1984 &middot; MI</span>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!--                Trust Strip                   -->
+<!-- ============================================ -->
+
+<section id="trust-strip" class="h-truststrip" aria-label="Credentials">
+  <div class="h-container">
+    <ul class="h-truststrip__list">
+      <li class="h-truststrip__item">FEL &amp; PGI Verified</li>
+      <li class="h-truststrip__sep" aria-hidden="true">&bull;</li>
+      <li class="h-truststrip__item">FOB Origin Shipping</li>
+      <li class="h-truststrip__sep" aria-hidden="true">&bull;</li>
+      <li class="h-truststrip__item">Two MI Stores</li>
+      <li class="h-truststrip__sep" aria-hidden="true">&bull;</li>
+      <li class="h-truststrip__item">Veteran-Owned</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!--             Our Lines (Specimen)             -->
+<!-- ============================================ -->
+
+<section id="lines" class="h-section h-paper">
+  <div class="h-container">
+    <div class="lines-head">
+      <span class="h-topper">Our Lines</span>
+      <h2 class="h-headline h-headline--md lines-headline">Four catalogs. One operator. Cleared paperwork.</h2>
+      <hr class="h-divider lines-divider" />
+    </div>
+
+    <ol class="lines-list" role="list">
+      <li class="lines-item">
+        <span class="lines-num h-numeral">01</span>
+        <div class="lines-body">
+          <h3 class="lines-title">Consumer Fireworks <span class="h-stamp">1.4G</span></h3>
+          <p class="lines-text">Backyard shows, weddings, festival closeouts. Cakes, repeaters, fountains, novelty &mdash; deep crowd-pleaser inventory at both stores.</p>
+          <a href="/shop/" class="lines-link">View consumer line &rarr;</a>
+        </div>
+      </li>
+      <li class="lines-item">
+        <span class="lines-num h-numeral">02</span>
+        <div class="lines-body">
+          <h3 class="lines-title">Restricted 1.3g <span class="h-stamp">FEL / PGI</span></h3>
+          <p class="lines-text">Professional-use ordnance for licensed display operators. Released only after FEL and PGI documentation are verified on file.</p>
+          <a href="/requirements-shipping/" class="lines-link">Read requirements &rarr;</a>
+        </div>
+      </li>
+      <li class="lines-item">
+        <span class="lines-num h-numeral">03</span>
+        <div class="lines-body">
+          <h3 class="lines-title">Display &amp; Show Production</h3>
+          <p class="lines-text">Choreographed shells, finales, and full show packages from the import floor. Pricing built around event scale and shoot dates.</p>
+          <a href="/wholesale/" class="lines-link">Plan a show &rarr;</a>
+        </div>
+      </li>
+      <li class="lines-item">
+        <span class="lines-num h-numeral">04</span>
+        <div class="lines-body">
+          <h3 class="lines-title">Misc Support Gear</h3>
+          <p class="lines-text">Igniters, fuse, e-match, firing systems, and consumables &mdash; ships alongside the rest of the order so the truck shows up complete.</p>
+          <a href="/shop/" class="lines-link">View support gear &rarr;</a>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!--                 About Side By Side           -->
+<!-- ============================================ -->
+
+<section id="sbs" class="h-paper-deep">
+  <div class="h-container sbs-grid">
+    <div class="sbs-media" data-aos="fade-right">
+      {% image './src/images/about_img_0.png', 'fireworks display', 'sbs-pic sbs-pic--lead', 'lazy'%}
+      <span class="sbs-meta h-mono">PLATE 01 &middot; SHOW NIGHT</span>
+    </div>
+    <div class="sbs-copy" data-aos="fade-left">
+      <span class="h-topper">The Operator</span>
+      <h2 class="h-headline h-headline--sm">Forty years importing fireworks. Two Michigan storefronts.</h2>
+      <p class="h-lede sbs-lede">
+        American Tradition LLC has bought direct from Winda, Panda, and Wizard since 1984. Veteran-owned. Family-run. The same crew handles consumer walk-ins on G Avenue and licensed buyers in Battle Creek.
       </p>
-      <a href="/shop/" class="cs-button-solid">Shop Fireworks</a>
-      <a href="/about/" class="cs-button-transparent">
-        <img
-          class="cs-img"
-          loading="lazy"
-          decoding="async"
-          src="https://csimg.nyc3.digitaloceanspaces.com/Hero/play.svg"
-          alt="play icon"
-          width="17"
-          height="17"
-        />
-        Learn More
-      </a>
+      <p class="sbs-body">
+        Our G Avenue / 38th Street store sits between Kalamazoo and Battle Creek. The Springfield store is near Dickman Road (M-96) at Military and Admiral Ave. Both stock the full consumer lineup; restricted product moves through documented channels.
+      </p>
+      <a href="/about/" class="lines-link sbs-link">More about the company &rarr;</a>
     </div>
   </div>
 </section>
 
 <!-- ============================================ -->
-<!--                  Services                    -->
+<!--          Restricted / Wholesale SBS          -->
 <!-- ============================================ -->
 
-<section id="services" class="services" data-aos="fade-up">
-  <div class="card" data-aos="fade-up" data-aos-delay="100">
-    <picture>
-      <img
-        aria-hidden="true"
-        decoding="async"
-        src="/assets/svgs/service_1.svg"
-        alt="consumer fireworks"
-        width="48"
-        height="48"
-      />
-    </picture>
-    <h2>Consumer Fireworks</h2>
-    <p>
-      Built for family celebrations and backyard shows, our consumer line
-      includes a wide range of effects, assortments, and crowd-pleasing
-      favorites.
-    </p>
-  </div>
-  <div class="card" data-aos="fade-up" data-aos-delay="200">
-    <picture>
-      <img
-        aria-hidden="true"
-        decoding="async"
-        src="/assets/svgs/service_2.svg"
-        alt="restricted fireworks"
-        width="48"
-        height="48"
-      />
-    </picture>
-    <h2>Restricted Fireworks</h2>
-    <p>
-      Restricted 1.4g and other professional-use items are available for
-      licensed buyers and trained operators who need bigger, more precise show
-      tools.
-    </p>
-  </div>
-  <div class="card" data-aos="fade-up" data-aos-delay="300">
-    <picture>
-      <img
-        aria-hidden="true"
-        decoding="async"
-        src="/assets/svgs/service_3.svg"
-        alt="display fireworks"
-        width="48"
-        height="48"
-      />
-    </picture>
-    <h2>Display Fireworks</h2>
-    <p>
-      From community festivals to grand finales, our display fireworks and
-      support items help build shows that land cleanly and finish strong.
-    </p>
-  </div>
-</section>
-
-<!-- ============================================ -->
-<!--                 Side By Side                 -->
-<!-- ============================================ -->
-
-<section id="sbs">
-  <div class="cs-container">
-    <div class="cs-left" data-aos="fade-right">
-      {% image './src/images/about_img_0.png', 'fireworks display', 'cs-picture cs-picture1', 'lazy'%}
-      <!-- {% image './src/images/about_img_1.png', 'fireworks retail store', 'cs-picture cs-picture2', 'lazy'%} -->
+<section id="sbs-r" class="h-paper">
+  <div class="h-container sbs-grid sbs-grid--reverse">
+    <div class="sbs-media" data-aos="fade-left">
+      {% image './src/images/featured_img_0.png', 'restricted fireworks', 'sbs-pic sbs-pic--lead', 'lazy'%}
+      <span class="sbs-meta h-mono">PLATE 02 &middot; LICENSED FLOOR</span>
     </div>
-    <div class="cs-right" data-aos="fade-left">
-      <span class="cs-topper">About Us</span>
-      <h2 class="cs-title">About American Tradition LLC</h2>
-      <p class="cs-text">
-        Founded in 1984, American Tradition LLC is a veteran-owned, Michigan-
-        based fireworks company with two locations. As a direct importer, we
-        provide retail and wholesale fireworks, giving customers access to
-        high-quality products at competitive prices.
+    <div class="sbs-copy" data-aos="fade-right">
+      <span class="h-topper">Compliance Is The Product</span>
+      <h2 class="h-headline h-headline--sm">Licensed Buyers, Cleared Paperwork.</h2>
+      <p class="h-lede sbs-lede">
+        Restricted ordnance moves only after the file is verified. We know the forms, the freight terms, and the windows. Read the rules before you order &mdash; we keep it plain.
       </p>
-      <p class="cs-text">
-        We proudly carry top manufacturers like
-        <a href="/shop/">Winda</a>, <a href="/shop/">Panda</a>, and
-        <a href="/shop/">Wizard</a> Fireworks, along with other trusted brands,
-        ensuring every show delivers safety, excitement, and lasting memories.
-        Whether you're stocking up for resale or planning your biggest event
-        yet, our team is here to help you celebrate in style.
-      </p>
-      <div class="cs-flex-group">
-        <p class="cs-flex-p">
-          Our primary store is on G Avenue / 38th Street between Kalamazoo and
-          Battle Creek, and our Springfield store is near Dickman Road (M-96) at
-          Military and Admiral Ave.
-        </p>
-        <p class="cs-flex-p">
-          Restricted 1.4g and 1.3g orders require verified paperwork before the
-          sale moves forward, and we can help you understand what is needed
-          before you buy.
-          <a href="/requirements-shipping/">see full requirements →</a>
-        </p>
-        <span class="cs-name">American Tradition LLC</span>
-        <span class="cs-job">Veteran Owned & Operated | Two Michigan Locations</span>
-        <img
-          class="cs-quote-icon"
-          loading="lazy"
-          decoding="async"
-          src="https://csimg.nyc3.digitaloceanspaces.com/SideBySide/quote-white.svg"
-          alt="quote icon"
-          width="136"
-          height="77"
-        />
-      </div>
-      <a href="/about/" class="button-solid">More About Us</a>
-    </div>
-  </div>
-</section>
 
-<!-- ============================================ -->
-<!--            Extra Content To Rank             -->
-<!-- ============================================ -->
+      <dl class="h-spec-list sbs-specs">
+        <div>
+          <dt>Class</dt>
+          <dd>1.4g &middot; 1.3g &middot; Display</dd>
+        </div>
+        <div>
+          <dt>Documentation</dt>
+          <dd>PGI &middot; FEL &middot; Training Certs</dd>
+        </div>
+        <div>
+          <dt>Shipping</dt>
+          <dd>FOB Origin &middot; Continental US</dd>
+        </div>
+      </dl>
 
-<section id="sbs-r">
-  <div class="cs-container">
-    <div class="cs-left" data-aos="fade-left">
-      {% image './src/images/featured_img_0.png', 'fireworks products', 'cs-picture cs-picture1', 'lazy'%}
-      <!-- {% image './src/images/featured_img_1.png', 'fireworks packaging', 'cs-picture cs-picture2', 'lazy'%} -->
-    </div>
-    <div class="cs-right" data-aos="fade-right">
-      <span class="cs-topper">Our Products</span>
-      <h2 class="cs-title">Wholesale, Retail & Restricted Orders</h2>
-      <p class="cs-text">
-        Restricted 1.4g and 1.3g products are available to licensed buyers and
-        trained operators once required paperwork is verified. Wholesale buyers
-        get pricing and access built around resale volume.
-      </p>
-      <p class="cs-text">
-        Need igniters, fuse, firing systems, or other misc support gear? It
-        ships alongside the rest of the lineup so buyers get everything in one
-        place.
-      </p>
-      <div class="cs-flex-group">
-        <p class="cs-flex-p">
-          Shipping is limited to the continental U.S., and restricted orders
-          are released only after the required documentation is verified.
-        </p>
-      </div>
-      <a href="/shop/" class="button-solid">Browse Fireworks →</a>
+      <a href="/requirements-shipping/" class="lines-link sbs-link">Read the requirements &rarr;</a>
     </div>
   </div>
 </section>
@@ -211,57 +182,26 @@ eleventyNavigation:
 <!--                   Reviews                    -->
 <!-- ============================================ -->
 
-<section id="reviews">
-  <div class="cs-container" data-aos="fade-up">
-    <span class="cs-topper">Our Reviews</span>
-    <h2 class="cs-title">What Our Customers Say</h2>
-    <p class="cs-text">
-      For more than 40 years, we've earned the trust of families, businesses,
-      and communities across Michigan. Here's what people say about working with
-      American Tradition LLC.
-    </p>
-    <ul class="cs-card-group">
-      <li class="cs-item" data-aos="fade-up" data-aos-delay="100">
-        <p class="cs-item-p">
-          American Tradition LLC has the best selection I've ever seen. The
-          quality is unmatched and their team made the buying process easy and
-          enjoyable.
+<section id="reviews" class="h-section h-paper-deep">
+  <div class="h-container">
+    <hr class="h-divider reviews-divider" />
+    <span class="h-topper">Word Of Mouth</span>
+    <h2 class="h-headline h-headline--sm reviews-title">Forty years of repeat customers.</h2>
+
+    <ul class="reviews-list" role="list">
+      <li class="reviews-item" data-aos="fade-up" data-aos-delay="100">
+        <span class="reviews-stars" aria-label="Five out of five stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <p class="reviews-quote">
+          American Tradition LLC has the best selection I&rsquo;ve ever seen. The quality is unmatched and their team made the buying process easy and enjoyable.
         </p>
-        <span class="cs-reviewer">
-          Sarah L.
-          <span class="cs-desc">Customer</span>
-        </span>
-        <img
-          class="cs-item-stars"
-          aria-hidden="true"
-          loading="lazy"
-          decoding="async"
-          src="https://csimg.nyc3.digitaloceanspaces.com/Reviews/stars-yellow.svg"
-          alt="stars"
-          width="96"
-          height="16"
-        />
+        <span class="reviews-attribution h-mono">&mdash; Sarah L. &middot; Google Review</span>
       </li>
-      <li class="cs-item" data-aos="fade-up" data-aos-delay="200">
-        <p class="cs-item-p">
-          I've been buying wholesale from American Tradition for years. They're
-          reliable, affordable, and always stocked with the best fireworks in
-          the business.
+      <li class="reviews-item" data-aos="fade-up" data-aos-delay="200">
+        <span class="reviews-stars" aria-label="Five out of five stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <p class="reviews-quote">
+          I&rsquo;ve been buying wholesale from American Tradition for years. They&rsquo;re reliable, affordable, and always stocked with the best fireworks in the business.
         </p>
-        <span class="cs-reviewer">
-          James P.
-          <span class="cs-desc">Wholesale Client</span>
-        </span>
-        <img
-          class="cs-item-stars"
-          aria-hidden="true"
-          loading="lazy"
-          decoding="async"
-          src="https://csimg.nyc3.digitaloceanspaces.com/Reviews/stars-yellow.svg"
-          alt="stars"
-          width="96"
-          height="16"
-        />
+        <span class="reviews-attribution h-mono">&mdash; James P. &middot; Wholesale Client</span>
       </li>
     </ul>
   </div>
@@ -271,18 +211,31 @@ eleventyNavigation:
 <!--             Final Call to Action             -->
 <!-- ============================================ -->
 
-<section id="cta" data-aos="zoom-in">
-  <div class="container">
-    <h2 class="title">
-      Light Up Your Next Celebration With American Tradition
-    </h2>
-    <p>
-      Ready to shop retail or buy wholesale? Contact us today and let's get your
-      order started.
-    </p>
-    <a href="/contact/" class="button-solid">Contact Us</a>
+<section id="cta" class="h-enamel">
+  <div class="h-container cta-grid">
+    <div class="cta-head">
+      <span class="h-topper">Visit The Stores</span>
+      <h2 class="h-headline h-headline--md cta-title">Light Up Your Next Show.</h2>
+      <p class="h-lede cta-lede">Walk in, talk to the crew, see the inventory. Both stores stocked year-round.</p>
+    </div>
+
+    <div class="cta-stores">
+      <a href="tel:+12693819100" class="cta-store">
+        <span class="cta-store-label h-mono">G Avenue</span>
+        <span class="cta-store-city">Kalamazoo, MI</span>
+        <span class="cta-store-phone h-mono">(269) 381-9100</span>
+      </a>
+      <a href="tel:+12699683000" class="cta-store">
+        <span class="cta-store-label h-mono">Springfield Ave</span>
+        <span class="cta-store-city">Battle Creek, MI</span>
+        <span class="cta-store-phone h-mono">(269) 968-3000</span>
+      </a>
+    </div>
+
+    <div class="cta-action">
+      <a href="/contact/" class="hero-btn hero-btn--primary cta-btn">Visit a Store &rarr;</a>
+    </div>
   </div>
-  {% image './src/images/final_home_img.png', 'fireworks display', '', 'lazy', '(max-width: 400px) 400px, (max-width: 850px) 850px, 1920px'%}
 </section>
 
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>

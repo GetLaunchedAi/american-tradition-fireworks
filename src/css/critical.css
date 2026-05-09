@@ -1,382 +1,187 @@
-/*-- -------------------------- -->
-<---           Hero             -->
-<--- -------------------------- -*/
-/* Mobile - 360px */
+/* ============================================
+   CRITICAL.CSS — Above-the-fold (hero + trust strip)
+   Heritage / sign-painter system.
+   Tokens: root.css · Utilities: heritage.css
+   ============================================ */
+
+/* -----------------------------------------
+   HERO
+   ----------------------------------------- */
 @media only screen and (min-width: 0em) {
   #hero {
-    font-family: 'Roboto', 'Arial', sans-serif;
-    /* Centers button */
-    text-align: center;
-    /* changes on tablet */
-    padding: 0 1rem;
-    padding-bottom: 6.25rem;
     position: relative;
-    z-index: 1;
-    /* prevents overflow from the lines extending past the screen width */
     overflow: hidden;
-    width: 100vw;
+    background-color: var(--enamel);
+    color: var(--paper);
+    isolation: isolate;
+    text-align: left;
+    width: 100%;
   }
-  #hero .cs-picture {
-    /* Background Image */
+
+  #hero .hero-video {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
+    object-fit: cover;
     z-index: -2;
-    object-fit: cover;
   }
-  #hero .cs-overlay {
-    /* Black Color Overlay */
-    content: '';
-    width: 100%;
-    height: 100%;
-    background: black;
-    opacity: .5;
+
+  #hero .hero-scrim {
     position: absolute;
-    display: block;
-    top: 0;
-    left: 0;
+    inset: 0;
     z-index: -1;
-    /* prevents the cursor from interacting with it */
     pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.7) 100%),
+      radial-gradient(circle at 70% 30%, rgba(193, 28, 42, 0.18) 0%, transparent 55%);
   }
-  #hero .cs-picture video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    /* Makes image act like a background-image */
-    object-fit: cover;
-  }
-  #hero .cs-container {
-    width: 100%;
-    max-width: 80em;
-    /* we put the padding top and bottom on the container instead of #Hero so the pseudo element lines go to the top and bottom of the section */
-    /* 144px - 280px - leaving extra space for the navigation */
-    /* changes on tablet */
-    padding: clamp(9em, 25.95vw, 17.5em) 0;
-    margin: auto;
+
+  #hero .hero-inner {
     position: relative;
+    padding-top: clamp(7rem, 18vw, 13rem);
+    padding-bottom: clamp(6rem, 14vw, 11rem);
+    max-width: 80rem;
   }
-  #hero .cs-container:before {
-    /* Left Line */
-    content: '';
-    width: 1px;
-    height: 100%;
-    background: -moz-linear-gradient(top, rgba(250, 251, 252, 0.5) 0%, rgba(250, 251, 252, 0) 100%);
-    /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, rgba(250, 251, 252, 0.5) 0%, rgba(250, 251, 252, 0) 100%);
-    /* Chrome10-25,Safari5.1-6 */
-    opacity: 1;
-    position: absolute;
-    display: block;
-    top: 0;
-    left: 0;
-  }
-  #hero .cs-flex-group {
-    margin: auto;
-    width: 90vw;
-    /* 464px - 640px - widened so the long headline breathes */
-    max-width: clamp(29em, 70vw, 40em);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 0;
-    box-sizing: border-box;
-  }
-  #hero .cs-topper {
-    /* 13px - 16px */
-    font-size: clamp(0.8125rem, 1.6vw, 1rem);
-    line-height: 1.2em;
+
+  #hero .hero-topper {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    text-align: center;
-    letter-spacing: .14em;
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 0.75rem;
+    color: var(--gold-leaf);
+    margin: 0 0 var(--space-lg);
     display: block;
   }
-  #hero .cs-title {
-    /* 39px - 61px */
-    font-size: clamp(2.4375rem, 6.4vw, 3.8125rem);
-    font-weight: 900;
-    line-height: 1.15em;
-    letter-spacing: -0.01em;
-    text-align: center;
-    width: 100%;
-    /* 24px - 32px - tighter, lets topper+title group breathe as one unit */
-    margin: 0 auto clamp(1.5rem, 3vw, 2rem);
-    color: var(--bodyTextColorWhite);
-    position: relative;
+
+  #hero .hero-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--step-6);
+    line-height: 0.92;
+    letter-spacing: -0.015em;
+    color: var(--paper);
     text-wrap: balance;
+    margin: 0 0 var(--space-xl);
+    max-width: 18ch;
   }
-  #hero .cs-text {
-    /* 16px - 20px */
-    font-size: clamp(1rem, 1.95vw, 1.25rem);
-    line-height: 1.6em;
-    text-align: center;
-    width: 100%;
-    /* 40px - 48px - generous gap between body and CTA pair (rhythm) */
-    margin: 0 auto clamp(2.5rem, 4.5vw, 3rem);
-    color: var(--bodyTextColorWhite);
-    text-wrap: pretty;
-  }
-  #hero .cs-button-solid {
-    font-size: 1rem;
-    /* 46px - 56px */
-    line-height: clamp(2.875em, 5.5vw, 3.5em);
-    width: 11.25rem;
-    text-decoration: none;
-    font-weight: 700;
-    margin: 0 0.5rem 1rem 0.5rem;
-    color: var(--headerColor);
-    padding: 0;
-    background-color: var(--primary);
+
+  #hero .hero-title-mark {
+    color: var(--gold-leaf);
     display: inline-block;
     position: relative;
-    z-index: 1;
-    transition: color .3s;
   }
-  #hero .cs-button-solid:before {
-    content: '';
-    position: absolute;
-    display: block;
-    height: 100%;
-    width: 0%;
-    background: #000;
-    opacity: 1;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    transition: width .3s;
-  }
-  #hero .cs-button-solid:hover {
-    color: var(--bodyTextColorWhite);
-  }
-  #hero .cs-button-solid:hover:before {
-    width: 100%;
-  }
-  #hero .cs-button-transparent {
-    font-size: 1rem;
-    /* 46px - 56px */
-    line-height: clamp(2.875em, 5.5vw, 3.5em);
-    width: 11.25rem;
-    /* 46px - 56px */
-    height: clamp(2.875em, 5.5vw, 3.5em);
-    text-decoration: none;
-    font-weight: 700;
-    margin: 0 0.5rem;
-    color: #fff;
-    padding: 0;
-    background-color: transparent;
-    border: 1px solid var(--bodyTextColorWhite);
-    box-sizing: border-box;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-  }
-  #hero .cs-button-transparent:before {
-    content: '';
-    position: absolute;
-    display: block;
-    background: #000;
-    opacity: 1;
-    /* so it sits on top of the border */
-    top: -1px;
-    left: -1px;
-    right: -1px;
-    bottom: -1px;
-    z-index: -1;
-    transform-origin: left;
-    /* this is what creates the grow affect on hover */
-    transform: scaleX(0);
-    transition: transform .3s;
-  }
-  #hero .cs-button-transparent:hover:before {
-    transform: scaleX(1);
-  }
-  #hero .cs-button-transparent .cs-img {
-    display: block;
-    margin-right: 0.75rem;
-  }
-}
-/* Tablet - 768px */
-@media only screen and (min-width: 48em) {
-  #hero {
-    /* 32px - 40px */
-    /* padding: 0 clamp(2em, 5vw, 2.5em); */
-  }
-  #hero .cs-container {
-    padding: clamp(7em, 27.95vw, 17.5em) 0 clamp(9em, 30.95vw, 23.5em) 0;
-  }
-  #hero .cs-container:after {
-    /* Right Line */
-    content: '';
-    width: 1px;
-    height: 100%;
-    background: -moz-linear-gradient(top, rgba(250, 251, 252, 0) 0%, rgba(250, 251, 252, 0.5) 100%);
-    /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, rgba(250, 251, 252, 0) 0%, rgba(250, 251, 252, 0.5) 100%);
-    /* Chrome10-25,Safari5.1-6 */
-    opacity: 1;
-    position: absolute;
-    display: block;
-    top: 0;
-    right: 0;
-  }
-  #hero .cs-button-solid {
-    margin-bottom: 0;
-    margin-right: 1.25rem;
-  }
-}
-/* Desktop Parallax Effect - 1300px */
-@media only screen and (min-width: 81.25em) {
-  #hero {
-    background: url("/images/landing-2000w.jpeg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* creates parallax effect on background image */
-    background-attachment: fixed;
-  }
-}
-/* Dark Mode */
-@media only screen and (min-width: 0em) {
-  body.dark-mode #hero .cs-background:before {
-    opacity: .8;
-  }
-}
-/*-- -------------------------- -->
-<---          Services          -->
-<--- -------------------------- -*/
-/* Mobile */
-@media only screen and (min-width: 0em) {
-  .services {
-    border-radius: 0.5em;
-    margin: auto;
-    margin-top: -10.4375em;
-    position: relative;
-    z-index: 100;
-    background: #fff;
-    width: 90%;
-    max-width: 82.5em;
-    padding: clamp(2.25em, 4vw, 3.5em) clamp(1.25em, 3vw, 2em);
-    border-top: 0.375em solid var(--primary);
-    box-shadow: 0px 24px 56px rgba(0, 0, 0, 0.08);
-    margin-bottom: 3.125em;
-  }
-  .services .card {
-    display: block;
-    width: 100%;
-    max-width: 22.3125em;
-    margin: 0 auto 2.5em;
-    padding: 0 0.5rem;
-    transition: transform .35s ease;
-  }
-  .services .card:last-of-type {
-    margin-bottom: 0;
-  }
-  .services .card picture {
-    background: var(--primary);
-    width: 5.5em;
-    height: 5.5em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto 1.25em;
-    border-radius: 50%;
-    box-shadow: 0 8px 20px rgba(193, 28, 42, 0.18);
-    transition: transform .35s ease;
-  }
-  .services .card:hover picture {
-    transform: translateY(-4px);
-  }
-  .services .card picture img {
-    width: 3em;
-    height: 3em;
-  }
-  .services .card h2 {
-    text-align: center;
-    font-size: clamp(1.5rem, 2vw, 1.875rem);
-    line-height: 1.25em;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: #1a1a1a;
-    margin-bottom: 0.6em;
-  }
-  .services .card p {
-    text-align: center;
-    line-height: 1.5em;
-    width: 100%;
-    max-width: 22rem;
-    margin: 0 auto;
-    color: #575757;
-  }
-}
-/* Inbetween — switch to grid for true rhythm + tighter row, taller center card emphasis */
-@media only screen and (min-width: 768px) {
-  .services {
-    font-size: min(1.8vw, 1em);
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: stretch;
-    column-gap: clamp(1.5rem, 3vw, 2.5rem);
-    width: 92%;
-  }
-  .services .card {
-    margin: 0;
-    max-width: none;
-    padding: 1rem 0.75rem;
-    position: relative;
-  }
-  /* Subtle vertical divider between cards (rhythm without boxes) */
-  .services .card + .card::before {
+
+  #hero .hero-title-mark::after {
     content: "";
     position: absolute;
-    left: calc(clamp(1.5rem, 3vw, 2.5rem) / -2);
-    top: 12%;
-    bottom: 12%;
-    width: 1px;
-    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.08), transparent);
+    left: 0;
+    right: 0;
+    bottom: 0.05em;
+    height: 4px;
+    background: var(--crimson);
   }
-  /* Center card lifts slightly — breaks monotonous grid */
-  .services .card:nth-child(2) {
-    transform: translateY(-0.75rem);
+
+  #hero .hero-lede {
+    font-family: var(--font-body);
+    font-size: var(--step-1);
+    font-weight: 400;
+    line-height: 1.5;
+    color: oklch(92% 0.01 75);
+    max-width: 38ch;
+    margin: 0 0 var(--space-2xl);
+    text-wrap: pretty;
   }
-}
-/* Large Desktop */
-@media only screen and (min-width: 1300px) {
-  .services {
-    padding: 3.5em 5em;
-    column-gap: 3rem;
+
+  #hero .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
   }
-  .services .card {
-    max-width: none;
+
+  /* Hero buttons */
+  #hero .hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 1rem 1.6rem;
+    text-decoration: none;
+    border-radius: 0;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+    line-height: 1.1;
+    border: 1.5px solid transparent;
+    min-height: 3.25rem;
   }
-}
-/* Dark mode */
-@media only screen and (min-width: 0em) {
-  body.dark-mode .services {
-    background: var(--medium);
+
+  #hero .hero-btn--primary {
+    background: var(--crimson);
+    color: var(--paper);
+    border-color: var(--crimson);
   }
-  body.dark-mode .services picture {
-    background: var(--primaryDark);
+
+  #hero .hero-btn--primary:hover {
+    background: var(--crimson-deep);
+    border-color: var(--crimson-deep);
   }
-  body.dark-mode .services h2 {
-    color: #fff;
-    font-weight: bold;
+
+  #hero .hero-btn--ghost {
+    background: transparent;
+    color: var(--gold-leaf);
+    border-color: var(--gold-leaf);
+  }
+
+  #hero .hero-btn--ghost:hover {
+    background: var(--gold-leaf);
+    color: var(--enamel);
+  }
+
+  /* Stamped seal */
+  #hero .hero-seal {
+    position: absolute;
+    right: clamp(1rem, 4vw, 3rem);
+    bottom: clamp(1.5rem, 4vw, 3rem);
+    background: rgba(20, 14, 14, 0.4);
+    color: var(--gold-leaf);
+    border: 2px solid var(--gold-leaf);
+    box-shadow: 0 0 0 1px rgba(255, 200, 90, 0.4) inset;
+    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    transform: rotate(-6deg);
   }
 }
 
-/* Reduced motion: replace hero video with static poster */
+@media only screen and (min-width: 48em) {
+  #hero .hero-title {
+    max-width: 22ch;
+  }
+  #hero .hero-seal {
+    width: 7.5rem;
+    height: 7.5rem;
+    font-size: 0.72rem;
+  }
+}
+
+/* Reduced motion: static poster */
 @media (prefers-reduced-motion: reduce) {
-  #hero video.cs-picture {
+  #hero .hero-video {
     display: none;
   }
   #hero {
@@ -384,4 +189,49 @@
     background-size: cover;
     background-position: center;
   }
+}
+
+/* -----------------------------------------
+   TRUST STRIP (above-the-fold on tall viewports)
+   ----------------------------------------- */
+#trust-strip {
+  background: var(--ink);
+  color: var(--paper);
+  padding: var(--space-md);
+  border-top: 1px solid var(--gold-leaf);
+  border-bottom: 1px solid var(--gold-leaf);
+}
+
+#trust-strip .trust-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-md) var(--space-2xl);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+#trust-strip .trust-list li {
+  position: relative;
+  white-space: nowrap;
+}
+
+#trust-strip .trust-list li + li::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--space-2xl) / -2 - 0.15rem);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--crimson);
 }

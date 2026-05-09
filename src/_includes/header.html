@@ -1,6 +1,16 @@
 {% set navPages = collections.all | eleventyNavigation %}
 
-<div id="navigation">
+<div class="h-eyebrow-strip" aria-hidden="true">
+    <div class="h-eyebrow-strip__inner">
+        <span>Since 1984</span>
+        <span class="h-eyebrow-strip__dot">&middot;</span>
+        <span>Veteran-Owned</span>
+        <span class="h-eyebrow-strip__dot">&middot;</span>
+        <span>Michigan</span>
+    </div>
+</div>
+
+<div id="navigation" data-heritage-nav>
     <div aria-hidden="true" class="background-color-div"></div>
 
     <div class="container">
@@ -24,10 +34,6 @@
                 <li class="{% if entry.title == 'Services' %}dropdown{% endif %}" id="{{ entry.title }}">
                     {% if entry.title == 'Services' %}
                     <a class="dropdown-toggle" role="button" tabindex="0">{{ entry.title }}</a>
-                    <!-- <ul class="dropdown-menu">
-                        <li><a href="/vinyl-flooring/">Vinyl Flooring</a></li>
-                        <li><a href="/flooring-installation/">Flooring Installation</a></li>
-                    </ul> -->
                     {% else %}
                     <a {% if entry.url==page.url %} class="active" {% endif %} href="{{ entry.url }}">{{ entry.title
                         }}</a>
@@ -40,8 +46,9 @@
         <!-- Actions -->
         <div class="header-actions" role="group" aria-label="User actions">
             <!-- Dark Mode -->
-            <button id="dark-mode-toggle" class="icon-btn" aria-label="Toggle dark mode">
-                <!-- centered, 24×24 moon -->
+            <button id="dark-mode-toggle" class="icon-btn h-mode-toggle" aria-label="Toggle dark mode">
+                <span class="h-mode-toggle__label h-mode-toggle__label--day" aria-hidden="true">Day</span>
+                <span class="h-mode-toggle__label h-mode-toggle__label--night" aria-hidden="true">Night</span>
                 <svg class="moon" viewBox="0 0 24 24" aria-hidden="true">
                     <path fill="currentColor" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
                 </svg>
@@ -58,7 +65,6 @@
                 </svg>
             </a>
 
-            <!-- Cart -->
             <!-- Cart -->
             <button class="icon-btn cart-btn cart-checkout" aria-label="Open cart">
                 <svg class="cart-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

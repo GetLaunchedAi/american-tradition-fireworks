@@ -8,15 +8,11 @@ layout: base.html
 {% set allProducts = products.products or [] %}
 {% set filteredProducts = allProducts | filterByCollection(key) %}
 
-<section id="int-hero" data-aos="fade-in">
+<section id="int-hero" class="h-int-hero" data-aos="fade-in">
+  <span class="h-topper">All Fireworks &middot; Catalog</span>
   <h1 id="home-h">{{ title }}</h1>
   {% if description %}
     <p>{{ description }}</p>
-  {% endif %}
-  {% if heroImage %}
-    {% image heroImage, title, '', 'lazy', '(max-width: 400px) 400px, (max-width: 850px) 850px, 1920px'%}
-  {% else %}
-    {% image './src/images/shop_banner_img.png', title, '', 'lazy', '(max-width: 400px) 400px, (max-width: 850px) 850px, 1920px'%}
   {% endif %}
 </section>
 

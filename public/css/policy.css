@@ -1,494 +1,663 @@
-@media only screen and (min-width: 0rem) {
-  /* Spacing scale — used across policy components for consistent rhythm */
-  :root {
-    --policy-space-2xs: 0.25rem;
-    --policy-space-xs: 0.5rem;
-    --policy-space-sm: 0.75rem;
-    --policy-space-md: 1.25rem;
-    --policy-space-lg: 2rem;
-    --policy-space-xl: 3rem;
-    --policy-space-2xl: clamp(3rem, 6vw, 5rem);
-    --policy-radius: 1.25rem;
-    --policy-border: 1px solid rgba(15, 23, 42, 0.08);
-    --policy-shadow: 0 1rem 2.5rem rgba(15, 23, 42, 0.06);
-  }
+/* ============================================
+   POLICY.CSS — heritage / sign-painter
+   Page: src/pages/requirements-shipping.html
+   Scoped via .policy-page
+   Tokens: root.css   Components: heritage.css
+   Banned: border-left accent stripes, gradient text,
+           rounded SaaS cards w/ shadow.
+   ============================================ */
 
-  .policy-section {
-    padding: var(--sectionPadding);
+@media only screen and (min-width: 0rem) {
+
+  /* ---------- Section + scroll anchor ---------- */
+  .policy-page .policy-section {
+    padding: clamp(3.5rem, 7vw, 5.5rem) var(--space-md);
     scroll-margin-top: 6rem;
   }
 
-  .policy-container {
-    width: 100%;
-    max-width: 80rem;
-    margin: 0 auto;
-    display: grid;
-    gap: var(--policy-space-xl);
+  .policy-page .policy-section + .policy-section {
+    border-top: 1px solid var(--rule);
   }
 
-  .policy-container--stack {
-    grid-template-columns: 1fr;
+  .policy-page .policy-eyebrow {
+    margin-bottom: var(--space-sm);
   }
 
-  .policy-container--center {
-    text-align: center;
-    justify-items: center;
-    gap: var(--policy-space-md);
+  .policy-page .policy-eyebrow--gold {
+    color: var(--gold-leaf);
   }
 
-  .policy-copy,
-  .policy-heading {
-    max-width: 46rem;
-    display: grid;
-    gap: var(--policy-space-sm);
+  .policy-page .policy-title {
+    margin: 0 0 var(--space-lg);
+    color: var(--ink);
   }
 
-  .policy-topper {
+  .policy-page .policy-text {
+    margin: 0 0 var(--space-md);
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 65ch;
+  }
+
+  .policy-page .policy-text:last-child { margin-bottom: 0; }
+
+  .policy-page .policy-section-lede {
+    margin: 0 0 var(--space-xl);
+    font-family: var(--font-body);
+    font-size: var(--step-1);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+
+  .policy-page .policy-divider {
+    margin: 0 0 var(--space-lg);
+  }
+
+  .policy-page .policy-divider--gold {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--gold-leaf) 20%,
+      var(--gold-leaf) 80%,
+      transparent
+    );
+  }
+
+  /* ---------- HERO — enamel painted board ---------- */
+  /* Reset legacy #int-hero defaults */
+  .policy-page #int-hero.policy-hero {
     display: block;
-    margin-bottom: 0;
-    color: var(--primary);
-    font-size: var(--topperFontSize);
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    line-height: 1.2;
-    text-transform: uppercase;
+    background: none;
+    padding-top: 0;
+    padding-bottom: 0;
+    min-height: 0;
+    height: auto;
+    background-attachment: scroll;
+    position: relative;
+    overflow: hidden;
   }
 
-  .policy-title {
+  .policy-page #int-hero::before,
+  .policy-page #int-hero::after {
+    content: none !important;
+    display: none !important;
+    background: none;
+    opacity: 0;
+  }
+
+  .policy-page #int-hero picture,
+  .policy-page #int-hero > img {
+    display: none;
+  }
+
+  .policy-page .policy-hero {
+    padding: clamp(4rem, 9vw, 7.5rem) var(--space-md);
+    text-align: left;
+  }
+
+  .policy-page .policy-hero__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    position: relative;
+  }
+
+  .policy-page .policy-hero__topper {
+    color: var(--gold-leaf);
+    margin-bottom: 0;
+  }
+
+  .policy-page #int-hero h1.policy-hero__headline {
+    font-family: var(--font-display);
+    font-size: var(--step-5);
+    line-height: 0.95;
+    color: var(--paper);
     margin: 0;
-    color: var(--headerColor);
-    font-size: var(--headerFontSize);
-    font-weight: 900;
-    line-height: 1.15;
+    text-align: left;
+    width: auto;
+    max-width: 22ch;
     letter-spacing: -0.01em;
   }
 
-  .policy-copy .policy-title,
-  .policy-heading .policy-title {
-    margin-bottom: var(--policy-space-xs);
-  }
-
-  .policy-text {
-    margin: 0 0 1rem;
-    color: var(--bodyTextColor);
-    font-size: var(--bodyFontSize);
-    line-height: 1.7;
-  }
-
-  .policy-text:last-child {
-    margin-bottom: 0;
-  }
-
-  .policy-text--narrow {
-    max-width: 42rem;
-  }
-
-  .policy-highlight,
-  .policy-panel,
-  .policy-card {
-    padding: clamp(1.5rem, 3vw, 2.25rem);
-    border: var(--policy-border);
-    border-left: 4px solid var(--primary);
-    border-radius: var(--policy-radius);
-    background: #fff;
-    box-shadow: var(--policy-shadow);
-  }
-
-  /* Variant: lighter panel for sections that would otherwise feel monotonous */
-  .policy-panel--ghost {
-    background: transparent;
-    border: var(--policy-border);
-    border-left: var(--policy-border);
-    box-shadow: none;
-    padding: clamp(1.25rem, 2.5vw, 1.75rem) 0;
-    border-radius: 0;
-    border-top: none;
-    border-right: none;
-    border-bottom: none;
-    border-left: 2px solid rgba(193, 28, 42, 0.25);
-    padding-left: clamp(1.25rem, 2.5vw, 1.75rem);
-  }
-
-  .policy-section:nth-of-type(even) {
-    background: #fafbfc;
-  }
-
-  .policy-updated {
+  .policy-page .policy-hero__lede {
+    font-family: var(--font-body);
+    font-size: var(--step-1);
+    line-height: 1.55;
+    color: oklch(90% 0.012 75);
+    max-width: 60ch;
     margin: 0;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-weight: 600;
   }
 
-  .policy-toc {
+  .policy-page .policy-hero__seal {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: var(--gold-leaf);
+    border-color: var(--gold-leaf);
+    box-shadow: 0 0 0 1px oklch(60% 0.1 85) inset;
+  }
+
+  /* ---------- TOC — numbered chip row ---------- */
+  .policy-page .policy-toc {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: var(--policy-space-md);
-    padding-top: var(--policy-space-md);
-    border-top: 1px solid rgba(255, 255, 255, 0.18);
-    font-size: 0.85rem;
-    width: 96%;
-    max-width: 32rem;
-    justify-content: center;
+    gap: var(--space-sm);
+    margin: var(--space-md) 0 0;
+    padding: 0;
+    border: 0;
+    width: 100%;
+    max-width: none;
+    justify-content: flex-start;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
   }
 
-  .policy-toc a {
-    color: #fff;
-    font-weight: 600;
+  .policy-page .policy-toc a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.55em;
+    padding: 0.55rem 0.95rem;
+    color: var(--paper);
+    background: transparent;
+    border: 1px solid oklch(70% 0.05 85 / 0.6);
+    border-radius: 0;
     text-decoration: none;
-    padding: 0.4rem 0.9rem;
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    border-radius: 999px;
-    transition: background 0.2s ease, border-color 0.2s ease;
-    letter-spacing: 0.02em;
+    font-weight: 500;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
   }
 
-  .policy-toc a:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.55);
+  .policy-page .policy-toc a:hover {
+    background: oklch(28% 0.05 25);
+    border-color: var(--gold-leaf);
+    color: var(--gold-leaf);
   }
 
-  .policy-cta-spaced {
-    margin-top: var(--policy-space-md);
+  .policy-page .policy-toc__num {
+    color: var(--gold-leaf);
+    font-weight: 600;
   }
 
-  /* Numbered process steps — variant for #policy-process to break card-grid monotony */
-  .policy-steps {
+  /* ---------- OVERVIEW — quick start panel ---------- */
+  .policy-page .policy-overview__grid {
     display: grid;
-    gap: var(--policy-space-lg);
-    counter-reset: policy-step;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
   }
 
-  .policy-step {
-    position: relative;
-    padding-left: clamp(3.25rem, 8vw, 4.5rem);
-    counter-increment: policy-step;
+  .policy-page .policy-copy {
+    max-width: 60ch;
   }
 
-  .policy-step::before {
-    content: counter(policy-step, decimal-leading-zero);
-    position: absolute;
-    top: 0.1rem;
-    left: 0;
-    color: var(--primary);
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    font-feature-settings: "tnum" 1;
+  .policy-page .policy-highlight {
+    /* Drop gradient + soft card. Hairline top + bottom only. */
+    background: var(--paper-deep);
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding: var(--space-lg) var(--space-md);
+    display: grid;
+    gap: var(--space-md);
+    border-radius: 0;
+    box-shadow: none;
   }
 
-  .policy-step h3 {
-    margin: 0 0 var(--policy-space-xs);
-    color: var(--headerColor);
-    font-size: clamp(1.15rem, 2.4vw, 1.4rem);
-    font-weight: 700;
-    line-height: 1.25;
-  }
-
-  .policy-step p {
-    margin: 0 0 0.75rem;
-    color: var(--bodyTextColor);
-    line-height: 1.7;
-  }
-
-  .policy-step p:last-child,
-  .policy-step ul:last-child {
-    margin-bottom: 0;
-  }
-
-  .policy-step ul {
+  .policy-page .policy-highlight__title {
     margin: 0;
-    padding-left: 1.1rem;
-    color: var(--bodyTextColor);
-    line-height: 1.7;
+    color: var(--ink);
   }
 
-  .policy-step ul li + li {
-    margin-top: 0.4rem;
+  .policy-page .policy-highlight .policy-list {
+    margin: 0;
   }
 
-  abbr[title] {
-    text-decoration: underline dotted;
-    text-underline-offset: 3px;
+  .policy-page .policy-link-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    margin-top: var(--space-xs);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    text-decoration: none;
+    border-bottom: 1px solid var(--crimson);
+    padding-bottom: 0.25em;
+    align-self: start;
+    transition: color 0.18s ease, border-color 0.18s ease, gap 0.18s ease;
+  }
+
+  .policy-page .policy-link-cta:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+    gap: 0.7em;
+  }
+
+  /* ---------- TABLE — paperwork-grade hairline ---------- */
+  .policy-page .policy-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: var(--space-md);
+  }
+
+  .policy-page .policy-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: none;
+    font-family: var(--font-body);
+  }
+
+  .policy-page .policy-table thead th {
+    background: var(--paper-deep);
+    color: var(--ink-soft);
+    text-align: left;
+    padding: 0.85rem 1rem;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .policy-page .policy-table tbody th,
+  .policy-page .policy-table tbody td {
+    padding: 1.05rem 1rem;
+    color: var(--ink);
+    font-size: var(--step-0);
+    line-height: 1.6;
+    vertical-align: top;
+    border-top: 0;
+    border-bottom: 1px solid var(--rule);
+    background: transparent;
+  }
+
+  .policy-page .policy-table tbody th {
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-weight: 600;
+    text-align: left;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .policy-page .policy-class {
+    align-self: flex-start;
+  }
+
+  .policy-page .policy-class__abbr {
+    text-decoration: none;
     cursor: help;
   }
 
-  .policy-table-wrap {
-    width: 100%;
-    overflow-x: auto;
+  .policy-page .policy-table tbody tr:nth-of-type(even) th,
+  .policy-page .policy-table tbody tr:nth-of-type(even) td {
+    background: oklch(94% 0.014 70);
   }
 
-  .policy-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    border: 1px solid rgba(15, 23, 42, 0.08);
-    border-left: 4px solid var(--primary);
-    border-radius: 1.25rem;
-    overflow: hidden;
-    box-shadow: 0 1rem 2.5rem rgba(15, 23, 42, 0.06);
-  }
-
-  .policy-table thead th {
-    background: var(--primary);
-    color: #fff;
-    text-align: left;
-    padding: 1rem 1.25rem;
-    font-size: var(--topperFontSize);
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .policy-table tbody th,
-  .policy-table tbody td {
-    padding: 1.1rem 1.25rem;
-    color: var(--bodyTextColor);
-    line-height: 1.6;
-    vertical-align: top;
-    border-top: 1px solid rgba(15, 23, 42, 0.08);
-  }
-
-  .policy-table tbody tr:nth-of-type(even) th,
-  .policy-table tbody tr:nth-of-type(even) td {
-    background: rgba(193, 28, 42, 0.03);
-  }
-
-  .policy-table tbody th {
-    color: var(--headerColor);
-    font-weight: 700;
-    text-align: left;
-    width: 30%;
-  }
-
+  /* mobile collapse */
   @media only screen and (max-width: 600px) {
-    .policy-table,
-    .policy-table thead,
-    .policy-table tbody,
-    .policy-table tr,
-    .policy-table th,
-    .policy-table td {
+    .policy-page .policy-table,
+    .policy-page .policy-table thead,
+    .policy-page .policy-table tbody,
+    .policy-page .policy-table tr,
+    .policy-page .policy-table th,
+    .policy-page .policy-table td {
       display: block;
       width: 100%;
     }
 
-    .policy-table thead {
+    .policy-page .policy-table thead {
       position: absolute;
       left: -9999px;
     }
 
-    .policy-table tbody tr {
-      border-top: 1px solid rgba(15, 23, 42, 0.08);
-      padding: 0.5rem 0;
+    .policy-page .policy-table tbody tr {
+      border-top: 1px solid var(--rule);
+      padding: var(--space-sm) 0;
     }
 
-    .policy-table tbody tr:first-child {
-      border-top: none;
+    .policy-page .policy-table tbody tr:first-child {
+      border-top: 2px solid var(--ink);
     }
 
-    .policy-table tbody th,
-    .policy-table tbody td {
-      border-top: none;
-      padding: 0.4rem 1rem;
+    .policy-page .policy-table tbody th,
+    .policy-page .policy-table tbody td {
+      border-top: 0;
+      border-bottom: 0;
+      padding: 0.4rem var(--space-sm);
+      width: 100%;
     }
 
-    .policy-table tbody th::before,
-    .policy-table tbody td::before {
+    .policy-page .policy-table tbody th {
+      display: block;
+      width: 100%;
+    }
+
+    .policy-page .policy-table tbody th::before,
+    .policy-page .policy-table tbody td::before {
       content: attr(data-label);
       display: block;
-      color: var(--primary);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+      font-family: var(--font-mono);
+      color: var(--ink-soft);
+      font-size: var(--step--1);
+      font-weight: 500;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.3rem;
     }
   }
 
-  .policy-highlight {
-    background: var(--primaryLight);
+  /* ---------- PROCESS STEPS ---------- */
+  .policy-page .policy-steps {
     display: grid;
-    gap: var(--policy-space-md);
-    align-content: start;
-  }
-
-  .policy-highlight .policy-list {
+    gap: 0;
+    counter-reset: policy-step;
+    list-style: none;
     margin: 0;
+    padding: 0;
+    max-width: 60rem;
   }
 
-  .policy-highlight .button-solid {
-    margin-top: var(--policy-space-xs);
-    justify-self: start;
+  .policy-page .policy-step {
+    position: relative;
+    padding: var(--space-lg) 0 var(--space-lg) clamp(4rem, 10vw, 6rem);
+    counter-increment: policy-step;
+    border-top: 1px solid var(--rule);
   }
 
-  .policy-highlight__eyebrow,
-  .policy-card__label {
-    display: block;
-    margin-bottom: 0;
-    color: var(--primary);
-    font-size: var(--topperFontSize);
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    line-height: 1.2;
-    text-transform: uppercase;
+  .policy-page .policy-step:last-child {
+    border-bottom: 1px solid var(--rule);
   }
 
-  .policy-grid,
-  .policy-columns {
-    display: grid;
-    gap: var(--policy-space-md);
+  .policy-page .policy-step::before {
+    content: counter(policy-step, decimal-leading-zero);
+    position: absolute;
+    top: var(--space-lg);
+    left: 0;
+    color: var(--crimson);
+    font-family: var(--font-display);
+    font-size: var(--step-4);
+    font-weight: 400;
+    line-height: 0.85;
+    letter-spacing: -0.01em;
+    font-feature-settings: "tnum" 1;
   }
 
-  .policy-card h3,
-  .policy-panel h3 {
-    margin: 0 0 var(--policy-space-xs);
-    color: var(--headerColor);
-    font-size: clamp(1.2rem, 2.6vw, 1.5rem);
-    font-weight: 700;
-    line-height: 1.25;
+  .policy-page .policy-step__title {
+    margin: 0 0 var(--space-sm);
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.005em;
   }
 
-  .policy-card p,
-  .policy-panel p {
-    margin: 0 0 0.9rem;
-    color: var(--bodyTextColor);
+  .policy-page .policy-step p {
+    margin: 0 0 var(--space-sm);
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    color: var(--ink-soft);
     line-height: 1.7;
+    max-width: 65ch;
   }
 
-  .policy-card p:last-child,
-  .policy-panel p:last-child {
+  .policy-page .policy-step p:last-child,
+  .policy-page .policy-step ul:last-child {
     margin-bottom: 0;
   }
 
-  .policy-list {
+  /* ---------- LISTS ---------- */
+  .policy-page .policy-list {
     margin: 0;
-    padding-left: 1.25rem;
-    color: var(--bodyTextColor);
-    line-height: 1.65;
+    padding-left: 1.1rem;
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    color: var(--ink-soft);
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+    max-width: 65ch;
+  }
+
+  .policy-page .policy-list li + li {
+    margin-top: 0.5rem;
+  }
+
+  .policy-page .policy-list a {
+    color: var(--crimson);
     overflow-wrap: anywhere;
   }
 
-  .policy-list a {
-    overflow-wrap: anywhere;
+  /* ---------- ABBR ---------- */
+  .policy-page abbr[title] {
+    text-decoration: underline dotted;
+    text-decoration-color: var(--rule);
+    text-underline-offset: 3px;
+    cursor: help;
   }
 
-  .policy-list li + li {
-    margin-top: 0.55rem;
+  /* ---------- BLOCKS (shipping, claims) ---------- */
+  .policy-page .policy-blocks {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    margin-top: var(--space-md);
   }
 
-  .policy-panel a {
-    color: var(--primary);
-    font-weight: 700;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
+  .policy-page .policy-block {
+    display: grid;
+    gap: var(--space-md);
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-top: 1px solid var(--rule);
+    border-radius: 0;
+    box-shadow: 0 0 0 0 transparent;
+    padding-top: var(--space-lg);
   }
 
-  .policy-panel a:hover {
-    color: #000;
+  .policy-page .policy-block__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: 400;
+    line-height: 1.05;
+    color: inherit;
   }
 
-  #int-hero p {
-    max-width: 42rem;
+  .policy-page .policy-block p {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 65ch;
   }
 
-  /* Policy hero — tighten rhythm between h1, subhead, meta, and TOC */
-  #int-hero h1#home-h {
-    margin-bottom: var(--policy-space-md);
+  .policy-page .policy-spec {
+    margin-top: var(--space-xs);
   }
 
-  #int-hero p:not(.policy-updated) {
-    margin-bottom: var(--policy-space-sm);
+  /* ---------- ENAMEL section overrides ---------- */
+  .policy-page .policy-section--enamel .policy-title,
+  .policy-page .policy-section--enamel .policy-block__title {
+    color: var(--paper);
   }
 
-  #int-hero .policy-updated {
-    margin-bottom: 0;
+  .policy-page .policy-section--enamel .policy-eyebrow {
+    color: var(--gold-leaf);
+  }
+
+  .policy-page .policy-section--enamel .policy-block {
+    border-top-color: oklch(70% 0.05 85 / 0.4);
+  }
+
+  .policy-page .policy-section--enamel .policy-block p,
+  .policy-page .policy-section--enamel .policy-list {
+    color: oklch(90% 0.012 75);
+  }
+
+  .policy-page .policy-section--enamel abbr[title] {
+    text-decoration-color: oklch(70% 0.05 85 / 0.5);
+  }
+
+  .policy-page .policy-section--enamel .h-spec-list dt {
+    color: var(--gold-leaf);
+  }
+
+  .policy-page .policy-section--enamel .h-spec-list dd {
+    color: var(--paper);
+  }
+
+  .policy-page .policy-section--enamel .h-spec-list > div {
+    border-bottom-color: oklch(70% 0.05 85 / 0.25);
+  }
+
+  /* ---------- DEADLINE STAMP ---------- */
+  .policy-page .policy-deadline {
+    margin: 0 0 var(--space-lg);
+    font-size: 0.85rem;
+    padding: 0.5em 0.95em;
+    letter-spacing: 0.22em;
+  }
+
+  /* ---------- BUTTONS ---------- */
+  .policy-page .policy-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.95rem 1.4rem;
+    font-family: var(--font-display);
+    font-size: var(--step-0);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--paper);
+    background: var(--ink);
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  }
+
+  .policy-page .policy-btn:hover {
+    background: var(--crimson);
+    border-color: var(--crimson);
+    color: var(--paper);
+  }
+
+  .policy-page .policy-btn--primary {
+    background: var(--crimson);
+    border-color: var(--crimson);
+    color: var(--paper);
+  }
+
+  .policy-page .policy-btn--primary:hover {
+    background: var(--ink);
+    border-color: var(--gold-leaf);
+    color: var(--paper);
+  }
+
+  .policy-page .policy-btn--ghost {
+    background: transparent;
+    color: var(--paper);
+    border: 1px solid var(--gold-leaf);
+  }
+
+  .policy-page .policy-btn--ghost:hover {
+    background: var(--gold-leaf);
+    color: var(--ink);
+    border-color: var(--gold-leaf);
+  }
+
+  /* ---------- FINAL CTA ---------- */
+  .policy-page .policy-cta-section {
+    text-align: left;
+  }
+
+  .policy-page .policy-cta__inner {
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  .policy-page .policy-cta__title {
+    color: var(--paper);
+    font-size: var(--step-5);
+    margin: 0;
+    max-width: 18ch;
+    line-height: 0.95;
+  }
+
+  .policy-page .policy-cta__lede {
+    font-family: var(--font-body);
+    font-size: var(--step-1);
+    line-height: 1.55;
+    color: oklch(90% 0.012 75);
+    margin: 0;
+    max-width: 55ch;
+  }
+
+  .policy-page .policy-cta__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+  }
+
+  /* legacy .policy-updated kept hidden — replaced by hero lede */
+  .policy-page .policy-updated { display: none; }
+}
+
+/* ---------- DESKTOP ---------- */
+@media only screen and (min-width: 48rem) {
+  .policy-page .policy-blocks {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(2rem, 4vw, 3.5rem);
   }
 }
 
 @media only screen and (min-width: 64rem) {
-  #policy-overview .policy-container {
-    grid-template-columns: minmax(0, 1.3fr) minmax(20rem, 0.7fr);
-    align-items: start;
-    gap: clamp(2rem, 4vw, 4rem);
+  .policy-page .policy-overview__grid {
+    grid-template-columns: minmax(0, 1.4fr) minmax(18rem, 0.6fr);
+    gap: clamp(2.5rem, 5vw, 4.5rem);
   }
 
-  .policy-grid,
-  .policy-columns {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(1.5rem, 2.5vw, 2rem);
+  .policy-page .policy-hero__seal {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) rotate(-6deg);
   }
 
-  /* Steps stay single-column on desktop too — vertical rhythm */
-  .policy-steps {
-    grid-template-columns: 1fr;
-    gap: var(--policy-space-xl);
-    max-width: 56rem;
+  .policy-page #int-hero h1.policy-hero__headline {
+    font-size: var(--step-5);
+    max-width: 16ch;
   }
 }
 
+/* ---------- DARK MODE — keep paper aesthetic ----------
+   The heritage system is light-only. Override legacy
+   .dark-mode hooks so they don't fight the paper surface. */
 @media only screen and (min-width: 0rem) {
-  body.dark-mode .policy-title,
-  body.dark-mode .policy-card h3,
-  body.dark-mode .policy-panel h3 {
-    color: var(--bodyTextColorWhite);
-  }
-
-  body.dark-mode .policy-text,
-  body.dark-mode .policy-card p,
-  body.dark-mode .policy-panel p,
-  body.dark-mode .policy-list {
-    color: var(--bodyTextColorWhite);
-    opacity: 0.9;
-  }
-
-  body.dark-mode .policy-highlight,
-  body.dark-mode .policy-panel,
-  body.dark-mode .policy-card {
-    background: var(--medium, #111827);
-    border-color: rgba(255, 255, 255, 0.08);
-    box-shadow: none;
-  }
-
-  body.dark-mode .policy-highlight {
-    background: var(--dark, #0f172a);
-  }
-
-  body.dark-mode .policy-highlight__eyebrow,
-  body.dark-mode .policy-card__label {
-    color: var(--primaryShade);
-  }
-
-  body.dark-mode .policy-panel a {
-    color: #fecaca;
-  }
-
-  body.dark-mode .policy-section:nth-of-type(even) {
-    background: transparent;
-  }
-
-  body.dark-mode .policy-table {
-    background: var(--medium, #111827);
-    border-color: rgba(255, 255, 255, 0.08);
-    box-shadow: none;
-  }
-
-  body.dark-mode .policy-table tbody th,
-  body.dark-mode .policy-table tbody td {
-    color: var(--bodyTextColorWhite);
-    border-top-color: rgba(255, 255, 255, 0.08);
-    opacity: 0.95;
-  }
-
-  body.dark-mode .policy-toc a {
-    color: var(--primaryShade);
-  }
-
-  body.dark-mode .policy-updated {
-    color: var(--bodyTextColorWhite);
+  body.dark-mode .policy-page .policy-section,
+  body.dark-mode .policy-page .policy-title,
+  body.dark-mode .policy-page .policy-text,
+  body.dark-mode .policy-page .policy-list,
+  body.dark-mode .policy-page .policy-block p {
+    /* let heritage tokens drive */
   }
 }

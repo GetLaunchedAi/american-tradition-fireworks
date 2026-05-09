@@ -15,10 +15,16 @@ eleventyNavigation:
 <!--                    LANDING                   -->
 <!-- ============================================ -->
 
-<section id="int-hero" data-aos="fade-in">
-  <h1 id="home-h">Contact Us</h1>
-  <p class="cs-hero-subtitle">Retail · Wholesale · Restricted · Freight Claims</p>
-  <a class="cs-hero-tel" href="tel:2697314311">Call 269-731-4311</a>
+<section id="int-hero" class="contact-hero" data-aos="fade-in">
+  <span class="h-topper contact-hero__topper">Get In Touch &middot; Kalamazoo MI</span>
+  <h1 id="home-h" class="h-headline contact-hero__headline">Tell us what you need.</h1>
+  <a class="cs-hero-tel contact-hero__tel" href="tel:2697314311">
+    <span class="contact-hero__tel-label">Direct Line</span>
+    <span class="contact-hero__tel-number">269 &middot; 731 &middot; 4311</span>
+  </a>
+  <span class="h-seal contact-hero__seal" aria-hidden="true">
+    Retail &middot; Wholesale &middot; Restricted &middot; Freight
+  </span>
   {% image './src/images/contact_banner_img.png', 'fireworks display', '', 'lazy', '(max-width: 400px) 400px, (max-width: 850px) 850px,
   1920px'%}
 </section>
@@ -27,41 +33,54 @@ eleventyNavigation:
 <!--                Contact Form                  -->
 <!-- ============================================ -->
 
-<section id="cs-contact-242" data-aos="fade-up">
+<section id="cs-contact-242" class="contact-heritage" data-aos="fade-up">
   <div class="cs-container">
-    <div class="cs-content">
-      <span class="cs-topper">Here To Help</span>
-      <h2 class="cs-title">Get In Touch</h2>
-      <p class="cs-text">
+    <div class="cs-content contact-heritage__intro">
+      <span class="h-topper">Dept. 01 &middot; Correspondence</span>
+      <h2 class="cs-title h-headline h-headline--md">Drop us a line.</h2>
+      <p class="cs-text contact-heritage__lede">
         Use this form for retail, wholesale, restricted-fireworks paperwork,
         shipping, or freight claims. Include category and destination if asking
-        about 1.4g/1.3g products.
+        about 1.4g or 1.3g products.
       </p>
-      <div class="cs-policy-note">
-        <p class="cs-policy-title">Before you submit</p>
-        <ul class="cs-policy-list">
-          <li>1.4g articles pyrotechnic products need PGI or certified training, or a Federal Explosives License.</li>
-          <li>1.3g display fireworks need a Federal Explosives License and federal storage compliance beyond one day.</li>
-          <li>Freight claims need photos, order details, and written notice within 48 hours.</li>
-        </ul>
-        <a class="cs-policy-link" href="/requirements-shipping/">
-          Read full requirements and shipping policy
-        </a>
-      </div>
+      <hr class="h-divider contact-heritage__intro-divider" />
+      <dl class="h-spec-list contact-heritage__spec">
+        <div>
+          <dt>For</dt>
+          <dd>Retail &middot; Wholesale &middot; Restricted &middot; Freight</dd>
+        </div>
+        <div>
+          <dt>Bring</dt>
+          <dd>PGI or certified training cert, or FEL (1.3g / 1.4g restricted)</dd>
+        </div>
+        <div>
+          <dt>Ships</dt>
+          <dd>FOB origin &middot; Continental US only</dd>
+        </div>
+        <div>
+          <dt>Claims</dt>
+          <dd>Photos, order details, written notice within 48 hours</dd>
+        </div>
+      </dl>
+      <a class="contact-heritage__policy-link" href="/requirements-shipping/">
+        Read full requirements &amp; shipping policy &rarr;
+      </a>
     </div>
     <form
       id="cs-form-242"
+      class="contact-heritage__form"
       name="Contact Form"
       method="post"
       action="https://submit-form.com/U9CNXTECF"
       data-aos="fade-right"
       data-aos-delay="100"
     >
+      <span class="h-topper contact-heritage__form-eyebrow">Request &middot; Form &middot; 01</span>
       <input type="hidden" name="_subject" value="Contact Form Submission" />
       <input type="hidden" name="form-source" value="Contact Page" />
       <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
       <label class="cs-label">
-        <span class="cs-label-text">Name<span aria-hidden="true" class="cs-required">*</span></span>
+        <span class="cs-label-text">01 &middot; Name<span aria-hidden="true" class="cs-required">*</span></span>
         <input
           class="cs-input"
           required
@@ -73,7 +92,7 @@ eleventyNavigation:
         />
       </label>
       <label class="cs-label">
-        <span class="cs-label-text">Email<span aria-hidden="true" class="cs-required">*</span></span>
+        <span class="cs-label-text">02 &middot; Email<span aria-hidden="true" class="cs-required">*</span></span>
         <input
           class="cs-input"
           required
@@ -86,7 +105,7 @@ eleventyNavigation:
         />
       </label>
       <label class="cs-label">
-        <span class="cs-label-text">Phone<span aria-hidden="true" class="cs-required">*</span></span>
+        <span class="cs-label-text">03 &middot; Phone<span aria-hidden="true" class="cs-required">*</span></span>
         <input
           class="cs-input"
           required
@@ -99,7 +118,7 @@ eleventyNavigation:
         />
       </label>
       <label class="cs-label">
-        <span class="cs-label-text">What do you need help with?</span>
+        <span class="cs-label-text">04 &middot; What do you need</span>
         <select class="cs-input" name="topic" id="find-242">
           <option value="" disabled selected>Pick one</option>
           <option>Retail order question</option>
@@ -111,7 +130,7 @@ eleventyNavigation:
         </select>
       </label>
       <label class="cs-label cs-label-message">
-        <span class="cs-label-text">Message</span>
+        <span class="cs-label-text">05 &middot; Message</span>
         <textarea
           class="cs-input cs-textarea"
           required
@@ -120,72 +139,43 @@ eleventyNavigation:
           placeholder="Tell us what you need, the product category, and any paperwork or shipping details we should review."
         ></textarea>
       </label>
-      <button class="cs-button-solid cs-submit" type="submit">
+      <button class="cs-button-solid cs-submit contact-heritage__submit" type="submit">
         Send Message
       </button>
     </form>
     <div role="status" aria-live="polite" id="form-status" hidden></div>
 
-    <div class="cs-right-section" data-aos="fade-left" data-aos-delay="200">
-      <ul class="cs-ul">
-        <li class="cs-li">
-          <picture class="cs-icon-wrapper">
-            <img
-              aria-hidden="true"
-              src="https://csimg.nyc3.digitaloceanspaces.com/Contact-Page/mail.svg"
-              alt="mail icon"
-              class="cs-icon"
-              width="36"
-              height="36"
-              decoding="async"
-            />
-          </picture>
-          <div class="cs-flex-group">
-            <span class="cs-header">Email</span>
-            <a href="mailto:americantraditionfireworksllc@gmail.com" class="cs-link">
+    <aside class="cs-right-section contact-heritage__info" data-aos="fade-left" data-aos-delay="200">
+      <span class="h-topper">Where to find us</span>
+      <dl class="h-spec-list contact-heritage__directory">
+        <div>
+          <dt>Store 01</dt>
+          <dd>
+            <span class="contact-heritage__addr">12127 E. G Avenue, Augusta, MI 49012</span>
+            <a href="tel:2697314311" class="contact-heritage__addr-tel">269 &middot; 731 &middot; 4311</a>
+          </dd>
+        </div>
+        <div>
+          <dt>Store 02</dt>
+          <dd>
+            <span class="contact-heritage__addr">Springfield, MI &mdash; Dickman Rd (M-96) at Military &amp; Admiral Ave.</span>
+          </dd>
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd>
+            <a href="mailto:americantraditionfireworksllc@gmail.com" class="contact-heritage__addr-tel">
               americantraditionfireworksllc@gmail.com
             </a>
-          </div>
-        </li>
-        <li class="cs-li">
-          <picture class="cs-icon-wrapper">
-            <img
-              aria-hidden="true"
-              src="https://csimg.nyc3.digitaloceanspaces.com/Contact-Page/phone.svg"
-              alt="phone icon"
-              class="cs-icon"
-              width="36"
-              height="36"
-              decoding="async"
-            />
-          </picture>
-          <div class="cs-flex-group">
-            <span class="cs-header">Phone</span>
-            <a href="tel:2697314311" class="cs-link">269-731-4311</a>
-          </div>
-        </li>
-        <li class="cs-li">
-          <picture class="cs-icon-wrapper">
-            <img
-              aria-hidden="true"
-              src="/assets/svgs/service_3.svg"
-              alt="location icon"
-              class="cs-icon"
-              width="36"
-              height="36"
-              decoding="async"
-            />
-          </picture>
-          <div class="cs-flex-group">
-            <span class="cs-header">Primary Store</span>
-            <span class="cs-link cs-block">
-              12127 E. G Avenue<br />
-              Augusta, MI 49012
-            </span>
-          </div>
-        </li>
-      </ul>
-      <picture class="cs-picture">
+          </dd>
+        </div>
+        <div>
+          <dt>Hours</dt>
+          <dd>Seasonal &middot; Call ahead pre-July 4 &amp; pre-NYE</dd>
+        </div>
+      </dl>
+      <hr class="h-divider contact-heritage__map-divider" />
+      <picture class="cs-picture contact-heritage__map">
         <source media="(max-width: 600px)" srcset="/images/map.PNG" />
         <source media="(min-width: 601px)" srcset="/images/map.PNG" />
         <img
@@ -199,7 +189,10 @@ eleventyNavigation:
           height="438"
         />
       </picture>
-    </div>
+      <a class="contact-heritage__map-caption" href="https://www.google.com/maps/search/?api=1&query=12127+E+G+Avenue+Augusta+MI" target="_blank" rel="noopener">
+        Find us &middot; Kalamazoo County &rarr;
+      </a>
+    </aside>
   </div>
 </section>
 
@@ -207,58 +200,38 @@ eleventyNavigation:
 <!--                   Reviews                    -->
 <!-- ============================================ -->
 
-<section id="reviews">
+<section id="reviews" class="reviews-heritage">
   <div class="cs-container" data-aos="fade-up">
-    <span class="cs-topper">Our Reviews</span>
-    <h2 class="cs-title">What Our Customers Say</h2>
-    <p class="cs-text">
-      Since 1984, American Tradition LLC has provided high-quality fireworks
-      for retail, wholesale, and licensed buyers. From large displays to
-      backyard celebrations, customers trust us for selection, paperwork help,
-      and responsive service. Here's what they're saying:
+    <span class="h-topper">Word of Mouth</span>
+    <h2 class="cs-title h-headline h-headline--sm">From the customers.</h2>
+    <hr class="h-divider reviews-heritage__divider" />
+    <p class="cs-text reviews-heritage__lede">
+      Since 1984, American Tradition LLC has supplied fireworks for retail,
+      wholesale, and licensed buyers. From displays to backyard shows, customers
+      come back for selection, paperwork help, and straight answers.
     </p>
-    <ul class="cs-card-group">
-      <li class="cs-item" data-aos="fade-up" data-aos-delay="100">
-        <p class="cs-item-p">
+    <ul class="cs-card-group reviews-heritage__group">
+      <li class="cs-item reviews-heritage__item" data-aos="fade-up" data-aos-delay="100">
+        <span class="reviews-heritage__stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <p class="cs-item-p reviews-heritage__quote">
           American Tradition has been my go-to for fireworks for years. Their
           products are top-notch, and the staff is always friendly and
           knowledgeable.
         </p>
-        <span class="cs-reviewer">
-          Sarah L.
-          <span class="cs-desc">Customer</span>
+        <span class="cs-reviewer reviews-heritage__attribution">
+          &mdash; Sarah L. &middot; Google Review
         </span>
-        <img
-          class="cs-item-stars"
-          aria-hidden="true"
-          loading="lazy"
-          decoding="async"
-          src="https://csimg.nyc3.digitaloceanspaces.com/Reviews/stars-yellow.svg"
-          alt="stars"
-          width="96"
-          height="16"
-        />
       </li>
-      <li class="cs-item" data-aos="fade-up" data-aos-delay="200">
-        <p class="cs-item-p">
+      <li class="cs-item reviews-heritage__item" data-aos="fade-up" data-aos-delay="200">
+        <span class="reviews-heritage__stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <p class="cs-item-p reviews-heritage__quote">
           Fantastic selection and excellent service. As a wholesale buyer, I
           appreciate their consistency and the way they walk through
           documentation and shipping details before the order moves forward.
         </p>
-        <span class="cs-reviewer">
-          James P.
-          <span class="cs-desc">Wholesale Client</span>
+        <span class="cs-reviewer reviews-heritage__attribution">
+          &mdash; James P. &middot; Wholesale Client
         </span>
-        <img
-          class="cs-item-stars"
-          aria-hidden="true"
-          loading="lazy"
-          decoding="async"
-          src="https://csimg.nyc3.digitaloceanspaces.com/Reviews/stars-yellow.svg"
-          alt="stars"
-          width="96"
-          height="16"
-        />
       </li>
     </ul>
   </div>

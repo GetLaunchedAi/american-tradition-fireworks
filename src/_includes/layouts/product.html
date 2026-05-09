@@ -6,9 +6,10 @@ layout: base.html
 {% set currentCategory = product.category if product and product.category else "" %}
 {% set relatedShown = 0 %}
 
-<section id="int-hero" data-aos="fade-in">
+<section id="int-hero" class="h-int-hero" data-aos="fade-in">
+  <a class="h-back-link" href="/shop/">&larr; Back to Catalog</a>
+  <span class="h-topper">Specimen</span>
   <h1 id="pdpBannerTitle">{{ (product.title if product else "Product") }}</h1>
-  {% image './src/images/shop_banner_img.png', 'fireworks display', '', 'lazy', '(max-width: 400px) 400px, (max-width: 850px) 850px, 1920px'%}
 </section>
 
 <section class="pdp" id="pdp" data-product-page data-aos="fade-up">

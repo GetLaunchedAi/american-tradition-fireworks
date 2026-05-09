@@ -7,6 +7,10 @@ preloadCSS: /css/product.css
 {% set currentCategory = product.category if product and product.category else "" %}
 {% set relatedShown = 0 %}
 
+<div class="h-back-bar" style="max-width:1200px;margin:6rem auto 0;padding:0 24px;">
+  <a class="h-back-link" href="/shop/">&larr; Back to Catalog</a>
+</div>
+
 <section class="pdp" id="pdp" data-product-page>
   <div class="pdp__gallery">
     <div id="pdpMediaStage" class="pdp__media-stage" data-active-media="image">

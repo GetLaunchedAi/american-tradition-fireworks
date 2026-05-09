@@ -11,108 +11,163 @@ eleventyNavigation:
   order: 500
 ---
 
-<section id="int-hero" data-aos="fade-in" aria-labelledby="home-h">
-  <h1 id="home-h">Wholesale & Display Pricing</h1>
-  <p class="cs-hero-subtitle">Verified buyers get pricing within 1 business day. Veteran-owned since 1984.</p>
-  {% image './src/images/contact_banner_img.png', 'American Tradition wholesale fireworks display', '', 'lazy', '(max-width: 400px) 400px, (max-width: 850px) 850px, 1920px' %}
-</section>
+<div class="wholesale-page">
 
-<section id="cs-contact-242" data-aos="fade-in">
-  <div class="cs-container">
-    <div class="cs-content">
-      <span class="cs-topper">Bulk Buyers & Show Operators</span>
-      <h2 class="cs-title">Request a Pricing List</h2>
-      <p class="cs-text">
-        Use this form to request a wholesale price list for Consumer or Pro-Series 1.4g items, or to ask for our Display (1.3g) fireworks catalog and pricing. Pricing is shared after we verify the buyer and any required documentation.
+  <section id="int-hero" class="ws-hero h-enamel" data-aos="fade-in" aria-labelledby="home-h">
+    <div class="h-container ws-hero__inner">
+      <span class="h-topper ws-hero__topper">Wholesale &middot; Display &middot; Restricted &middot; Licensed Buyers</span>
+      <h1 id="home-h" class="h-headline ws-hero__headline">Pricing for the trade.</h1>
+      <p class="ws-hero__lede">
+        Verified buyers get a list within 1 business day. PGI / FEL / training cert required for restricted product.
       </p>
-      <div class="cs-policy-note">
-        <p class="cs-policy-title">What we will need</p>
-        <ul class="cs-policy-list">
-          <li><strong>Pro-Series 1.4g:</strong> PGI (Pyrotechnics Guild International) or certified training certificate, or a Federal Explosives License (FEL).</li>
-          <li><strong>Display 1.3g:</strong> Federal Explosives License plus federal storage compliance for storage beyond one day.</li>
-          <li><strong>Wholesale Consumer:</strong> business name, resale or tax exemption details, and ship-to state.</li>
-        </ul>
-        <a class="cs-policy-link" href="/requirements-shipping/">
-          Read full requirements and shipping policy
-        </a>
-      </div>
+      <span class="h-seal ws-hero__seal" aria-hidden="true">Verified&nbsp;&middot; Buyers&nbsp;&middot; Only</span>
     </div>
+  </section>
 
-    <form
-      id="cs-form-242"
-      name="Wholesale Pricing Request"
-      method="post"
-      action="https://submit-form.com/U9CNXTECF"
-    >
-      <input type="hidden" name="_subject" value="Wholesale / Display Pricing Request" />
-      <input type="hidden" name="form-source" value="Wholesale Page" />
-      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+  <section id="cs-contact-242" class="ws-section h-paper" data-aos="fade-in">
+    <div class="h-container ws-grid">
 
-      <p class="cs-required-key"><span aria-hidden="true" class="cs-required">*</span> = required field</p>
+      <div class="ws-policy">
+        <span class="h-topper ws-eyebrow">01 &middot; What we need</span>
+        <h2 class="h-headline h-headline--md ws-policy__title">Documentation, then pricing.</h2>
+        <p class="ws-policy__lede">
+          We verify buyer status before any pricing list leaves the office. Bring documentation in, get pricing back &mdash; usually inside one business day.
+        </p>
 
-      <label class="cs-label">
-        Name <span aria-hidden="true" class="cs-required">*</span>
-        <input class="cs-input" required type="text" name="name" autocomplete="name" placeholder="Buyer or contact name" />
-      </label>
-      <label class="cs-label">
-        Business / Operation
-        <input class="cs-input" type="text" name="business" autocomplete="organization" placeholder="Company, retailer, or show operator" />
-      </label>
-      <label class="cs-label">
-        Email <span aria-hidden="true" class="cs-required">*</span>
-        <input class="cs-input" required type="email" name="email" autocomplete="email" inputmode="email" placeholder="name@example.com" />
-      </label>
-      <label class="cs-label">
-        Phone <span aria-hidden="true" class="cs-required">*</span>
-        <input class="cs-input" required type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="(555) 555-5555" />
-      </label>
-
-      <div class="cs-row">
-        <label class="cs-label cs-label-state">
-          Ship-to state
-          <input class="cs-input" type="text" name="state" autocomplete="address-level1" maxlength="2" pattern="[A-Za-z]{2}" placeholder="MI" />
-          <span class="cs-helper-text">2-letter code (e.g. MI)</span>
-        </label>
-        <label class="cs-label cs-label-docs">
-          Documentation on file?
-          <select class="cs-input" name="documentation">
-            <option value="" disabled selected>Select one</option>
-            <option value="PGI / Certified pyro training certificate">PGI / Certified pyro training certificate</option>
-            <option value="Federal Explosives License (FEL)">Federal Explosives License (FEL)</option>
-            <option value="Both PGI/training and FEL">Both PGI/training and FEL</option>
-            <option value="None yet — need guidance">None yet — need guidance</option>
-          </select>
-        </label>
+        <dl class="h-spec-list ws-spec">
+          <div>
+            <dt>Buyer</dt>
+            <dd>Verified business or licensed individual</dd>
+          </div>
+          <div>
+            <dt>Docs &middot; 1.4g</dt>
+            <dd>PGI cert OR certified pyro training cert OR FEL</dd>
+          </div>
+          <div>
+            <dt>Docs &middot; 1.3g</dt>
+            <dd>FEL required (storage compliance after 24h)</dd>
+          </div>
+          <div>
+            <dt>Ships</dt>
+            <dd>FOB origin &middot; Continental US only &middot; No AK/HI</dd>
+          </div>
+          <div>
+            <dt>Timing</dt>
+            <dd>Pricing list returned within 1 business day</dd>
+          </div>
+        </dl>
       </div>
 
-      <fieldset class="cs-label cs-fieldset">
-        <legend>Pricing list requested <span aria-hidden="true" class="cs-required">*</span></legend>
-        <div class="cs-check-group">
-          <label class="cs-check-row">
-            <input type="checkbox" name="list_consumer_wholesale" value="yes" />
-            Consumer Fireworks – Wholesale pricing
+      <form
+        id="cs-form-242"
+        class="ws-form"
+        name="Wholesale Pricing Request"
+        method="post"
+        action="https://submit-form.com/U9CNXTECF"
+      >
+        <input type="hidden" name="_subject" value="Wholesale / Display Pricing Request" />
+        <input type="hidden" name="form-source" value="Wholesale Page" />
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <span class="h-topper ws-eyebrow">02 &middot; Request</span>
+        <h2 class="h-headline h-headline--sm ws-form__title">Request a pricing list.</h2>
+        <p class="ws-required-key"><span aria-hidden="true" class="ws-required">*</span> fields needed</p>
+
+        <label class="ws-label">
+          <span class="ws-label__text">Name <span aria-hidden="true" class="ws-required">*</span></span>
+          <input class="ws-input" required type="text" name="name" autocomplete="name" placeholder="Buyer or contact name" />
+        </label>
+        <label class="ws-label">
+          <span class="ws-label__text">Business / Operation</span>
+          <input class="ws-input" type="text" name="business" autocomplete="organization" placeholder="Company, retailer, or show operator" />
+        </label>
+        <label class="ws-label">
+          <span class="ws-label__text">Email <span aria-hidden="true" class="ws-required">*</span></span>
+          <input class="ws-input" required type="email" name="email" autocomplete="email" inputmode="email" placeholder="name@example.com" />
+        </label>
+        <label class="ws-label">
+          <span class="ws-label__text">Phone <span aria-hidden="true" class="ws-required">*</span></span>
+          <input class="ws-input" required type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="(555) 555-5555" />
+        </label>
+
+        <div class="ws-row">
+          <label class="ws-label ws-label-state">
+            <span class="ws-label__text">Ship-to state</span>
+            <input class="ws-input ws-input--state" type="text" name="state" autocomplete="address-level1" maxlength="2" pattern="[A-Za-z]{2}" placeholder="MI" />
+            <span class="ws-helper-text">2-letter code</span>
           </label>
-          <label class="cs-check-row">
-            <input type="checkbox" name="list_pro_wholesale" value="yes" />
-            Pro-Series 1.4g – Wholesale pricing
-          </label>
-          <label class="cs-check-row">
-            <input type="checkbox" name="list_display" value="yes" />
-            Display Fireworks (1.3g) – List & pricing
+          <label class="ws-label ws-label-docs">
+            <span class="ws-label__text">Documentation on file?</span>
+            <select class="ws-input ws-select" name="documentation">
+              <option value="" disabled selected>Select one</option>
+              <option value="PGI / Certified pyro training certificate">PGI / Certified pyro training certificate</option>
+              <option value="Federal Explosives License (FEL)">Federal Explosives License (FEL)</option>
+              <option value="Both PGI/training and FEL">Both PGI/training and FEL</option>
+              <option value="None yet — need guidance">None yet &mdash; need guidance</option>
+            </select>
           </label>
         </div>
-      </fieldset>
 
-      <label class="cs-label cs-label-message">
-        Message
-        <textarea class="cs-input cs-textarea" name="message" placeholder="Tell us volumes, target dates, show locations, or any items of specific interest."></textarea>
-      </label>
+        <fieldset class="ws-fieldset cs-fieldset">
+          <legend class="ws-legend">Pricing list requested <span aria-hidden="true" class="ws-required">*</span></legend>
+          <div class="ws-check-group cs-check-group">
+            <label class="ws-check-row cs-check-row">
+              <input type="checkbox" name="list_consumer_wholesale" value="yes" />
+              <span class="ws-check-row__body">
+                <span class="ws-check-row__title">Consumer Fireworks</span>
+                <span class="ws-check-row__desc">Wholesale pricing for retail-line product</span>
+              </span>
+              <span class="h-stamp ws-check-row__stamp">1.4G</span>
+            </label>
+            <label class="ws-check-row cs-check-row">
+              <input type="checkbox" name="list_pro_wholesale" value="yes" />
+              <span class="ws-check-row__body">
+                <span class="ws-check-row__title">Pro-Series 1.4g</span>
+                <span class="ws-check-row__desc">Wholesale pricing &middot; PGI or training cert required</span>
+              </span>
+              <span class="h-stamp ws-check-row__stamp">1.4G &middot; PGI</span>
+            </label>
+            <label class="ws-check-row cs-check-row">
+              <input type="checkbox" name="list_display" value="yes" />
+              <span class="ws-check-row__body">
+                <span class="ws-check-row__title">Display Fireworks</span>
+                <span class="ws-check-row__desc">List &amp; pricing &middot; FEL required</span>
+              </span>
+              <span class="h-stamp h-stamp--filled ws-check-row__stamp">1.3G &middot; FEL</span>
+            </label>
+          </div>
+        </fieldset>
 
-      <div role="status" aria-live="polite" id="form-status" hidden></div>
-      <button class="cs-button-solid cs-submit" type="submit">Request Pricing</button>
-    </form>
-  </div>
-</section>
+        <label class="ws-label ws-label-message">
+          <span class="ws-label__text">Message</span>
+          <textarea class="ws-input ws-textarea" name="message" placeholder="Volumes, target dates, show locations, items of specific interest."></textarea>
+        </label>
+
+        <div role="status" aria-live="polite" id="form-status" class="ws-status" hidden></div>
+        <button class="ws-submit" type="submit">
+          <span class="ws-submit__label">Request Pricing</span>
+          <span class="ws-submit__arrow" aria-hidden="true">&rarr;</span>
+        </button>
+      </form>
+
+    </div>
+  </section>
+
+  <section class="ws-compliance h-paper-deep" data-aos="fade-in">
+    <div class="h-container h-container--reading ws-compliance__inner">
+      <hr class="h-divider ws-compliance__divider" />
+      <span class="h-topper ws-eyebrow">03 &middot; Compliance</span>
+      <p class="h-headline h-headline--sm ws-compliance__q">Don&rsquo;t have your paperwork yet?</p>
+      <p class="ws-compliance__body">
+        We can point you to the right path &mdash; PGI, certified training, or FEL &mdash; depending on what you sell or shoot.
+      </p>
+      <a class="ws-compliance__cta" href="/requirements-shipping/">
+        Read the requirements <span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </section>
+
+</div>
 
 <script>
   (function () {

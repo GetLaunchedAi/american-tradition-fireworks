@@ -46,7 +46,16 @@
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/roboto-v29-latin-regular.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/roboto-v29-latin-700.woff2" crossorigin>
 
+    <!-- Heritage typography: Tanker (display) + Sentient (body) via Fontshare; JetBrains Mono via Google -->
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://api.fontshare.com/v2/css?f[]=tanker@400&f[]=sentient@300,400,500,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="/css/root.css">
+    <link rel="stylesheet" href="/css/heritage.css">
     <link rel="stylesheet" href="/css/dark.css">
     <link rel="preload" as="image" href="/images/bannerimg.png" />
 
@@ -67,13 +76,23 @@
     </title>
 </head>
 
-<body class="">
+<body class=" about-heritage">
     <!--Screen reader skip main nav-->
     <a class="skip" aria-label="skip to main content" href="#main">Click To Skip To Main Content</a>
 
     
 
-<div id="navigation">
+<div class="h-eyebrow-strip" aria-hidden="true">
+    <div class="h-eyebrow-strip__inner">
+        <span>Since 1984</span>
+        <span class="h-eyebrow-strip__dot">&middot;</span>
+        <span>Veteran-Owned</span>
+        <span class="h-eyebrow-strip__dot">&middot;</span>
+        <span>Michigan</span>
+    </div>
+</div>
+
+<div id="navigation" data-heritage-nav>
     <div aria-hidden="true" class="background-color-div"></div>
 
     <div class="container">
@@ -129,8 +148,9 @@
         <!-- Actions -->
         <div class="header-actions" role="group" aria-label="User actions">
             <!-- Dark Mode -->
-            <button id="dark-mode-toggle" class="icon-btn" aria-label="Toggle dark mode">
-                <!-- centered, 24×24 moon -->
+            <button id="dark-mode-toggle" class="icon-btn h-mode-toggle" aria-label="Toggle dark mode">
+                <span class="h-mode-toggle__label h-mode-toggle__label--day" aria-hidden="true">Day</span>
+                <span class="h-mode-toggle__label h-mode-toggle__label--night" aria-hidden="true">Night</span>
                 <svg class="moon" viewBox="0 0 24 24" aria-hidden="true">
                     <path fill="currentColor" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
                 </svg>
@@ -148,7 +168,6 @@
             </a>
 
             <!-- Cart -->
-            <!-- Cart -->
             <button class="icon-btn cart-btn cart-checkout" aria-label="Open cart">
                 <svg class="cart-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path fill="currentColor"
@@ -161,228 +180,143 @@
         </div>
     </div>
 </div>
+
     <main id="main">
-<!-- ============================================ -->
-<!--                    LANDING                   -->
-<!-- ============================================ -->
+<div class="about-heritage">
 
-<section id="int-hero" data-aos="fade-in">
-  <h1 id="home-h">About Us</h1>
-  <picture class="">
-  <source type="image/webp" srcset="/images/about_banner_img-200w.webp 200w, /images/about_banner_img-400w.webp 400w, /images/about_banner_img-850w.webp 850w, /images/about_banner_img-1920w.webp 1920w" sizes="(max-width: 850px) 850px, 1920px">
-  <source type="image/jpeg" srcset="/images/about_banner_img-200w.jpeg 200w, /images/about_banner_img-400w.jpeg 400w, /images/about_banner_img-850w.jpeg 850w, /images/about_banner_img-1920w.jpeg 1920w" sizes="(max-width: 850px) 850px, 1920px">
-  <img
-    src="/images/about_banner_img-200w.jpeg"
-    width="1920"
-    height="463"
-    alt="fireworks display"
-    loading="lazy"
-    decoding="async">
-</picture>
-</section>
+  <!-- ============================================ -->
+  <!--                    HERO                      -->
+  <!-- ============================================ -->
 
-<!-- ============================================ -->
-<!--                 Side By Side                 -->
-<!-- ============================================ -->
-
-<section id="sbs">
-  <div class="cs-container">
-    <div class="cs-left" data-aos="fade-right">
-      <picture class="cs-picture cs-picture1">
-  <source type="image/webp" srcset="/images/about_img_0-200w.webp 200w, /images/about_img_0-400w.webp 400w, /images/about_img_0-713w.webp 713w" sizes="(max-width: 600px) 400px, 850px">
-  <source type="image/jpeg" srcset="/images/about_img_0-200w.jpeg 200w, /images/about_img_0-400w.jpeg 400w, /images/about_img_0-713w.jpeg 713w" sizes="(max-width: 600px) 400px, 850px">
-  <img
-    src="/images/about_img_0-200w.jpeg"
-    width="713"
-    height="718"
-    alt="fireworks showcase"
-    loading="lazy"
-    decoding="async">
-</picture>
-      <!-- <picture class="cs-picture cs-picture2">
-  <source type="image/webp" srcset="/images/about_img_1-200w.webp 200w, /images/about_img_1-400w.webp 400w" sizes="(max-width: 600px) 400px, 850px">
-  <source type="image/jpeg" srcset="/images/about_img_1-200w.jpeg 200w, /images/about_img_1-400w.jpeg 400w" sizes="(max-width: 600px) 400px, 850px">
-  <img
-    src="/images/about_img_1-200w.jpeg"
-    width="400"
-    height="385"
-    alt="fireworks retail store"
-    loading="lazy"
-    decoding="async">
-</picture> -->
+  <section id="int-hero" class="about-hero h-enamel" data-aos="fade-in" aria-labelledby="home-h">
+    <div class="h-container about-hero__inner">
+      <span class="h-topper about-hero__topper">About &middot; 1984</span>
+      <h1 id="home-h" class="h-headline about-hero__headline">Forty years importing fireworks.</h1>
+      <p class="about-hero__lede">
+        American Tradition LLC has bought direct from Winda, Panda, and Wizard since 1984. Veteran-owned. Family-run. Two Michigan storefronts.
+      </p>
+      <span class="h-seal about-hero__seal" aria-hidden="true">Veteran-Owned &middot; MI</span>
     </div>
-    <div class="cs-right" data-aos="fade-left">
-      <span class="cs-topper">About Us</span>
-      <h2 class="cs-title">About American Tradition LLC</h2>
-      <p class="cs-text">
-        Since 1984, American Tradition LLC has served Michigan as a veteran-
-        owned and operated fireworks company. As a direct importer, we bring
-        consumer fireworks, restricted 1.4g products, display items, and misc
-        support gear to both retail and wholesale customers.
-      </p>
-      <p class="cs-text">
-        We partner with trusted names like Winda, Panda, and Wizard Fireworks,
-        along with other quality manufacturers, so buyers get dependable
-        products backed by a team that understands what makes a show work. If
-        you are planning a backyard celebration, stocking a store, or building
-        a larger display, we can help you find the right mix of products and the
-        right paperwork.
-      </p>
+  </section>
 
-      <div class="cs-flex-group">
-        <p class="cs-flex-p">
-          Our primary store is on G Avenue / 38th Street between Kalamazoo and
-          Battle Creek, and our Springfield store is near Dickman Road (M-96) at
-          Military and Admiral Ave.
+  <!-- ============================================ -->
+  <!--                 OPERATOR SPECS               -->
+  <!-- ============================================ -->
+
+  <section id="about-specs" class="about-section h-paper" data-aos="fade-up">
+    <div class="h-container about-specs__grid">
+      <div class="about-specs__copy">
+        <span class="h-topper">The Operator</span>
+        <h2 class="h-headline h-headline--md about-specs__title">Direct importer. Two stores. Cleared paperwork.</h2>
+        <p class="about-specs__lede">
+          As a direct importer, we bring consumer fireworks, restricted 1.4g articles, 1.3g display ordnance, and misc support gear under one roof &mdash; for retail walk-ins and licensed buyers alike.
         </p>
-        <p class="cs-flex-p">
-          Restricted 1.4g articles pyrotechnic fireworks require either PGI or
-          certified training, or a Federal Explosives License. 1.3g display
-          fireworks require a Federal Explosives License and are subject to
-          federal storage requirements beyond one day.
+        <p class="about-specs__body">
+          Our G Avenue / 38th Street store sits between Kalamazoo and Battle Creek. The Springfield store is near Dickman Road (M-96) at Military and Admiral Ave. Both stock the full consumer lineup; restricted product moves through documented channels.
         </p>
-        <p class="cs-flex-p">
-          Read the full
-          <a class="cs-inline-link" href="/requirements-shipping/">
-            requirements and shipping policy
-          </a>
-          for documentation rules, freight terms, and freight-claim steps.
-        </p>
-        <span class="cs-name">American Tradition LLC</span>
-        <span class="cs-job">Veteran Owned & Operated Since 1984</span>
-        <img
-          class="cs-quote-icon"
-          loading="lazy"
-          decoding="async"
-          src="https://csimg.nyc3.digitaloceanspaces.com/SideBySide/quote-white.svg"
-          alt="quote icon"
-          width="136"
-          height="77"
-        />
       </div>
+
+      <dl class="h-spec-list about-specs__list">
+        <div>
+          <dt>Founded</dt>
+          <dd>1984</dd>
+        </div>
+        <div>
+          <dt>Stores</dt>
+          <dd>Kalamazoo &middot; Battle Creek</dd>
+        </div>
+        <div>
+          <dt>Ownership</dt>
+          <dd>Veteran-owned</dd>
+        </div>
+        <div>
+          <dt>Supplies</dt>
+          <dd>Winda &middot; Panda &middot; Wizard</dd>
+        </div>
+        <div>
+          <dt>Handles</dt>
+          <dd>Consumer &middot; Pro &middot; Display &middot; Restricted</dd>
+        </div>
+      </dl>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============================================ -->
-<!--                    FAQ                       -->
-<!-- ============================================ -->
+  <!-- ============================================ -->
+  <!--                    FAQ                       -->
+  <!-- ============================================ -->
 
-<section id="faq-326">
-  <div class="cs-container" data-aos="fade-up">
-    <div class="cs-content">
-      <span class="cs-topper">FAQs</span>
-      <h2 class="cs-title">Frequently Asked Questions</h2>
+  <section id="faq-326" class="about-faq h-paper-deep" data-aos="fade-up">
+    <div class="h-container">
+      <hr class="h-divider about-faq__divider" />
+      <span class="h-topper">Common Questions</span>
+      <h2 class="h-headline h-headline--md about-faq__title">Frequently asked.</h2>
+
+      <ol class="about-faq__list" role="list">
+        <li class="about-faq__item">
+          <span class="about-faq__num h-numeral">01</span>
+          <div class="about-faq__body">
+            <h3 class="about-faq__q">What types of fireworks do you sell?</h3>
+            <p class="about-faq__a">
+              Consumer fireworks, restricted 1.4g products, 1.3g display fireworks, and misc support items such as fuse, igniters, and firing systems.
+            </p>
+          </div>
+        </li>
+        <li class="about-faq__item">
+          <span class="about-faq__num h-numeral">02</span>
+          <div class="about-faq__body">
+            <h3 class="about-faq__q">What is required for restricted fireworks orders?</h3>
+            <p class="about-faq__a">
+              1.4g articles pyrotechnic products need PGI or certified training, or a Federal Explosives License, and they do not require federal storage compliance for the buyer. 1.3g display fireworks require a Federal Explosives License and federal storage compliance beyond one day. We review documentation before order, hold, ship, or pickup. <a class="about-faq__link" href="/requirements-shipping/">Read full requirements &rarr;</a>
+            </p>
+          </div>
+        </li>
+        <li class="about-faq__item">
+          <span class="about-faq__num h-numeral">03</span>
+          <div class="about-faq__body">
+            <h3 class="about-faq__q">Where are your stores located?</h3>
+            <p class="about-faq__a">
+              Our primary store is on G Avenue / 38th Street between Kalamazoo and Battle Creek. We also operate a Springfield store near Dickman Road (M-96) at Military and Admiral Ave.
+            </p>
+          </div>
+        </li>
+        <li class="about-faq__item">
+          <span class="about-faq__num h-numeral">04</span>
+          <div class="about-faq__body">
+            <h3 class="about-faq__q">How does shipping work?</h3>
+            <p class="about-faq__a">
+              We only ship within the continental United States &mdash; no Alaska, Hawaii, Canada, U.S. territories, or other countries. Shipping rates are calculated at checkout, freight is FOB origin, and ownership transfers once the order is loaded on the carrier&rsquo;s truck. Extra freight services at delivery are the customer&rsquo;s responsibility.
+            </p>
+          </div>
+        </li>
+        <li class="about-faq__item">
+          <span class="about-faq__num h-numeral">05</span>
+          <div class="about-faq__body">
+            <h3 class="about-faq__q">What should I do if freight is damaged?</h3>
+            <p class="about-faq__a">
+              Inspect the shipment on arrival, note any damage or missing items on the driver&rsquo;s bill of lading, and email photos, your order number, and a short description within 48 hours to support@captainboom.com.
+            </p>
+          </div>
+        </li>
+      </ol>
     </div>
-    <div class="cs-flex-group">
-      <ul class="cs-faq-group">
-        <li class="cs-faq-item active" data-aos="fade-up" data-aos-delay="100">
-          <button class="cs-button">
-            <span class="cs-button-text">What types of fireworks do you sell?</span>
-          </button>
-          <p class="cs-item-p">
-            We sell consumer fireworks, restricted 1.4g products, 1.3g display
-            fireworks, and misc support items such as fuse, igniters, and firing
-            systems.
-          </p>
-        </li>
-        <li class="cs-faq-item" data-aos="fade-up" data-aos-delay="200">
-          <button class="cs-button">
-            <span class="cs-button-text">
-          What is required for restricted fireworks orders?
-            </span>
-          </button>
-          <p class="cs-item-p">
-            1.4g articles pyrotechnic products need PGI or certified training,
-            or a Federal Explosives License, and they do not require federal
-            storage compliance for the buyer. 1.3g display fireworks require a
-            Federal Explosives License and federal storage compliance beyond one
-            day. We review documentation before order, hold, ship, or pickup.
-            Read the
-            <a class="cs-inline-link" href="/requirements-shipping/">
-              full requirements and shipping policy
-            </a>
-            or contact sales if you need help.
-          </p>
-        </li>
-        <li class="cs-faq-item" data-aos="fade-up" data-aos-delay="300">
-          <button class="cs-button">
-            <span class="cs-button-text">Where are your stores located?</span>
-          </button>
-          <p class="cs-item-p">
-            Our primary store is on G Avenue / 38th Street between Kalamazoo and
-            Battle Creek. We also operate a Springfield store near Dickman Road
-            (M-96) at Military and Admiral Ave.
-          </p>
-        </li>
-        <li class="cs-faq-item" data-aos="fade-up" data-aos-delay="400">
-          <button class="cs-button">
-            <span class="cs-button-text">How does shipping work?</span>
-          </button>
-          <p class="cs-item-p">
-            We only ship within the continental United States. That means no
-            Alaska, Hawaii, Canada, U.S. territories, or other countries.
-            Shipping rates are calculated at checkout, freight is FOB origin,
-            and ownership transfers once the order is loaded on the carrier's
-            truck. Extra freight services at delivery are the customer's
-            responsibility. The full freight terms are posted on the
-            requirements and shipping page.
-          </p>
-        </li>
-        <li class="cs-faq-item" data-aos="fade-up" data-aos-delay="500">
-          <button class="cs-button">
-            <span class="cs-button-text">What should I do if freight is damaged?</span>
-          </button>
-          <p class="cs-item-p">
-            Inspect the shipment on arrival, note any damage or missing items on
-            the driver's bill of lading, and email photos, your order number,
-            and a short description within 48 hours to support@captainboom.com.
-          </p>
-        </li>
-      </ul>
+  </section>
+
+  <!-- ============================================ -->
+  <!--             Final Call to Action             -->
+  <!-- ============================================ -->
+
+  <section id="cta" class="about-cta h-enamel" data-aos="fade-in">
+    <div class="h-container about-cta__inner">
+      <span class="h-topper">Visit The Stores</span>
+      <h2 class="h-headline h-headline--md about-cta__title">Light up your celebration with American Tradition.</h2>
+      <p class="about-cta__lede">
+        Since 1984, we&rsquo;ve helped families, businesses, and licensed buyers work through the right product mix, the right paperwork, and the right shipping path.
+      </p>
+      <a href="/contact/" class="about-cta__btn">Contact Us &rarr;</a>
     </div>
-  </div>
-</section>
+  </section>
 
-<script>
-  const faqItems = Array.from(document.querySelectorAll(".cs-faq-item"));
-  for (const item of faqItems) {
-    const onClick = () => {
-      item.classList.toggle("active");
-    };
-    item.addEventListener("click", onClick);
-  }
-</script>
-
-<!-- ============================================ -->
-<!--             Final Call to Action             -->
-<!-- ============================================ -->
-
-<section id="cta" data-aos="zoom-in">
-  <div class="container">
-    <h2 class="title">
-      Light Up Your Celebration <br />
-      With American Tradition
-    </h2>
-    <p>
-      Since 1984, we've helped families, businesses, and licensed buyers work
-      through the right product mix, the right paperwork, and the right shipping
-      path.
-    </p>
-    <a href="/contact/" class="button-solid">Contact Us</a>
-  </div>
-  <picture class="">
-  <source type="image/webp" srcset="/images/final_home_img-200w.webp 200w, /images/final_home_img-400w.webp 400w, /images/final_home_img-850w.webp 850w, /images/final_home_img-1916w.webp 1916w" sizes="(max-width: 400px) 400px, (max-width: 850px) 850px, 1920">
-  <source type="image/jpeg" srcset="/images/final_home_img-200w.jpeg 200w, /images/final_home_img-400w.jpeg 400w, /images/final_home_img-850w.jpeg 850w, /images/final_home_img-1916w.jpeg 1916w" sizes="(max-width: 400px) 400px, (max-width: 850px) 850px, 1920">
-  <img
-    src="/images/final_home_img-200w.jpeg"
-    width="1916"
-    height="600"
-    alt="fireworks show"
-    loading="lazy"
-    decoding="async">
-</picture>
-</section>
+</div>
 </main>
     <!-- ============================================ -->
 <!--                   Footer                     -->
@@ -401,7 +335,7 @@
         <label class="footer-signup__field">
           <span class="sr-only">Email address</span>
           <input type="email" name="email" required placeholder="you@example.com" autocomplete="email" />
-          <button type="submit" class="footer-signup__btn">Sign up</button>
+          <button type="submit" class="footer-signup__btn">Join</button>
         </label>
         <p class="footer-signup__note">We respect your inbox. Unsubscribe any time.</p>
       </form>

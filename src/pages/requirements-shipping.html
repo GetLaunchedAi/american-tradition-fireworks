@@ -11,207 +11,231 @@ eleventyNavigation:
   order: 500
 ---
 
-<section id="int-hero" data-aos="fade-in">
-  <h1 id="home-h">Requirements & Shipping</h1>
-  <p>
-    Restricted fireworks paperwork, freight terms, and damage-claim steps.
-  </p>
-  <p class="policy-updated">Last updated: May 2026</p>
-  <nav class="policy-toc" aria-label="On this page">
-    <a href="#policy-types">Product Classes</a>
-    <a href="#policy-shipping">Shipping</a>
-    <a href="#policy-claims">Freight Claims</a>
-  </nav>
-  {% image './src/images/shop_banner_img.png', 'fireworks display', '', 'eager',
-  '(max-width: 400px) 400px, (max-width: 850px) 850px, 1920px'%}
-</section>
+<div class="policy-page">
 
-<section id="policy-overview" class="policy-section" aria-labelledby="policy-overview-h" data-aos="fade-up">
-  <div class="policy-container">
-    <div class="policy-copy">
-      <span class="policy-topper">Restricted Fireworks</span>
-      <h2 id="policy-overview-h" class="policy-title">Documentation is required before restricted orders can move forward</h2>
-      <p class="policy-text">
-        American Tradition LLC offers both <abbr title="Consumer-grade fireworks classified by the U.S. DOT for limited explosive hazard">1.4g</abbr> articles pyrotechnic grade
-        fireworks and <abbr title="Display-grade fireworks classified by the U.S. DOT for mass explosion hazard">1.3g</abbr> display grade fireworks. These products require
-        special documentation before we can order, hold, ship, or release them
-        for pickup.
+  <section id="int-hero" class="policy-hero h-enamel" data-aos="fade-in" aria-labelledby="home-h">
+    <div class="h-container policy-hero__inner">
+      <span class="h-topper policy-hero__topper">Manual &middot; 01 &middot; Compliance &amp; Shipping</span>
+      <h1 id="home-h" class="h-headline policy-hero__headline">Requirements &amp; Shipping</h1>
+      <p class="policy-hero__lede">
+        Restricted-fireworks paperwork, freight terms, and damage-claim steps. Last updated May 2026.
       </p>
-      <p class="policy-text">
-        When a customer opens a professional or display product, the site shows
-        a restricted-fireworks disclaimer first. The full policy below explains
-        what paperwork is needed, how shipping works, and what to do if freight
-        arrives damaged.
+      <nav class="policy-toc" aria-label="On this page">
+        <a href="#policy-types"><span class="policy-toc__num">01</span> Types</a>
+        <a href="#policy-process"><span class="policy-toc__num">02</span> Process</a>
+        <a href="#policy-shipping"><span class="policy-toc__num">03</span> Shipping</a>
+        <a href="#policy-claims"><span class="policy-toc__num">04</span> Claims</a>
+      </nav>
+      <span class="h-seal policy-hero__seal" aria-hidden="true">BATFE&nbsp;&middot; FEL&nbsp;&middot; PGI&nbsp;&middot; Verified</span>
+    </div>
+    {% image './src/images/shop_banner_img.png', 'fireworks display', '', 'eager',
+    '(max-width: 400px) 400px, (max-width: 850px) 850px, 1920px'%}
+  </section>
+
+  <section id="policy-overview" class="policy-section h-paper" aria-labelledby="policy-overview-h" data-aos="fade-up">
+    <div class="h-container policy-overview__grid">
+      <div class="policy-copy">
+        <span class="h-topper policy-eyebrow">00 &middot; Restricted Fireworks</span>
+        <h2 id="policy-overview-h" class="h-headline h-headline--md policy-title">Documentation is required before restricted orders move forward.</h2>
+        <p class="policy-text">
+          American Tradition LLC offers both <abbr title="Consumer-grade fireworks classified by the U.S. DOT for limited explosive hazard">1.4g</abbr> articles pyrotechnic grade
+          fireworks and <abbr title="Display-grade fireworks classified by the U.S. DOT for mass explosion hazard">1.3g</abbr> display grade fireworks. These products require
+          special documentation before we can order, hold, ship, or release them
+          for pickup.
+        </p>
+        <p class="policy-text">
+          When a customer opens a professional or display product, the site shows
+          a restricted-fireworks disclaimer first. The full manual below explains
+          what paperwork is needed, how shipping works, and what to do if freight
+          arrives damaged.
+        </p>
+      </div>
+
+      <aside class="policy-highlight">
+        <span class="h-topper policy-eyebrow policy-eyebrow--gold">Quick Start</span>
+        <p class="h-headline h-headline--sm policy-highlight__title">Before we start.</p>
+        <ul class="policy-list">
+          <li>Send your documentation before we process the order.</li>
+          <li>Contact us if you need help getting the right training or license.</li>
+          <li>Freight claims must be documented in writing within 48 hours.</li>
+        </ul>
+        <a class="policy-link-cta" href="/contact/">Contact sales <span aria-hidden="true">&rarr;</span></a>
+      </aside>
+    </div>
+  </section>
+
+  <section id="policy-types" class="policy-section h-paper" aria-label="Document types" data-aos="fade-up">
+    <div class="h-container">
+      <hr class="h-divider policy-divider" />
+      <span class="h-topper policy-eyebrow">01 &middot; What We Need</span>
+      <p class="policy-section-lede">
+        1.4g articles and 1.3g display ordnance carry different paperwork &mdash; what you ship, store, and shoot determines the file we need to see.
       </p>
+
+      <div class="policy-table-wrap">
+        <table class="policy-table">
+          <thead>
+            <tr>
+              <th scope="col">Product Class</th>
+              <th scope="col">Documentation</th>
+              <th scope="col">Storage Rule</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" data-label="Product Class"><span class="h-stamp policy-class">1.4G &middot; Articles</span><abbr class="policy-class__abbr" title="Consumer-grade fireworks classified by the U.S. DOT for limited explosive hazard">1.4g</abbr> Articles Pyrotechnic</th>
+              <td data-label="Documentation"><abbr title="Pyrotechnics Guild International">PGI</abbr> certificate, certified training-course certificate, or <abbr title="Federal Explosives License">FEL</abbr></td>
+              <td data-label="Storage Rule">None for buyer</td>
+            </tr>
+            <tr>
+              <th scope="row" data-label="Product Class"><span class="h-stamp h-stamp--filled policy-class">1.3G &middot; Display</span><abbr class="policy-class__abbr" title="Display-grade fireworks classified by the U.S. DOT for mass explosion hazard">1.3g</abbr> Display</th>
+              <td data-label="Documentation">Federal Explosives License (<abbr title="Federal Explosives License">FEL</abbr>)</td>
+              <td data-label="Storage Rule">Federal storage if held more than 1 day</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </section>
 
-    <div class="policy-highlight">
-      <p class="policy-highlight__eyebrow">Before We Start</p>
-      <ul class="policy-list">
-        <li>Send your documentation before we process the order.</li>
-        <li>Contact us if you need help getting the right training or license.</li>
-        <li>Freight claims must be documented in writing within 48 hours.</li>
-      </ul>
-      <a class="button-solid" href="/contact/">Contact Sales</a>
+  <section id="policy-process" class="policy-section h-paper-deep" aria-labelledby="policy-process-h" data-aos="fade-up">
+    <div class="h-container">
+      <hr class="h-divider policy-divider" />
+      <span class="h-topper policy-eyebrow">02 &middot; Process</span>
+      <h2 id="policy-process-h" class="h-headline h-headline--md policy-title">What we need before order, hold, ship, or pickup.</h2>
+
+      <ol class="policy-steps">
+        <li class="policy-step">
+          <h3 class="policy-step__title">Send documentation for review</h3>
+          <p>
+            Before we can get started with a restricted-fireworks order, you need
+            to send the required documentation for review. If you want to order
+            restricted products and do not yet have the proper paperwork, contact
+            us and we can help verify what you need.
+          </p>
+          <p>
+            In many cases, the required documents are straightforward to obtain.
+            If you have questions about the basics, contact a sales representative
+            for more information.
+          </p>
+        </li>
+
+        <li class="policy-step">
+          <h3 class="policy-step__title">Include this with your message</h3>
+          <ul class="policy-list">
+            <li>Your full name and company name, if applicable</li>
+            <li>The product category or SKU you want to order</li>
+            <li>Your destination state and whether the order will ship or be picked up</li>
+            <li>Your <abbr title="Pyrotechnics Guild International">PGI</abbr> or training certificate, or Federal Explosives License (<abbr title="Federal Explosives License">FEL</abbr>)</li>
+          </ul>
+        </li>
+      </ol>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="policy-types" class="policy-section" aria-labelledby="policy-types-h" data-aos="fade-up">
-  <div class="policy-container policy-container--stack">
-    <div class="policy-heading">
-      <span class="policy-topper">Restricted Product Types</span>
-      <h2 id="policy-types-h" class="policy-title">Different product classes have different requirements</h2>
+  <section id="policy-shipping" class="policy-section h-enamel policy-section--enamel" aria-labelledby="policy-shipping-h" data-aos="fade-up">
+    <div class="h-container">
+      <hr class="h-divider policy-divider policy-divider--gold" />
+      <span class="h-topper policy-eyebrow">03 &middot; Shipping</span>
+      <h2 id="policy-shipping-h" class="h-headline h-headline--md policy-title">Freight terms, limits, and customer responsibilities.</h2>
+
+      <div class="policy-blocks">
+        <article class="policy-block">
+          <h3 class="policy-block__title">Where We Ship</h3>
+          <p>
+            American Tradition LLC cannot ship outside the continental United
+            States. We do not ship to Alaska, Hawaii, Canada, U.S. territories,
+            or any other countries.
+          </p>
+          <p>
+            Shipping rates are subject to change and are calculated during
+            checkout before payment. Orders ship <abbr title="Free On Board — ownership transfers when goods leave the dock">FOB</abbr> origin, which means ownership
+            transfers to the customer once the order is loaded on the freight
+            carrier's truck.
+          </p>
+          <dl class="h-spec-list policy-spec">
+            <div>
+              <dt>Region</dt>
+              <dd>Continental U.S. only</dd>
+            </div>
+            <div>
+              <dt>Excluded</dt>
+              <dd>AK, HI, Canada, U.S. territories</dd>
+            </div>
+            <div>
+              <dt>Terms</dt>
+              <dd>FOB origin &middot; Title transfers at dock</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="policy-block">
+          <h3 class="policy-block__title">Delivery Services &amp; Disputes</h3>
+          <p>
+            Extra freight services provided at delivery are the sole
+            responsibility of the customer and are not included in paid or free
+            shipping.
+          </p>
+          <ul class="policy-list">
+            <li>We do not include extra freight services in our shipping.</li>
+            <li>If you receive a bill, we can help explain the charge.</li>
+            <li>You must file disputes directly with the freight carrier.</li>
+            <li>We cannot file a carrier dispute on your behalf.</li>
+          </ul>
+        </article>
+      </div>
     </div>
+  </section>
 
-    <div class="policy-table-wrap">
-      <table class="policy-table">
-        <thead>
-          <tr>
-            <th scope="col">Product Class</th>
-            <th scope="col">Documentation</th>
-            <th scope="col">Storage Rule</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row" data-label="Product Class"><abbr title="Consumer-grade fireworks classified by the U.S. DOT for limited explosive hazard">1.4g</abbr> Articles Pyrotechnic</th>
-            <td data-label="Documentation"><abbr title="Pyrotechnics Guild International">PGI</abbr> certificate, certified training-course certificate, or <abbr title="Federal Explosives License">FEL</abbr></td>
-            <td data-label="Storage Rule">None for buyer</td>
-          </tr>
-          <tr>
-            <th scope="row" data-label="Product Class"><abbr title="Display-grade fireworks classified by the U.S. DOT for mass explosion hazard">1.3g</abbr> Display</th>
-            <td data-label="Documentation">Federal Explosives License (<abbr title="Federal Explosives License">FEL</abbr>)</td>
-            <td data-label="Storage Rule">Federal storage if held more than 1 day</td>
-          </tr>
-        </tbody>
-      </table>
+  <section id="policy-claims" class="policy-section h-paper" aria-labelledby="policy-claims-h" data-aos="fade-up">
+    <div class="h-container">
+      <hr class="h-divider policy-divider" />
+      <span class="h-topper policy-eyebrow">04 &middot; Freight Claims</span>
+      <h2 id="policy-claims-h" class="h-headline h-headline--md policy-title">Inspect deliveries immediately. Document problems fast.</h2>
+
+      <span class="h-stamp h-stamp--filled policy-deadline" aria-label="Deadline">48-Hour Deadline</span>
+
+      <div class="policy-blocks">
+        <article class="policy-block">
+          <h3 class="policy-block__title">At Delivery</h3>
+          <p>
+            Inspect your shipment as soon as it arrives. Note any visible damage
+            or missing items on the driver's bill of lading and have the driver
+            sign for the discrepancy before leaving.
+          </p>
+          <p>
+            All freight claims must be submitted in writing by email within 48
+            hours of delivery to the freight company. Claims received after 48
+            hours may not be eligible because carriers enforce strict deadlines.
+          </p>
+        </article>
+
+        <article class="policy-block">
+          <h3 class="policy-block__title">Helpful Information for Claims</h3>
+          <ul class="policy-list">
+            <li>Photos of outer and inner damage</li>
+            <li>Order number</li>
+            <li>First and last name</li>
+            <li>List of damaged or missing items</li>
+          </ul>
+          <a class="policy-btn" href="mailto:support@captainboom.com?subject=Freight%20Claim%20-%20Order%20%5Byour%20order%20number%5D">Email &middot; Freight Claim</a>
+        </article>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="policy-process" class="policy-section" aria-labelledby="policy-process-h" data-aos="fade-up">
-  <div class="policy-container policy-container--stack">
-    <div class="policy-heading">
-      <span class="policy-topper">Ordering Process</span>
-      <h2 id="policy-process-h" class="policy-title">What we need before order, hold, ship, or pickup</h2>
+  <section id="policy-cta" class="policy-section h-enamel policy-cta-section" aria-labelledby="policy-cta-h" data-aos="fade-up">
+    <div class="h-container h-container--reading policy-cta__inner">
+      <span class="h-topper policy-eyebrow policy-eyebrow--gold">Live Help</span>
+      <h2 id="policy-cta-h" class="h-headline policy-cta__title">Need to talk to a person?</h2>
+      <p class="policy-cta__lede">
+        Paperwork or freight questions &mdash; reach out before the order moves so we can review documentation and explain the next step.
+      </p>
+      <div class="policy-cta__buttons">
+        <a class="policy-btn policy-btn--primary" href="tel:2697314311">Call &middot; 269-731-4311</a>
+        <a class="policy-btn policy-btn--ghost" href="mailto:support@captainboom.com?subject=Freight%20Claim%20-%20Order%20%5Byour%20order%20number%5D">Email &middot; Freight Claim</a>
+      </div>
     </div>
+  </section>
 
-    <ol class="policy-steps">
-      <li class="policy-step">
-        <h3>Send documentation for review</h3>
-        <p>
-          Before we can get started with a restricted-fireworks order, you need
-          to send the required documentation for review. If you want to order
-          restricted products and do not yet have the proper paperwork, contact
-          us and we can help verify what you need.
-        </p>
-        <p>
-          In many cases, the required documents are straightforward to obtain.
-          If you have questions about the basics, contact a sales representative
-          for more information.
-        </p>
-      </li>
-
-      <li class="policy-step">
-        <h3>Include this with your message</h3>
-        <ul>
-          <li>Your full name and company name, if applicable</li>
-          <li>The product category or SKU you want to order</li>
-          <li>Your destination state and whether the order will ship or be picked up</li>
-          <li>Your <abbr title="Pyrotechnics Guild International">PGI</abbr> or training certificate, or Federal Explosives License (<abbr title="Federal Explosives License">FEL</abbr>)</li>
-        </ul>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<section id="policy-shipping" class="policy-section" aria-labelledby="policy-shipping-h" data-aos="fade-up">
-  <div class="policy-container policy-container--stack">
-    <div class="policy-heading">
-      <span class="policy-topper">Shipping Policy</span>
-      <h2 id="policy-shipping-h" class="policy-title">Freight terms, limits, and customer responsibilities</h2>
-    </div>
-
-    <div class="policy-columns">
-      <article class="policy-panel">
-        <h3>Where We Ship</h3>
-        <p>
-          American Tradition LLC cannot ship outside the continental United
-          States. We do not ship to Alaska, Hawaii, Canada, U.S. territories,
-          or any other countries.
-        </p>
-        <p>
-          Shipping rates are subject to change and are calculated during
-          checkout before payment. Orders ship <abbr title="Free On Board — ownership transfers when goods leave the dock">FOB</abbr> origin, which means ownership
-          transfers to the customer once the order is loaded on the freight
-          carrier's truck.
-        </p>
-      </article>
-
-      <article class="policy-panel">
-        <h3>Delivery Services and Disputes</h3>
-        <p>
-          Extra freight services provided at delivery are the sole
-          responsibility of the customer and are not included in paid or free
-          shipping.
-        </p>
-        <ul class="policy-list">
-          <li>We do not include extra freight services in our shipping.</li>
-          <li>If you receive a bill, we can help explain the charge.</li>
-          <li>You must file disputes directly with the freight carrier.</li>
-          <li>We cannot file a carrier dispute on your behalf.</li>
-        </ul>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="policy-claims" class="policy-section" aria-labelledby="policy-claims-h" data-aos="fade-up">
-  <div class="policy-container policy-container--stack">
-    <div class="policy-heading">
-      <span class="policy-topper">Freight Claims</span>
-      <h2 id="policy-claims-h" class="policy-title">Inspect deliveries immediately and document problems fast</h2>
-    </div>
-
-    <div class="policy-columns">
-      <article class="policy-panel">
-        <h3>At Delivery</h3>
-        <p>
-          Inspect your shipment as soon as it arrives. Note any visible damage
-          or missing items on the driver's bill of lading and have the driver
-          sign for the discrepancy before leaving.
-        </p>
-        <p>
-          All freight claims must be submitted in writing by email within 48
-          hours of delivery to the freight company. Claims received after 48
-          hours may not be eligible because carriers enforce strict deadlines.
-        </p>
-      </article>
-
-      <article class="policy-panel">
-        <h3>Helpful Information For Claims</h3>
-        <ul class="policy-list">
-          <li>Photos of outer and inner damage</li>
-          <li>Order number</li>
-          <li>First and last name</li>
-          <li>List of damaged or missing items</li>
-        </ul>
-        <a class="button-solid policy-cta-spaced" href="mailto:support@captainboom.com?subject=Freight%20Claim%20-%20Order%20%5Byour%20order%20number%5D">Email Freight Claim</a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="policy-cta" class="policy-section" aria-labelledby="policy-cta-h" data-aos="fade-up">
-  <div class="policy-container policy-container--stack policy-container--center">
-    <span class="policy-topper">Need Help?</span>
-    <h2 id="policy-cta-h" class="policy-title">Send your paperwork or shipping questions to our team</h2>
-    <p class="policy-text policy-text--narrow">
-      If you are ordering restricted fireworks or need help with freight
-      questions, contact us before the order moves forward so we can review the
-      documentation and explain the next step.
-    </p>
-    <a class="button-solid" href="tel:2697314311">Call 269-731-4311</a>
-  </div>
-</section>
+</div>

@@ -1,0 +1,713 @@
+/* ============================================
+   HERITAGE.CSS
+   Sign-painter / roadside heritage component utilities.
+   Loaded after root.css. Token source: root.css.
+   Principles: hand-made, plainspoken, one bold move per surface,
+   heritage tokens not kitsch, compliance is the product.
+
+   Banned (impeccable):
+   - NO border-left accent stripes >1px
+   - NO gradient text (background-clip: text)
+   - NO purple / teal / glow
+   ============================================ */
+
+/* -----------------------------------------
+   Hand-set headline — Tanker display, ink
+   ----------------------------------------- */
+.h-headline {
+  font-family: var(--font-display);
+  font-weight: 400; /* Tanker ships 400 only — single-weight by design */
+  font-size: var(--step-5);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-wrap: balance;
+  margin: 0;
+}
+
+.h-headline--xl {
+  font-size: var(--step-6);
+}
+
+.h-headline--md {
+  font-size: var(--step-4);
+}
+
+.h-headline--sm {
+  font-size: var(--step-3);
+}
+
+/* Crimson underscore variant — one bold move */
+.h-headline--underscore {
+  display: inline-block;
+  padding-bottom: 0.15em;
+  border-bottom: 4px solid var(--crimson);
+}
+
+/* -----------------------------------------
+   Topper microtype — mono caps, crimson
+   ----------------------------------------- */
+.h-topper {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  margin: 0 0 var(--space-md) 0;
+  display: block;
+}
+
+/* -----------------------------------------
+   Body lede — slightly larger, soft ink
+   ----------------------------------------- */
+.h-lede {
+  font-family: var(--font-body);
+  font-size: var(--step-1);
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+  max-width: 60ch;
+}
+
+/* -----------------------------------------
+   Heritage rule — gold-leaf hairline w/ caption
+   "—— DEPT. 03 ——" style trade label
+   ----------------------------------------- */
+.h-rule {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: var(--space-lg) 0;
+}
+
+.h-rule::before,
+.h-rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--gold-leaf);
+}
+
+.h-rule--left::after { display: none; }
+.h-rule--right::before { display: none; }
+
+/* -----------------------------------------
+   Hairline divider — full width, soft ends
+   ----------------------------------------- */
+.h-divider {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--rule) 20%,
+    var(--rule) 80%,
+    transparent
+  );
+  margin: var(--space-3xl) 0;
+}
+
+/* -----------------------------------------
+   Stamped seal — rubber-stamp ring, rotated
+   Use as compliance signal (FEL, EST 1984, etc)
+   ----------------------------------------- */
+.h-seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 7rem;
+  height: 7rem;
+  border: 2px solid var(--crimson);
+  border-radius: 50%;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  text-align: center;
+  padding: 1rem;
+  transform: rotate(-6deg);
+  box-shadow: 0 0 0 1px var(--crimson-deep) inset;
+  line-height: 1.2;
+}
+
+.h-seal--lg {
+  width: 9rem;
+  height: 9rem;
+  font-size: 0.78rem;
+}
+
+.h-seal--sm {
+  width: 5rem;
+  height: 5rem;
+  font-size: 0.6rem;
+}
+
+/* -----------------------------------------
+   Enamel-painted dark panel — hero/CTA
+   Subtle painted-board texture via radial gradients
+   ----------------------------------------- */
+.h-enamel {
+  background-color: var(--enamel);
+  color: var(--paper);
+  padding: var(--space-3xl) var(--space-xl);
+  background-image:
+    radial-gradient(circle at 20% 30%, oklch(25% 0.05 25) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, oklch(15% 0.03 25) 0%, transparent 50%);
+}
+
+.h-enamel .h-headline { color: var(--paper); }
+.h-enamel .h-topper { color: var(--gold-leaf); }
+.h-enamel .h-lede { color: oklch(88% 0.012 75); }
+
+/* -----------------------------------------
+   Paper surface — aged cream tone
+   ----------------------------------------- */
+.h-paper {
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+.h-paper-deep {
+  background-color: var(--paper-deep);
+  color: var(--ink);
+}
+
+/* -----------------------------------------
+   Gold-leaf accent text
+   ----------------------------------------- */
+.h-gold {
+  color: var(--gold-leaf);
+}
+
+/* -----------------------------------------
+   Crimson accent text
+   ----------------------------------------- */
+.h-crimson {
+  color: var(--crimson);
+}
+
+/* -----------------------------------------
+   Specimen card — catalog-style w/ hairline rule on top
+   NO left-stripe accents. Full hairline border-top only.
+   ----------------------------------------- */
+.h-specimen {
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-lg);
+  padding-bottom: var(--space-lg);
+}
+
+.h-specimen__label {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: var(--space-xs);
+  display: block;
+}
+
+.h-specimen__title {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: 1;
+  color: var(--ink);
+  margin: 0 0 var(--space-sm) 0;
+}
+
+/* -----------------------------------------
+   Caps-stencil numeral — for dates / counts
+   "EST. 1984", "40 YRS", etc.
+   ----------------------------------------- */
+.h-numeral {
+  font-family: var(--font-display);
+  font-size: var(--step-6);
+  line-height: 0.85;
+  color: var(--crimson);
+  font-weight: 400;
+}
+
+.h-numeral--ink { color: var(--ink); }
+.h-numeral--gold { color: var(--gold-leaf); }
+
+/* -----------------------------------------
+   Spec list — paperwork-grade definition list
+   key: value rows w/ hairline rule
+   ----------------------------------------- */
+.h-spec-list {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  display: grid;
+  gap: 0;
+}
+
+.h-spec-list > div {
+  display: grid;
+  grid-template-columns: minmax(8rem, 1fr) 2fr;
+  gap: var(--space-lg);
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.h-spec-list dt {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.h-spec-list dd {
+  margin: 0;
+  color: var(--ink);
+}
+
+/* -----------------------------------------
+   Stamp tag — small mono badge w/ crimson outline
+   For compliance flags: 1.4G, 1.3G, FEL REQUIRED, etc.
+   ----------------------------------------- */
+.h-stamp {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  border: 1.5px solid var(--crimson);
+  padding: 0.3em 0.7em;
+  border-radius: 2px;
+  line-height: 1.3;
+  vertical-align: middle;
+}
+
+.h-stamp--ink {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.h-stamp--filled {
+  color: var(--paper);
+  background: var(--crimson);
+  border-color: var(--crimson);
+}
+
+/* -----------------------------------------
+   Section padding helper (pairs w/ legacy --sectionPadding)
+   ----------------------------------------- */
+.h-section {
+  padding-top: clamp(3.75rem, 7.82vw, 6.25rem);
+  padding-bottom: clamp(3.75rem, 7.82vw, 6.25rem);
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+/* -----------------------------------------
+   Container — reading width for prose
+   ----------------------------------------- */
+.h-container {
+  width: 92%;
+  max-width: 78rem;
+  margin-inline: auto;
+}
+
+.h-container--narrow {
+  max-width: 46rem;
+}
+
+.h-container--reading {
+  max-width: 60rem;
+}
+
+/* -----------------------------------------
+   Mono body — for stamp/specimen contexts
+   ----------------------------------------- */
+.h-mono {
+  font-family: var(--font-mono);
+}
+
+/* -----------------------------------------
+   Reduced motion respect
+   ----------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .h-seal {
+    /* keep rotation; it's static, not animated */
+  }
+}
+
+/* ============================================
+   HERITAGE NAVBAR OVERRIDES
+   Sign-painter aesthetic. High-specificity targets
+   override the legacy #navigation rules in root.css.
+   Loaded globally on every page via base.html.
+   ============================================ */
+
+/* Eyebrow strip — top hairline, mono caps gold-on-ink */
+.h-eyebrow-strip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200001;
+  background: var(--ink);
+  color: var(--gold-leaf);
+  border-bottom: 1px solid var(--gold-leaf);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 0.45rem 1rem;
+  text-align: center;
+}
+
+.h-eyebrow-strip__inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.h-eyebrow-strip__dot {
+  color: var(--crimson);
+  opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+  .h-eyebrow-strip { font-size: 0.62rem; letter-spacing: 0.18em; padding: 0.35rem 0.5rem; }
+}
+
+/* === Navbar — paper bg with gold-leaf hairline === */
+#navigation[data-heritage-nav] .background-color-div {
+  background-color: var(--paper) !important;
+  border-bottom: 1px solid var(--gold-leaf);
+  height: 100% !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+}
+
+/* Always show light (dark-ink logo) on paper */
+#navigation[data-heritage-nav] .logo .light { display: block !important; }
+#navigation[data-heritage-nav] .logo .dark { display: none !important; }
+body.dark-mode #navigation[data-heritage-nav] .logo .light { display: none !important; }
+body.dark-mode #navigation[data-heritage-nav] .logo .dark { display: block !important; }
+
+/* Position nav below eyebrow strip */
+@media (min-width: 1024px) {
+  #navigation[data-heritage-nav] {
+    top: 2rem;
+    height: 5rem;
+  }
+  body { padding-top: 2rem; }
+}
+
+@media (max-width: 1023px) {
+  #navigation[data-heritage-nav] {
+    top: 1.85rem;
+  }
+  body { padding-top: 1.85rem; }
+  #navigation[data-heritage-nav] #navbar-menu {
+    top: 3.4rem;
+    background-color: var(--paper);
+    border-top: 1px solid var(--gold-leaf);
+  }
+}
+
+/* Desktop nav links — mono caps, ink-soft */
+@media (min-width: 1024px) {
+  #navigation[data-heritage-nav] #navbar-menu ul li a {
+    font-family: var(--font-mono) !important;
+    font-weight: 500 !important;
+    font-size: var(--step--1) !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+    color: var(--ink-soft) !important;
+    transition: color 0.2s ease !important;
+    padding-bottom: 0.25rem;
+  }
+
+  #navigation[data-heritage-nav] #navbar-menu ul li a:before {
+    background: var(--gold-leaf) !important;
+    height: 1px !important;
+    border-radius: 0 !important;
+    bottom: -0.1rem !important;
+    transition: width 0.25s ease, background 0.25s ease !important;
+  }
+
+  #navigation[data-heritage-nav] #navbar-menu ul li a:hover {
+    color: var(--ink) !important;
+  }
+
+  #navigation[data-heritage-nav] #navbar-menu ul li a:hover:before {
+    width: 100% !important;
+    background: var(--gold-leaf) !important;
+  }
+
+  #navigation[data-heritage-nav] #navbar-menu ul li a.active {
+    color: var(--ink) !important;
+  }
+
+  #navigation[data-heritage-nav] #navbar-menu ul li a.active:before {
+    width: 100% !important;
+    height: 1px !important;
+    background: var(--crimson) !important;
+    border-radius: 0 !important;
+    bottom: -0.1rem !important;
+  }
+
+  body.scroll #navigation[data-heritage-nav] #navbar-menu ul li a,
+  body.nav-solid #navigation[data-heritage-nav] #navbar-menu ul li a {
+    color: var(--ink-soft) !important;
+  }
+}
+
+/* Mobile nav links — mono caps with hairline rules between */
+@media (max-width: 1023px) {
+  #navigation[data-heritage-nav] #navbar-menu ul li {
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--rule);
+    padding: 1rem 0;
+  }
+
+  #navigation[data-heritage-nav] #navbar-menu ul li:last-child {
+    border-bottom: 0;
+  }
+
+  #navigation[data-heritage-nav] #navbar-menu ul li a {
+    font-family: var(--font-mono) !important;
+    font-weight: 500 !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 0.2em !important;
+    text-transform: uppercase !important;
+    color: var(--ink) !important;
+  }
+
+  #navigation[data-heritage-nav] #navbar-menu ul li a.active:before {
+    display: none;
+  }
+
+  #navigation[data-heritage-nav] #navbar-menu ul li a.active {
+    border-bottom: 1px solid var(--crimson);
+    padding-bottom: 0.2rem;
+  }
+}
+
+/* Header actions — match ink-on-paper */
+#navigation[data-heritage-nav] .icon-btn {
+  color: var(--ink) !important;
+  border-radius: 0 !important;
+}
+
+#navigation[data-heritage-nav] .icon-btn:hover {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+@media (min-width: 1024px) {
+  body.scroll #navigation[data-heritage-nav] .icon-btn,
+  body.nav-solid #navigation[data-heritage-nav] .icon-btn {
+    color: var(--ink) !important;
+  }
+}
+
+/* Day/Night toggle label */
+.h-mode-toggle {
+  position: relative !important;
+  width: auto !important;
+  min-width: 3.5rem !important;
+  padding: 0.4rem 0.65rem !important;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 1px solid var(--rule) !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.h-mode-toggle .moon,
+.h-mode-toggle .sun {
+  width: 0.95rem !important;
+  height: 0.95rem !important;
+}
+
+.h-mode-toggle__label--day { display: inline; }
+.h-mode-toggle__label--night { display: none; }
+body.dark-mode .h-mode-toggle__label--day { display: none; }
+body.dark-mode .h-mode-toggle__label--night { display: inline; }
+
+@media (max-width: 600px) {
+  .h-mode-toggle__label--day,
+  .h-mode-toggle__label--night { display: none !important; }
+  .h-mode-toggle { min-width: 0 !important; padding: 0.4rem !important; }
+}
+
+/* Cart count badge — crimson square, Tanker numeral */
+#navigation[data-heritage-nav] .cart-checkout .cart-items-count {
+  background: var(--crimson) !important;
+  color: var(--paper) !important;
+  border-radius: 0 !important;
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 0 !important;
+  min-width: 1.2rem !important;
+  height: 1.2rem !important;
+  line-height: 1.2rem !important;
+  top: -2px !important;
+  right: -2px !important;
+  padding: 0 0.25rem !important;
+}
+
+/* Login + cart wrapper — square hairline */
+#navigation[data-heritage-nav] .login-btn,
+#navigation[data-heritage-nav] .cart-checkout {
+  border: 1px solid var(--rule);
+  border-radius: 0 !important;
+}
+
+/* Hamburger lines = ink */
+#navigation[data-heritage-nav] .hamburger-menu span,
+#navigation[data-heritage-nav] .hamburger-menu span:before,
+#navigation[data-heritage-nav] .hamburger-menu span:after {
+  background-color: var(--ink) !important;
+}
+
+/* Dark-mode adjustments — enamel-ink board feel */
+body.dark-mode #navigation[data-heritage-nav] .background-color-div {
+  background-color: var(--enamel) !important;
+  border-bottom: 1px solid var(--gold-leaf);
+}
+
+body.dark-mode #navigation[data-heritage-nav] #navbar-menu ul li a {
+  color: oklch(82% 0.012 75) !important;
+}
+
+body.dark-mode #navigation[data-heritage-nav] #navbar-menu ul li a:hover,
+body.dark-mode #navigation[data-heritage-nav] #navbar-menu ul li a.active {
+  color: var(--paper) !important;
+}
+
+body.dark-mode #navigation[data-heritage-nav] .icon-btn { color: var(--paper) !important; }
+
+body.dark-mode .h-eyebrow-strip {
+  background: var(--enamel);
+}
+
+/* ============================================
+   HERITAGE INTERIOR HERO
+   Sign-painter restyle of #int-hero on shop / product
+   when carrying class h-int-hero.
+   ============================================ */
+.h-int-hero {
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+  min-height: 0 !important;
+  padding: 7rem 1rem 3rem !important;
+  border-bottom: 1px solid var(--rule);
+}
+
+.h-int-hero:before,
+.h-int-hero picture { display: none !important; }
+
+.h-int-hero h1 {
+  color: var(--ink) !important;
+  font-family: var(--font-display) !important;
+  font-size: var(--step-5) !important;
+  line-height: 0.95 !important;
+  letter-spacing: -0.01em !important;
+  margin: 0.3rem auto 0.75rem !important;
+  max-width: 60rem !important;
+  width: 96% !important;
+}
+
+.h-int-hero p {
+  color: var(--ink-soft) !important;
+  font-family: var(--font-body) !important;
+  font-size: var(--step-0) !important;
+  max-width: 50ch !important;
+  margin: 0 auto !important;
+}
+
+.h-int-hero .h-topper {
+  margin: 0 auto 0.4rem !important;
+  text-align: center;
+  display: block;
+}
+
+@media (min-width: 64em) {
+  .h-int-hero { padding: 9rem 1rem 4rem !important; }
+}
+
+body.dark-mode .h-int-hero {
+  background: var(--enamel) !important;
+}
+body.dark-mode .h-int-hero h1 { color: var(--paper) !important; }
+body.dark-mode .h-int-hero p { color: oklch(82% 0.012 75) !important; }
+
+/* ============================================
+   HERITAGE DARK-MODE RECONCILIATION
+   Heritage surfaces are designed light-only per
+   project design context. When dark mode is toggled,
+   the legacy `body.dark-mode p,h1..h6 { color:#fff }`
+   in dark.css would force white text on cream paper,
+   destroying contrast. Override on heritage surfaces
+   so paper-cream tone reads correctly.
+   ============================================ */
+body.dark-mode .h-paper,
+body.dark-mode .h-paper-deep {
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+body.dark-mode .h-paper p,
+body.dark-mode .h-paper-deep p,
+body.dark-mode .h-paper li,
+body.dark-mode .h-paper-deep li,
+body.dark-mode .h-paper h1,
+body.dark-mode .h-paper-deep h1,
+body.dark-mode .h-paper h2,
+body.dark-mode .h-paper-deep h2,
+body.dark-mode .h-paper h3,
+body.dark-mode .h-paper-deep h3,
+body.dark-mode .h-paper h4,
+body.dark-mode .h-paper-deep h4,
+body.dark-mode .h-paper h5,
+body.dark-mode .h-paper-deep h5,
+body.dark-mode .h-paper h6,
+body.dark-mode .h-paper-deep h6 {
+  color: var(--ink);
+}
+
+body.dark-mode .h-paper .h-lede,
+body.dark-mode .h-paper-deep .h-lede {
+  color: var(--ink-soft);
+}
+
+/* Enamel surfaces are dark by design — keep paper-on-enamel text. */
+body.dark-mode .h-enamel {
+  color: var(--paper);
+}
+body.dark-mode .h-enamel p,
+body.dark-mode .h-enamel li,
+body.dark-mode .h-enamel h1,
+body.dark-mode .h-enamel h2,
+body.dark-mode .h-enamel h3,
+body.dark-mode .h-enamel h4,
+body.dark-mode .h-enamel h5,
+body.dark-mode .h-enamel h6 {
+  color: var(--paper);
+}

@@ -1,0 +1,59 @@
+# American Tradition Fireworks
+
+Eleventy 11ty static site for a veteran-owned, two-store Michigan fireworks importer (since 1984). B2B (FEL/PGI wholesale + display) and B2C (consumer retail). Brand color crimson `#c11c2a`. CodeStitch-derived template baseline.
+
+## Project Layout
+- `src/` — source (eleventy templates, CSS, images)
+- `src/pages/` — content pages (about, contact, wholesale, requirements-shipping)
+- `src/index.html` — landing
+- `src/css/` — `root.css` (tokens), `critical.css`, `local.css` (landing), `contact.css` (contact + wholesale), `policy.css` (requirements-shipping)
+- `public/` — eleventy build output (committed)
+- `npm start` — dev server + watch
+- `npm run build` — production build
+
+## Forms
+Both contact + wholesale POST to Formspark `submit-form.com/U9CNXTECF`. Hidden `form-source` distinguishes contact vs wholesale.
+
+## Design Context
+
+### Users
+**Primary B2B**: Licensed display operators (FEL holders), wholesale buyers, pyrotechnic-trained event ops. They visit during planning windows + freight-claim moments. Need: paperwork-grade clarity, compliance trust, fast scanning of rules and product classes.
+
+**Primary B2C**: Michigan-region consumers planning backyard shows, festivals, weddings. They visit pre-July-4 and pre-NYE. Need: confidence the operator is real, easy product browse, a reason to drive to one of the two stores.
+
+**Job-to-be-done**: Verify "are these the right people to do business with for regulated explosives," then either (a) submit a vetted lead with documentation context, or (b) shop the consumer line. Both audiences want reassurance the operator has been doing this a long time and handles paperwork right.
+
+### Brand Personality
+Three words: **heritage, craft, plainspoken**.
+
+Voice: weathered shop-owner who has been importing fireworks from Winda / Panda / Wizard since 1984. Talks like the trade, not like marketing. Veteran-owned, two MI stores (G Avenue + Springfield). The brand earns trust by sounding like it has receipts, not by performing trustworthiness.
+
+Emotional goals: confident, grounded, anticipatory (something explosive about to happen, but the operator is calm about it). Never anxious, never hype-y, never corporate-warm.
+
+### Aesthetic Direction
+**Sign-painter / roadside heritage.** Pulls from American mid-century shop-sign craft: hand-lettered display faces, enamel-paint surfaces, gold-leaf accents used like punctuation, rubber-stamped seals, ink-on-cream contrast. The feel of a 1950s-70s roadside sign that has weathered well — confident, hand-built, regional, durable.
+
+Theme: **Light.** Cream/paper surfaces, ink-black body, crimson primary `#c11c2a`. Optional dark hero sections only if they carry the sign-painter logic (e.g., enamel-black painted board). No glowing dark mode.
+
+Reference moods (mental, not literal): hand-painted gas-station signs, vintage seed-packet covers, BATFE document headers re-imagined with craft, a Pyrotechnics Guild trade-show banner, a small-town hardware-store catalog cover.
+
+**Anti-references** (must not look like):
+- Generic SaaS / dental-office template (rounded white cards, slate borders, soft shadows, neutral sans)
+- AI-slop dark-with-glow (purple/teal gradients, glassmorphism, neon)
+- Cheesy patriotic kitsch (stars-stripes wallpaper, eagle clip-art)
+- Dollar-store fireworks-stand (yellow/red starbursts, comic-sans, screaming buy-now)
+
+### Design Principles
+
+1. **Hand-made over hand-off.** Every surface carries a craft fingerprint — varied weights, intentional asymmetry, oversized one-of headline, ink-stamp accents. Nothing reads as off-the-shelf component library.
+
+2. **Plainspoken authority.** Copy and visual hierarchy say "we know the rules and we make a living at this." Trade language (FEL, PGI, FOB origin, 1.4g, 1.3g) treated as first-class vocabulary, not jargon to apologize for.
+
+3. **One bold move per surface.** Sign-painter discipline: oversized headline + modest body + one accent (gold-leaf rule, stamped seal, crimson underline). Never decorate the decoration. Never three accents competing.
+
+4. **Heritage tokens, not nostalgia kitsch.** Gold leaf used like punctuation. Enamel-paint surfaces used like background tone. Rubber-stamp seals used as seals (compliance signals), not stickers. The aesthetic earns its weight by being functional.
+
+5. **Compliance is the product.** Regulated-fireworks paperwork (FEL / PGI / freight terms / 48-hour claim window) is the differentiator. Treat it as first-class content with editorial weight, not as a legal afterthought page.
+
+### Scope (current pass)
+Apply to: `src/index.html` (landing), `src/pages/contact.html`, `src/pages/wholesale.html`, `src/pages/requirements-shipping.html`. Cohesive system across these four. Shop / product pages out of scope this pass.

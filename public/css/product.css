@@ -8,7 +8,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     max-width: 1200px;
-    margin: 120px auto 48px;
+    margin: 1.5rem auto 48px;
     padding: 0 24px;
 }
 
@@ -1024,4 +1024,355 @@ body.dark-mode .rel-card__cta {
 body.dark-mode .rel-card__cta:hover {
     background: var(--primary);
     color: #fff !important;
+}
+
+/* ============================================
+   HERITAGE PRODUCT DETAIL OVERRIDES
+   Sign-painter restyle of .pdp surfaces.
+   ============================================ */
+
+.h-back-link {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.h-back-link:hover {
+  color: var(--crimson);
+  border-bottom-color: var(--crimson);
+}
+
+/* Re-skin .pdp__media-stage / image area to specimen plate */
+.pdp .pdp__media-stage,
+.pdp .pdp__media {
+  background: var(--paper-deep) !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-top: 1px solid var(--gold-leaf) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.pdp .pdp__media img,
+.pdp .pdp__media-stage img {
+  border-radius: 0 !important;
+}
+
+/* Crumbs — mono micro-caps */
+.pdp .crumbs,
+.pdp .crumbs a,
+.pdp .crumbs span {
+  font-family: var(--font-mono) !important;
+  font-size: var(--step--1) !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: var(--ink-soft) !important;
+}
+.pdp .crumbs a {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.pdp .crumbs a:hover {
+  color: var(--crimson) !important;
+  border-bottom-color: var(--crimson);
+}
+
+/* Eyebrow above title */
+.pdp .pdp__eyebrow {
+  font-family: var(--font-mono) !important;
+  font-size: var(--step--1) !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
+  color: var(--crimson) !important;
+  margin: 1rem 0 0.4rem !important;
+}
+
+/* Title — Tanker display */
+.pdp #pdpTitle,
+.pdp .pdp__meta h1 {
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  font-size: var(--step-3) !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.01em !important;
+  color: var(--ink) !important;
+  margin: 0 0 1rem !important;
+  text-wrap: balance;
+}
+
+/* Pricing — Tanker numerals crimson */
+.pdp .pdp__pricing { margin-top: 0.5rem; }
+
+.pdp #pdpPrice,
+.pdp .pdp__price {
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  font-size: var(--step-3) !important;
+  color: var(--crimson) !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+}
+
+.pdp .pdp__case-price,
+.pdp #pdpCasePrice,
+.pdp .pdp__pack,
+.pdp #pdpPack {
+  font-family: var(--font-mono) !important;
+  font-size: var(--step--1) !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: var(--ink-soft) !important;
+  margin: 0 !important;
+}
+
+.pdp .pdp__price-row {
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+/* Description — Sentient body, max 65ch */
+.pdp #pdpDesc,
+.pdp .pdp__desc {
+  font-family: var(--font-body) !important;
+  font-size: var(--step-0) !important;
+  line-height: 1.6 !important;
+  color: var(--ink) !important;
+  max-width: 65ch !important;
+  margin-top: 1.25rem !important;
+}
+
+/* Notice block — paper-deep panel with hairlines */
+.pdp .pdp__notice {
+  background: var(--paper-deep) !important;
+  border: 0 !important;
+  border-top: 1px solid var(--rule) !important;
+  border-bottom: 1px solid var(--rule) !important;
+  border-radius: 0 !important;
+  padding: 1.25rem 1.25rem !important;
+  margin: 1.5rem 0 !important;
+}
+
+.pdp .pdp__notice-title {
+  font-family: var(--font-mono) !important;
+  font-size: var(--step--1) !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
+  color: var(--crimson) !important;
+  margin: 0 0 0.4rem !important;
+}
+
+.pdp .pdp__notice-copy {
+  font-family: var(--font-body) !important;
+  color: var(--ink) !important;
+  font-size: var(--step-0) !important;
+  margin: 0 0 0.5rem !important;
+}
+
+.pdp .pdp__notice-link {
+  font-family: var(--font-mono) !important;
+  font-size: var(--step--1) !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  color: var(--ink) !important;
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-leaf);
+}
+.pdp .pdp__notice-link:hover { color: var(--crimson) !important; border-bottom-color: var(--crimson); }
+
+/* Add to Cart — Tanker caps, crimson fill, ink hover */
+.pdp #addToCartBtn,
+.pdp .cart-add-item.cta {
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  font-size: var(--step-1) !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  background: var(--crimson) !important;
+  color: var(--paper) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0.95rem 1.6rem !important;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  box-shadow: none !important;
+}
+
+.pdp #addToCartBtn:hover,
+.pdp .cart-add-item.cta:hover {
+  background: var(--ink) !important;
+  color: var(--paper) !important;
+}
+
+/* Options — clean, mono labels */
+.pdp .pdp__options label {
+  font-family: var(--font-mono) !important;
+  font-size: var(--step--1) !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: var(--ink-soft) !important;
+}
+
+.pdp .pdp__options select {
+  border: 0 !important;
+  border-bottom: 1px solid var(--rule) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  color: var(--ink);
+  padding: 0.5rem 0;
+}
+
+/* Disclaimer modal — paper, hairlines, mono */
+.pdp-disclaimer__dialog {
+  background: var(--paper) !important;
+  border-radius: 0 !important;
+  border-top: 4px solid var(--crimson) !important;
+  border-bottom: 1px solid var(--gold-leaf) !important;
+}
+
+.pdp-disclaimer__eyebrow {
+  font-family: var(--font-mono) !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
+  color: var(--crimson) !important;
+  font-size: var(--step--1) !important;
+}
+
+.pdp-disclaimer__title {
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  font-size: var(--step-2) !important;
+  line-height: 1 !important;
+  color: var(--ink) !important;
+}
+
+.pdp-disclaimer__intro,
+.pdp-disclaimer__list,
+.pdp-disclaimer__card p {
+  font-family: var(--font-body) !important;
+  color: var(--ink) !important;
+}
+
+.pdp-disclaimer__card {
+  background: var(--paper-deep) !important;
+  border-radius: 0 !important;
+  border-top: 1px solid var(--rule) !important;
+}
+
+.pdp-disclaimer__card h3 {
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  font-size: var(--step-1) !important;
+  color: var(--ink) !important;
+}
+
+.pdp-disclaimer__button {
+  font-family: var(--font-display) !important;
+  background: var(--crimson) !important;
+  color: var(--paper) !important;
+  border-radius: 0 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+}
+
+.pdp-disclaimer__link {
+  font-family: var(--font-mono) !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  font-size: var(--step--1) !important;
+  border-radius: 0 !important;
+}
+
+/* Related products — heritage tone */
+#related-products.rp h2 {
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  font-size: var(--step-2) !important;
+  letter-spacing: -0.01em !important;
+  color: var(--ink) !important;
+}
+
+.rel-card {
+  border-radius: 0 !important;
+  background: var(--paper) !important;
+  border: 0 !important;
+  border-top: 1px solid var(--rule) !important;
+  box-shadow: none !important;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.rel-card:hover {
+  border-top-width: 2px !important;
+  border-top-color: var(--ink) !important;
+  transform: none !important;
+}
+
+.rel-card__img,
+.rel-card__img img {
+  border-radius: 0 !important;
+  background: var(--paper-deep) !important;
+}
+
+.rel-card__title,
+.rel-card__title a {
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  font-size: var(--step-1) !important;
+  color: var(--ink) !important;
+}
+
+.rel-card__eyebrow,
+.rel-card__meta {
+  font-family: var(--font-mono) !important;
+  font-size: var(--step--1) !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: var(--ink-soft) !important;
+}
+
+.rel-card__price-ea,
+.rel-card__price {
+  font-family: var(--font-display) !important;
+  color: var(--crimson) !important;
+  font-size: var(--step-1) !important;
+}
+
+.rel-card__price-case {
+  font-family: var(--font-mono) !important;
+  font-size: var(--step--1) !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: var(--ink-soft) !important;
+}
+
+.rel-card__cta {
+  font-family: var(--font-mono) !important;
+  font-size: var(--step--1) !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  border-radius: 0 !important;
+  border: 0 !important;
+  border-top: 1px solid var(--rule) !important;
+  background: transparent !important;
+  color: var(--ink) !important;
+}
+
+.rel-card__cta:hover {
+  color: var(--crimson) !important;
+  background: transparent !important;
+}
+
+.rp-btn {
+  border-radius: 0 !important;
+  border: 1px solid var(--rule) !important;
+  background: var(--paper) !important;
+  color: var(--ink) !important;
 }
