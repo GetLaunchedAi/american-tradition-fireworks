@@ -91,10 +91,11 @@
   }
 
   /* ---------- HERO — enamel painted board ---------- */
-  /* Reset legacy #int-hero defaults */
+  /* Reset legacy #int-hero defaults but keep .h-enamel dark surface */
   .policy-page #int-hero.policy-hero {
     display: block;
-    background: none;
+    background-color: var(--enamel);
+    background-image: none;
     padding-top: 0;
     padding-bottom: 0;
     min-height: 0;
@@ -102,6 +103,7 @@
     background-attachment: scroll;
     position: relative;
     overflow: hidden;
+    color: var(--paper);
   }
 
   .policy-page #int-hero::before,
@@ -171,13 +173,21 @@
     letter-spacing: -0.01em;
   }
 
-  .policy-page .policy-hero__lede {
+  .policy-page #int-hero p.policy-hero__lede {
     font-family: var(--font-body);
     font-size: var(--step-1);
     line-height: 1.55;
     color: oklch(90% 0.012 75);
     max-width: 60ch;
     margin: 0;
+    text-align: left;
+    width: auto;
+  }
+
+  .policy-page #int-hero .policy-hero__topper {
+    color: var(--gold-leaf);
+    margin-bottom: 0;
+    text-align: left;
   }
 
   .policy-page .policy-hero__seal {
