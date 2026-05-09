@@ -43,6 +43,9 @@ eleventyNavigation:
         shipping, or freight claims. Include category and destination if asking
         about 1.4g or 1.3g products.
       </p>
+      <a class="contact-heritage__policy-link contact-heritage__policy-link--inline" href="/requirements-shipping/">
+        Read full requirements &amp; shipping policy &rarr;
+      </a>
       <hr class="h-divider contact-heritage__intro-divider" />
       <dl class="h-spec-list contact-heritage__spec">
         <div>
@@ -62,9 +65,6 @@ eleventyNavigation:
           <dd>Photos, order details, written notice within 48 hours</dd>
         </div>
       </dl>
-      <a class="contact-heritage__policy-link" href="/requirements-shipping/">
-        Read full requirements &amp; shipping policy &rarr;
-      </a>
     </div>
     <form
       id="cs-form-242"
@@ -76,6 +76,9 @@ eleventyNavigation:
       data-aos-delay="100"
     >
       <span class="h-topper contact-heritage__form-eyebrow">Request &middot; Form &middot; 01</span>
+      <p class="cs-required-key contact-heritage__required-key">
+        <span aria-hidden="true" class="cs-required">*</span> Required field
+      </p>
       <input type="hidden" name="_subject" value="Contact Form Submission" />
       <input type="hidden" name="form-source" value="Contact Page" />
       <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
@@ -103,6 +106,7 @@ eleventyNavigation:
           inputmode="email"
           placeholder="name@example.com"
         />
+        <span class="cs-helper-text contact-heritage__helper">We reply within one business day.</span>
       </label>
       <label class="cs-label">
         <span class="cs-label-text">03 &middot; Phone<span aria-hidden="true" class="cs-required">*</span></span>
@@ -116,6 +120,7 @@ eleventyNavigation:
           inputmode="tel"
           placeholder="(555) 555-5555"
         />
+        <span class="cs-helper-text contact-heritage__helper">Direct line, voicemail, or text.</span>
       </label>
       <label class="cs-label">
         <span class="cs-label-text">04 &middot; What do you need</span>
@@ -153,46 +158,70 @@ eleventyNavigation:
           <dd>
             <span class="contact-heritage__addr">12127 E. G Avenue, Augusta, MI 49012</span>
             <a href="tel:2697314311" class="contact-heritage__addr-tel">269 &middot; 731 &middot; 4311</a>
+            <span class="contact-heritage__addr-hours">Seasonal &middot; Call ahead pre-July 4 &amp; pre-NYE</span>
           </dd>
         </div>
         <div>
           <dt>Store 02</dt>
           <dd>
             <span class="contact-heritage__addr">Springfield, MI &mdash; Dickman Rd (M-96) at Military &amp; Admiral Ave.</span>
+            <span class="contact-heritage__addr-note">By appointment &middot; Call Store 01 to arrange</span>
           </dd>
         </div>
         <div>
           <dt>Email</dt>
           <dd>
-            <a href="mailto:americantraditionfireworksllc@gmail.com" class="contact-heritage__addr-tel">
+            <a href="mailto:americantraditionfireworksllc@gmail.com" class="contact-heritage__addr-tel contact-heritage__addr-email">
               americantraditionfireworksllc@gmail.com
             </a>
           </dd>
         </div>
-        <div>
-          <dt>Hours</dt>
-          <dd>Seasonal &middot; Call ahead pre-July 4 &amp; pre-NYE</dd>
-        </div>
       </dl>
       <hr class="h-divider contact-heritage__map-divider" />
-      <picture class="cs-picture contact-heritage__map">
-        <source media="(max-width: 600px)" srcset="/images/map.PNG" />
-        <source media="(min-width: 601px)" srcset="/images/map.PNG" />
-        <img
-          class="cs-img"
-          aria-hidden="true"
-          loading="lazy"
-          decoding="async"
-          src="/images/map.PNG"
-          alt="google map"
-          width="462"
-          height="438"
-        />
-      </picture>
+      <a class="contact-heritage__map-link"
+         href="https://www.google.com/maps/search/?api=1&query=12127+E+G+Avenue+Augusta+MI"
+         target="_blank"
+         rel="noopener"
+         aria-label="Open American Tradition Fireworks Augusta location in Google Maps">
+        <picture class="cs-picture contact-heritage__map">
+          <img
+            class="cs-img"
+            loading="lazy"
+            decoding="async"
+            src="/images/map.PNG"
+            alt="Map showing American Tradition Fireworks Augusta MI store at 12127 E G Avenue"
+            width="462"
+            height="438"
+          />
+        </picture>
+      </a>
       <a class="contact-heritage__map-caption" href="https://www.google.com/maps/search/?api=1&query=12127+E+G+Avenue+Augusta+MI" target="_blank" rel="noopener">
-        Find us &middot; Kalamazoo County &rarr;
+        Augusta &middot; Kalamazoo County &rarr;
+      </a>
+      <a class="contact-heritage__map-caption" href="https://www.google.com/maps/search/?api=1&query=Dickman+Rd+Military+Admiral+Ave+Springfield+MI" target="_blank" rel="noopener">
+        Springfield &middot; Calhoun County &rarr;
       </a>
     </aside>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!--          Compliance / Credentials Strip      -->
+<!-- ============================================ -->
+
+<section class="contact-credentials" aria-label="Credentials and compliance">
+  <div class="contact-credentials__inner">
+    <span class="contact-credentials__stamp">FEL Holders</span>
+    <span class="contact-credentials__sep" aria-hidden="true">&middot;</span>
+    <span class="contact-credentials__stamp">PGI Members</span>
+    <span class="contact-credentials__sep" aria-hidden="true">&middot;</span>
+    <span class="contact-credentials__stamp">1.4g &amp; 1.3g</span>
+    <span class="contact-credentials__sep" aria-hidden="true">&middot;</span>
+    <span class="contact-credentials__stamp">FOB Origin</span>
+    <span class="contact-credentials__sep" aria-hidden="true">&middot;</span>
+    <span class="contact-credentials__stamp">Veteran-Owned</span>
+    <span class="contact-credentials__sep" aria-hidden="true">&middot;</span>
+    <span class="contact-credentials__stamp">Est. 1984</span>
   </div>
 </section>
 
@@ -211,7 +240,7 @@ eleventyNavigation:
       come back for selection, paperwork help, and straight answers.
     </p>
     <ul class="cs-card-group reviews-heritage__group">
-      <li class="cs-item reviews-heritage__item" data-aos="fade-up" data-aos-delay="100">
+      <li class="cs-item reviews-heritage__item reviews-heritage__item--featured" data-aos="fade-up" data-aos-delay="100">
         <span class="reviews-heritage__stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
         <p class="cs-item-p reviews-heritage__quote">
           American Tradition has been my go-to for fireworks for years. Their
@@ -221,6 +250,7 @@ eleventyNavigation:
         <span class="cs-reviewer reviews-heritage__attribution">
           &mdash; Sarah L. &middot; Google Review
         </span>
+        <span class="reviews-heritage__date">Aug 2024</span>
       </li>
       <li class="cs-item reviews-heritage__item" data-aos="fade-up" data-aos-delay="200">
         <span class="reviews-heritage__stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
@@ -232,6 +262,19 @@ eleventyNavigation:
         <span class="cs-reviewer reviews-heritage__attribution">
           &mdash; James P. &middot; Wholesale Client
         </span>
+        <span class="reviews-heritage__date">Jun 2024</span>
+      </li>
+      <li class="cs-item reviews-heritage__item" data-aos="fade-up" data-aos-delay="300">
+        <span class="reviews-heritage__stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <p class="cs-item-p reviews-heritage__quote">
+          Showed up for a last-minute July 4 backyard show. The crew walked us
+          through what would work in our space and we left with the right mix.
+          Stop one and done.
+        </p>
+        <span class="cs-reviewer reviews-heritage__attribution">
+          &mdash; Mike R. &middot; Augusta Walk-in
+        </span>
+        <span class="reviews-heritage__date">Jul 2024</span>
       </li>
     </ul>
   </div>

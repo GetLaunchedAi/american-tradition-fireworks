@@ -9,18 +9,54 @@ preloadCSS: /css/shop.css
 {% set allProducts = products.products or [] %}
 {% set filteredProducts = allProducts | filterByCollection(key) %}
 
-<section id="int-hero" class="h-int-hero" data-aos="fade-in">
+<nav class="shop-crumbs" aria-label="Breadcrumb">
+  <div class="shop-crumbs__inner">
+    <a href="/">Home</a>
+    <span aria-hidden="true">&rsaquo;</span>
+    <span aria-current="page">Shop</span>
+  </div>
+</nav>
+
+<section id="int-hero" class="h-int-hero shop-hero" data-aos="fade-in">
   <span class="h-topper">All Fireworks &middot; Catalog</span>
-  <h1 id="home-h">{{ title }}</h1>
+  <h1 id="home-h" class="shop-hero__headline">{{ title }}</h1>
+  <span class="shop-hero__rule" aria-hidden="true"></span>
   {% if description %}
-    <p>{{ description }}</p>
+    <p class="shop-hero__sub">{{ description }}</p>
+  {% else %}
+    <p class="shop-hero__sub">Consumer-class 1.4G &middot; Winda &middot; Panda &middot; Wizard</p>
   {% endif %}
+  <span class="shop-hero__stamp" aria-hidden="true">
+    <span class="shop-hero__stamp-line">EST.</span>
+    <span class="shop-hero__stamp-year">1984</span>
+    <span class="shop-hero__stamp-line">MICHIGAN</span>
+  </span>
 </section>
 
 <div class="plp__filters-backdrop" data-filters-backdrop hidden></div>
 
+<aside class="shop-compliance" aria-label="Consumer fireworks compliance notice">
+  <div class="shop-compliance__inner">
+    <span class="shop-compliance__seal" aria-hidden="true">
+      <span class="shop-compliance__seal-top">CONSUMER</span>
+      <span class="shop-compliance__seal-mid">1.4G</span>
+      <span class="shop-compliance__seal-bot">UN0336</span>
+    </span>
+    <ul class="shop-compliance__list">
+      <li><strong>Consumer-class 1.4G</strong> &middot; Michigan retail line</li>
+      <li><strong>Age 18+</strong> &middot; Valid government ID required at checkout</li>
+      <li><strong>Display 1.3G &amp; pro orders</strong> &middot; FEL or PGI credentials required &mdash; <a href="/wholesale/">see wholesale</a></li>
+    </ul>
+  </div>
+</aside>
+
 <section class="section section-tight">
   <div class="container">
+    <div class="shop-wordmark" aria-hidden="true">
+      <span class="shop-wordmark__num">01</span>
+      <span class="shop-wordmark__rule"></span>
+      <span class="shop-wordmark__label">The Line</span>
+    </div>
     <div class="plp" data-collection-page data-collection-key="{{ key }}">
       <div class="plp__mobilebar">
         <button class="btn btn-ghost btn-sm" type="button" data-filters-toggle>
@@ -91,7 +127,8 @@ preloadCSS: /css/shop.css
               id="shop-search"
               class="plp__search-input"
               type="search"
-              placeholder="Search by name, SKU, brand, or category"
+              placeholder="Search the line — name, SKU, brand, category…"
+              aria-label="Search the catalog"
               data-search-input
             />
           </div>

@@ -4,7 +4,9 @@
    Scoped under .about-heritage to avoid global side-effects.
    ============================================ */
 
-/* ---- HERO ---- */
+/* ============================================
+   HERO — enamel-painted board, ink-stamp seal
+   ============================================ */
 .about-heritage #int-hero.about-hero {
   padding-top: clamp(6rem, 12vw, 9.5rem);
   padding-bottom: clamp(4rem, 9vw, 7.5rem);
@@ -17,16 +19,42 @@
   display: block;
 }
 
-.about-heritage #int-hero.about-hero::before,
-.about-heritage #int-hero.about-hero::after {
-  content: none !important;
-  display: none !important;
-  background: none;
-}
-
+/* Strip any background-image hero leftover from base template */
 .about-heritage #int-hero.about-hero picture,
 .about-heritage #int-hero.about-hero > img {
   display: none;
+}
+
+/* Hand-painted bottom edge — subtle saw-tooth strip */
+.about-heritage #int-hero.about-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 18% 22%, oklch(28% 0.06 25 / 0.55) 0%, transparent 42%),
+    radial-gradient(circle at 82% 78%, oklch(14% 0.03 25 / 0.6) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about-heritage #int-hero.about-hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background:
+    linear-gradient(90deg,
+      var(--gold-leaf) 0,
+      var(--gold-leaf) 38%,
+      transparent 38%,
+      transparent 42%,
+      var(--gold-leaf) 42%,
+      var(--gold-leaf) 100%);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .about-heritage .about-hero__inner {
@@ -34,11 +62,22 @@
   grid-template-columns: 1fr;
   gap: var(--space-lg);
   position: relative;
+  z-index: 2;
+}
+
+.about-heritage .about-hero__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
 }
 
 .about-heritage .about-hero__topper {
   color: var(--gold-leaf);
+  font-size: 0.82rem;
+  letter-spacing: 0.22em;
+  font-weight: 600;
   margin-bottom: 0;
+  opacity: 0.95;
 }
 
 .about-heritage #int-hero.about-hero .about-hero__headline {
@@ -47,7 +86,7 @@
   font-size: var(--step-5);
   line-height: 0.92;
   letter-spacing: -0.01em;
-  max-width: 18ch;
+  max-width: 22ch;
   margin: 0;
   text-align: left;
   width: auto;
@@ -57,40 +96,135 @@
   font-family: var(--font-body);
   font-size: var(--step-1);
   line-height: 1.5;
-  color: oklch(90% 0.012 75);
+  color: var(--paper);
   max-width: 56ch;
   margin: 0;
+  opacity: 0.96;
+}
+
+/* Seal — rubber-stamp ring with starburst, more weight, off-axis */
+.about-heritage .about-hero__seal-wrap {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: var(--space-md);
 }
 
 .about-heritage .about-hero__seal {
-  margin-top: var(--space-md);
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  width: 9.5rem;
+  height: 9.5rem;
+  border: 2.5px solid var(--gold-leaf);
+  border-radius: 50%;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
   color: var(--gold-leaf);
-  border-color: var(--gold-leaf);
-  box-shadow: 0 0 0 1px oklch(60% 0.1 85) inset;
-  justify-self: start;
+  text-align: center;
+  padding: 0.85rem;
+  transform: rotate(-4deg);
+  box-shadow:
+    0 0 0 1px oklch(60% 0.1 85) inset,
+    0 0 0 6px transparent;
+  line-height: 1.25;
+  background: transparent;
 }
 
-@media (min-width: 43.75rem) {
+.about-heritage .about-hero__seal::before,
+.about-heritage .about-hero__seal::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  border: 1px dashed oklch(72% 0.13 85 / 0.7);
+  pointer-events: none;
+}
+
+.about-heritage .about-hero__seal::after {
+  inset: 12px;
+  border: 1px solid oklch(70% 0.13 85 / 0.45);
+  border-style: dotted;
+}
+
+.about-heritage .about-hero__seal-bullet {
+  font-size: 0.85rem;
+  line-height: 1;
+  color: var(--gold-leaf);
+}
+
+@media (min-width: 48rem) {
   .about-heritage .about-hero__inner {
     grid-template-columns: 1fr auto;
     align-items: center;
     column-gap: var(--space-2xl);
   }
-  .about-heritage .about-hero__topper,
-  .about-heritage .about-hero__headline,
-  .about-heritage .about-hero__lede {
+  .about-heritage .about-hero__copy {
     grid-column: 1;
   }
-  .about-heritage .about-hero__seal {
+  .about-heritage .about-hero__seal-wrap {
     grid-column: 2;
-    grid-row: 1 / span 3;
-    align-self: center;
-    justify-self: end;
+    justify-content: flex-end;
     margin-top: 0;
+  }
+  .about-heritage .about-hero__seal {
+    width: 10.5rem;
+    height: 10.5rem;
+    font-size: 0.72rem;
   }
 }
 
-/* ---- OPERATOR SPECS ---- */
+/* ============================================
+   ANCHOR NAV — sticky-ish strip, ink-stamp caps
+   ============================================ */
+.about-heritage .about-anchors {
+  background: var(--paper-deep);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
+  padding: var(--space-sm) var(--space-md);
+}
+
+.about-heritage .about-anchors__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem 0.55rem;
+}
+
+.about-heritage .about-anchors__link {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 0.35rem 0.55rem;
+  border-bottom: 1.5px solid transparent;
+  transition: color .15s ease, border-color .15s ease;
+}
+
+.about-heritage .about-anchors__link:hover,
+.about-heritage .about-anchors__link:focus-visible {
+  color: var(--crimson);
+  border-bottom-color: var(--crimson);
+}
+
+.about-heritage .about-anchors__sep {
+  color: var(--gold-leaf);
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+/* ============================================
+   OPERATOR SPECS — paper, two-column
+   ============================================ */
 .about-heritage .about-section {
   padding: clamp(3.5rem, 8vw, 6rem) var(--space-md);
 }
@@ -102,10 +236,10 @@
   align-items: start;
 }
 
-@media (min-width: 64rem) {
+@media (min-width: 48rem) {
   .about-heritage .about-specs__grid {
-    grid-template-columns: 1.2fr 1fr;
-    column-gap: clamp(3rem, 6vw, 6rem);
+    grid-template-columns: 1.25fr 1fr;
+    column-gap: clamp(2.5rem, 5vw, 5rem);
   }
 }
 
@@ -118,6 +252,7 @@
 .about-heritage .about-specs__title {
   margin: var(--space-sm) 0 var(--space-md);
   color: var(--ink);
+  max-width: 22ch;
 }
 
 .about-heritage .about-specs__lede {
@@ -138,22 +273,446 @@
   margin: 0;
 }
 
+/* Pull-quote — gold-leaf rule + pilcrow mark */
+.about-heritage .about-specs__pull {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  line-height: 1.4;
+  color: var(--ink);
+  max-width: 38ch;
+  margin: var(--space-md) 0 0;
+  padding: var(--space-md) 0 0 var(--space-md);
+  border-top: 2px solid var(--gold-leaf);
+}
+
+.about-heritage .about-specs__pull-mark {
+  display: inline-block;
+  font-family: var(--font-display);
+  color: var(--crimson);
+  font-size: 1.4em;
+  margin-right: 0.35em;
+  vertical-align: -0.08em;
+  line-height: 1;
+}
+
+.about-heritage .about-specs__pull em {
+  color: var(--crimson);
+  font-style: italic;
+}
+
+/* Aside (right column) */
+.about-heritage .about-specs__aside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.about-heritage .about-specs__aside-topper {
+  display: block;
+  margin-bottom: var(--space-xs);
+}
+
 .about-heritage .about-specs__list {
   border-top: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
 }
 
 .about-heritage .about-specs__list > div {
-  grid-template-columns: minmax(7rem, 0.8fr) 1.6fr;
-  padding: var(--space-md) 0;
+  display: grid;
+  grid-template-columns: minmax(7rem, 0.85fr) 1.6fr;
+  gap: var(--space-md);
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--rule);
 }
 
-/* ---- FAQ — numbered hairline list ---- */
+.about-heritage .about-specs__list > div:last-child {
+  border-bottom: none;
+}
+
+.about-heritage .about-specs__list dt {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 600;
+  align-self: center;
+}
+
+.about-heritage .about-specs__list dd {
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  color: var(--ink);
+  margin: 0;
+  align-self: center;
+}
+
+/* Address pair */
+.about-heritage .about-specs__addresses {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+@media (min-width: 30rem) {
+  .about-heritage .about-specs__addresses {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.about-heritage .about-specs__addr {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-style: normal;
+  padding: var(--space-sm) var(--space-md);
+  border-left: 3px solid var(--crimson);
+  background: var(--paper-deep);
+}
+
+.about-heritage .about-specs__addr-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-leaf);
+  font-weight: 600;
+}
+
+.about-heritage .about-specs__addr-name {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  line-height: 1;
+  color: var(--ink);
+  font-weight: 400;
+  margin: 0.1rem 0 0.15rem;
+}
+
+.about-heritage .about-specs__addr-line {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.35;
+}
+
+/* ============================================
+   TIMELINE — paper-deep band, hairline rule
+   ============================================ */
+.about-heritage .about-timeline__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-2xl);
+  max-width: 40rem;
+}
+
+.about-heritage .about-timeline__title {
+  margin: 0;
+  color: var(--ink);
+}
+
+.about-heritage .about-timeline__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  position: relative;
+  border-top: 2px solid var(--ink);
+}
+
+.about-heritage .about-timeline__node {
+  display: grid;
+  grid-template-columns: minmax(6.5rem, 0.5fr) 1fr;
+  gap: var(--space-md) var(--space-lg);
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: start;
+  position: relative;
+}
+
+.about-heritage .about-timeline__node:last-child {
+  border-bottom: 2px solid var(--ink);
+}
+
+.about-heritage .about-timeline__node--current::before {
+  content: "Today";
+  position: absolute;
+  top: var(--space-md);
+  right: 0;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--crimson);
+  padding: 0.2rem 0.55rem;
+  border-radius: 1px;
+}
+
+.about-heritage .about-timeline__year {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  line-height: 1;
+  color: var(--crimson);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.about-heritage .about-timeline__h {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  line-height: 1.1;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0 0 0.4rem;
+}
+
+.about-heritage .about-timeline__p {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 58ch;
+  margin: 0;
+}
+
+@media (min-width: 48rem) {
+  .about-heritage .about-timeline__node {
+    grid-template-columns: 8rem 1fr;
+    gap: var(--space-lg) var(--space-2xl);
+    padding: var(--space-lg) 0;
+  }
+}
+
+/* ============================================
+   STORES — two-up cards w/ enamel plate
+   ============================================ */
+.about-heritage .about-stores__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-2xl);
+  max-width: 40rem;
+}
+
+.about-heritage .about-stores__title {
+  margin: 0;
+}
+
+.about-heritage .about-stores__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+
+@media (min-width: 48rem) {
+  .about-heritage .about-stores__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+  }
+}
+
+.about-heritage .about-stores__card {
+  position: relative;
+  background: var(--paper-deep);
+  border: 1px solid var(--ink);
+  border-top: 4px solid var(--crimson);
+  padding: var(--space-xl) var(--space-lg) var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* Enamel-plate "No. 1 / No. 2" badge */
+.about-heritage .about-stores__plate {
+  position: absolute;
+  top: -1px;
+  right: var(--space-md);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.75rem;
+  background: var(--enamel);
+  color: var(--gold-leaf);
+  border: 1px solid var(--gold-leaf);
+  border-top: none;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.about-heritage .about-stores__plate-mark {
+  color: var(--crimson);
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.about-heritage .about-stores__card-topper {
+  margin-top: var(--space-sm);
+}
+
+.about-heritage .about-stores__card-h {
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  line-height: 0.95;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0;
+}
+
+.about-heritage .about-stores__card-addr {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0;
+  padding-top: var(--space-sm);
+  border-top: 1px dashed var(--rule);
+}
+
+.about-heritage .about-stores__card-p {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* ============================================
+   CREDENTIALS — rubber-stamp seal grid
+   ============================================ */
+.about-heritage .about-credentials__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-2xl);
+  max-width: 44rem;
+}
+
+.about-heritage .about-credentials__title {
+  margin: 0;
+  color: var(--ink);
+}
+
+.about-heritage .about-credentials__grid {
+  list-style: none;
+  margin: 0 0 var(--space-2xl);
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg) var(--space-md);
+}
+
+@media (min-width: 38rem) {
+  .about-heritage .about-credentials__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 64rem) {
+  .about-heritage .about-credentials__grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.about-heritage .about-credentials__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
+}
+
+.about-heritage .about-credentials__stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.5rem;
+  height: 5.5rem;
+  border: 2px solid var(--crimson);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--crimson-deep) inset;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  text-align: center;
+  line-height: 1.25;
+  padding: 0.5rem;
+  transform: rotate(-5deg);
+}
+
+.about-heritage .about-credentials__item:nth-child(2n) .about-credentials__stamp {
+  transform: rotate(3deg);
+}
+
+.about-heritage .about-credentials__item:nth-child(3n) .about-credentials__stamp {
+  transform: rotate(-2deg);
+}
+
+.about-heritage .about-credentials__cap {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  max-width: 16ch;
+}
+
+/* Suppliers strip */
+.about-heritage .about-credentials__suppliers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg) 0;
+  border-top: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  position: relative;
+}
+
+.about-heritage .about-credentials__sup-topper {
+  text-align: center;
+}
+
+.about-heritage .about-credentials__sup-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md) var(--space-lg);
+}
+
+.about-heritage .about-credentials__sup {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3.25rem);
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  position: relative;
+  padding-bottom: 0.15em;
+  border-bottom: 3px solid var(--gold-leaf);
+}
+
+.about-heritage .about-credentials__sup-sep {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 4vw, 2.25rem);
+  color: var(--crimson);
+  opacity: 0.65;
+}
+
+/* ============================================
+   FAQ — numbered list, denser typography
+   ============================================ */
 .about-heritage .about-faq {
   padding: clamp(3.5rem, 8vw, 6rem) var(--space-md);
-}
-
-.about-heritage .about-faq__divider {
-  margin: 0 0 var(--space-xl);
 }
 
 .about-heritage .about-faq__title {
@@ -171,20 +730,24 @@
 
 .about-heritage .about-faq__item {
   display: grid;
-  grid-template-columns: minmax(3.5rem, auto) 1fr;
-  gap: clamp(1rem, 4vw, 3rem);
+  grid-template-columns: minmax(3rem, auto) 1fr;
+  gap: clamp(1rem, 4vw, 2.5rem);
   align-items: start;
   padding: clamp(1.5rem, 3.5vw, 2.5rem) 0;
   border-top: 1px solid var(--rule);
 }
 
+.about-heritage .about-faq__item:first-child {
+  border-top: 2px solid var(--ink);
+}
+
 .about-heritage .about-faq__item:last-child {
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 2px solid var(--ink);
 }
 
 .about-heritage .about-faq__num {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
   line-height: 0.9;
   color: var(--crimson);
   font-weight: 400;
@@ -215,47 +778,120 @@
   margin: 0;
 }
 
-.about-heritage .about-faq__link {
-  color: var(--crimson);
-  font-family: var(--font-mono);
-  font-size: var(--step--1);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border-bottom: 1px solid var(--crimson);
-  padding-bottom: 0.1em;
-  margin-left: 0.25rem;
+.about-heritage .about-faq__bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
 }
 
-.about-heritage .about-faq__link:hover {
+.about-heritage .about-faq__bullets li {
+  position: relative;
+  padding-left: 1.4rem;
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 65ch;
+}
+
+.about-heritage .about-faq__bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 0.85rem;
+  height: 2px;
+  background: var(--crimson);
+}
+
+.about-heritage .about-faq__bullets strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.about-heritage .about-faq__cta-wrap {
+  margin: var(--space-sm) 0 0;
+}
+
+.about-heritage .about-faq__link {
+  display: inline-block;
+  color: var(--paper);
+  background: var(--crimson);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.6rem 0.9rem;
+  border: 1.5px solid var(--crimson);
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+
+.about-heritage .about-faq__link:hover,
+.about-heritage .about-faq__link:focus-visible {
+  background: var(--paper);
+  color: var(--crimson);
+}
+
+.about-heritage .about-faq__inline-link {
+  color: var(--crimson);
+  text-decoration: none;
+  border-bottom: 1px solid var(--crimson);
+}
+
+.about-heritage .about-faq__inline-link:hover {
   color: var(--crimson-deep);
   border-color: var(--crimson-deep);
 }
 
-/* ---- FINAL CTA — enamel ---- */
+/* ============================================
+   FINAL CTA — enamel, two buttons, EST. watermark
+   ============================================ */
 .about-heritage #cta.about-cta {
-  padding: clamp(4rem, 10vw, 8rem) var(--space-md);
+  padding: clamp(4.5rem, 10vw, 8rem) var(--space-md);
   position: relative;
   overflow: hidden;
-}
-
-.about-heritage #cta.about-cta::before,
-.about-heritage #cta.about-cta::after {
-  content: none;
-  display: none;
 }
 
 .about-heritage #cta.about-cta picture {
   display: none;
 }
 
+.about-heritage #cta.about-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 25% 25%, oklch(28% 0.06 25 / 0.55) 0%, transparent 50%),
+    radial-gradient(circle at 80% 75%, oklch(14% 0.03 25 / 0.6) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
 .about-heritage .about-cta__inner {
+  position: relative;
+  z-index: 2;
   text-align: left;
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
   align-items: flex-start;
   max-width: 60rem;
+}
+
+.about-heritage .about-cta__rule {
+  display: block;
+  width: 4rem;
+  height: 3px;
+  background: var(--gold-leaf);
+  margin-bottom: var(--space-xs);
+}
+
+.about-heritage .about-cta__topper {
+  color: var(--gold-leaf);
 }
 
 .about-heritage .about-cta__title {
@@ -268,9 +904,16 @@
   font-family: var(--font-body);
   font-size: var(--step-1);
   line-height: 1.55;
-  color: oklch(90% 0.012 75);
+  color: var(--paper);
   max-width: 60ch;
   margin: 0 0 var(--space-md);
+  opacity: 0.95;
+}
+
+.about-heritage .about-cta__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
 }
 
 .about-heritage .about-cta__btn {
@@ -278,7 +921,7 @@
   align-items: center;
   font-family: var(--font-mono);
   font-size: 0.78rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   padding: 1rem 1.6rem;
@@ -286,23 +929,63 @@
   border-radius: 0;
   transition: background-color .2s ease, color .2s ease, border-color .2s ease;
   line-height: 1.1;
-  border: 1.5px solid var(--crimson);
-  background: var(--crimson);
-  color: var(--paper);
+  border: 1.5px solid transparent;
   min-height: 3.25rem;
 }
 
-.about-heritage .about-cta__btn:hover {
+.about-heritage .about-cta__btn--primary {
+  background: var(--crimson);
+  color: var(--paper);
+  border-color: var(--crimson);
+}
+
+.about-heritage .about-cta__btn--primary:hover,
+.about-heritage .about-cta__btn--primary:focus-visible {
   background: var(--gold-leaf);
   color: var(--enamel);
   border-color: var(--gold-leaf);
 }
 
-/* ---- Dark mode harmonize ---- */
+.about-heritage .about-cta__btn--ghost {
+  background: transparent;
+  color: var(--gold-leaf);
+  border-color: var(--gold-leaf);
+}
+
+.about-heritage .about-cta__btn--ghost:hover,
+.about-heritage .about-cta__btn--ghost:focus-visible {
+  background: var(--gold-leaf);
+  color: var(--enamel);
+}
+
+/* EST. 1984 watermark */
+.about-heritage .about-cta__watermark {
+  position: absolute;
+  right: -0.1em;
+  bottom: -0.15em;
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 16vw, 12rem);
+  line-height: 0.85;
+  color: oklch(60% 0.06 85 / 0.07);
+  letter-spacing: -0.02em;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+/* ============================================
+   Dark mode harmonize
+   ============================================ */
 body.dark-mode .about-heritage .about-section,
 body.dark-mode .about-heritage .about-faq {
   background-color: var(--paper);
 }
-body.dark-mode .about-heritage .about-faq.h-paper-deep {
+body.dark-mode .about-heritage .about-faq.h-paper-deep,
+body.dark-mode .about-heritage .about-timeline.h-paper-deep,
+body.dark-mode .about-heritage .about-credentials.h-paper-deep {
+  background-color: var(--paper-deep);
+}
+body.dark-mode .about-heritage .about-anchors {
   background-color: var(--paper-deep);
 }

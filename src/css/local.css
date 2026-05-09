@@ -166,9 +166,12 @@
     inset: 0;
     z-index: -1;
     pointer-events: none;
+    /* Ink-black diagonal anchor bottom-left for headline legibility,
+       crimson radial echo top-right. Matches critical.css. */
     background:
-      linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.7) 100%),
-      radial-gradient(circle at 70% 30%, rgba(193, 28, 42, 0.18) 0%, transparent 55%);
+      linear-gradient(110deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.55) 55%, rgba(0, 0, 0, 0.45) 100%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.7) 100%),
+      radial-gradient(circle at 80% 25%, rgba(193, 28, 42, 0.22) 0%, transparent 55%);
   }
 
   #hero .hero-inner {
@@ -184,41 +187,7 @@
     margin-bottom: var(--space-lg);
   }
 
-  #hero .hero-title {
-    color: var(--paper);
-    font-size: var(--step-6);
-    line-height: 0.92;
-    letter-spacing: -0.015em;
-    text-wrap: balance;
-    margin: 0 0 var(--space-xl);
-    max-width: 18ch;
-  }
-
-  #hero .hero-title-mark {
-    color: var(--gold-leaf);
-    display: inline-block;
-    position: relative;
-  }
-
-  #hero .hero-title-mark::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0.05em;
-    height: 4px;
-    background: var(--crimson);
-  }
-
-  #hero .hero-lede {
-    font-family: var(--font-body);
-    font-size: var(--step-1);
-    line-height: 1.5;
-    color: oklch(92% 0.01 75);
-    max-width: 38ch;
-    margin: 0 0 var(--space-2xl);
-    text-wrap: pretty;
-  }
+  /* Hero title styling — see critical.css for canonical rules */
 
   #hero .hero-actions {
     display: flex;
@@ -259,39 +228,14 @@
 
   .hero-btn--ghost {
     background: transparent;
-    color: var(--gold-leaf);
-    border-color: var(--gold-leaf);
+    color: var(--paper);
+    border-color: var(--paper);
   }
 
   .hero-btn--ghost:hover {
-    background: var(--gold-leaf);
+    background: var(--paper);
     color: var(--enamel);
-  }
-
-  /* Stamped seal — bottom-right of hero */
-  #hero .hero-seal {
-    position: absolute;
-    right: clamp(1rem, 4vw, 3rem);
-    bottom: clamp(1.5rem, 4vw, 3rem);
-    background: rgba(20, 14, 14, 0.4);
-    backdrop-filter: blur(2px);
-    color: var(--gold-leaf);
-    border-color: var(--gold-leaf);
-    box-shadow: 0 0 0 1px rgba(255, 200, 90, 0.4) inset;
-    font-size: 0.65rem;
-    width: 6rem;
-    height: 6rem;
-  }
-}
-
-@media only screen and (min-width: 48em) {
-  #hero .hero-title {
-    max-width: 22ch;
-  }
-  #hero .hero-seal {
-    width: 7.5rem;
-    height: 7.5rem;
-    font-size: 0.72rem;
+    border-color: var(--paper);
   }
 }
 
@@ -369,6 +313,11 @@
   max-width: 50rem;
 }
 
+#lines .lines-head .h-topper {
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+}
+
 #lines .lines-headline {
   margin-top: var(--space-sm);
 }
@@ -390,20 +339,50 @@
   grid-template-columns: minmax(4rem, auto) 1fr;
   gap: clamp(1rem, 4vw, 3rem);
   align-items: start;
-  padding: clamp(1.5rem, 3.5vw, 2.5rem) 0;
+  padding: clamp(1.5rem, 3.5vw, 2.5rem) clamp(0.5rem, 1.5vw, 1.25rem);
   border-top: 1px solid var(--rule);
+  position: relative;
+  transition: background-color .25s ease, padding-left .25s ease;
 }
 
 #lines .lines-item:last-child {
   border-bottom: 1px solid var(--rule);
 }
 
+/* Hover — gold-leaf left rule + paper-deep wash. Honest hand-set rhythm. */
+#lines .lines-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--gold-leaf);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform .25s ease;
+}
+
+#lines .lines-item:hover {
+  background-color: var(--paper-deep);
+  padding-left: clamp(1rem, 2.5vw, 1.75rem);
+}
+
+#lines .lines-item:hover::before {
+  transform: scaleY(1);
+}
+
+/* Rubber-stamped numerals — display serif, ink-bleed via subtle drop-shadow */
 #lines .lines-num {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  line-height: 0.9;
+  font-size: clamp(2.75rem, 6.5vw, 5rem);
+  line-height: 0.85;
   color: var(--crimson);
   font-weight: 400;
+  letter-spacing: -0.02em;
+  filter: drop-shadow(0 1px 0 rgba(138, 20, 30, 0.25));
+  opacity: 0.95;
+  align-self: start;
 }
 
 #lines .lines-body {
@@ -429,8 +408,8 @@
 #lines .lines-text {
   font-family: var(--font-body);
   font-size: var(--step-0);
-  line-height: 1.55;
-  color: var(--ink-soft);
+  line-height: 1.6;
+  color: var(--ink); /* full ink instead of ink-soft for paperwork-grade legibility */
   max-width: 60ch;
   margin: 0;
 }
@@ -502,6 +481,7 @@
   width: 100%;
   height: auto;
   aspect-ratio: 4 / 5;
+  min-height: 220px; /* mobile floor — review flagged ~140px crops */
   object-fit: cover;
 }
 
@@ -519,10 +499,59 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
+  position: relative;
+}
+
+/* Gold-leaf hairline above eyebrow — punctuates the column like a signpainter rule */
+.sbs-copy .sbs-rule {
+  display: block;
+  width: 4rem;
+  height: 1px;
+  background: var(--gold-leaf);
+  margin: 0 0 var(--space-sm);
 }
 
 .sbs-lede {
   margin: var(--space-sm) 0 var(--space-md);
+}
+
+/* Bottom row — link + EST 1984 stamped seal accent */
+.sbs-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  margin-top: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.sbs-seal {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 600px) {
+  .sbs-seal { display: none; }
+}
+
+/* Trade-tags row — first-class FEL/PGI/1.4G/etc. vocabulary on compliance section */
+.sbs-trade-tags {
+  list-style: none;
+  margin: var(--space-sm) 0 var(--space-md);
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.6rem;
+}
+
+.sbs-trade-tags li {
+  display: inline-flex;
+}
+
+/* Strong link variant — paperwork-grade weight on compliance CTA */
+.sbs-link--strong {
+  font-size: 0.85rem;
+  border-bottom-width: 2px;
+  padding-bottom: 0.3em;
 }
 
 .sbs-body {
@@ -574,43 +603,76 @@
 
 @media only screen and (min-width: 48em) {
   #reviews .reviews-list {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-2xl);
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
   }
 }
 
-#reviews .reviews-item {
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  border-radius: 0;
-  padding: clamp(1.5rem, 3vw, 2.25rem);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-  position: relative;
+@media (min-width: 48em) and (max-width: 70em) {
+  #reviews .reviews-list {
+    grid-template-columns: 1fr 1fr;
+  }
+  #reviews .reviews-item:last-child {
+    grid-column: 1 / -1;
+    max-width: 36rem;
+    margin: 0 auto;
+  }
 }
 
-#reviews .reviews-item::before {
+/* Paper-stock cream tear-out — no rounded SaaS card, no shadow.
+   Gold-leaf hairline top, ink-stamp quote glyph top-left as compliance seal. */
+#reviews .reviews-item {
+  background: var(--paper);
+  border: 0;
+  border-top: 2px solid var(--gold-leaf);
+  border-radius: 0;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) clamp(1.25rem, 2.5vw, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  position: relative;
+  box-shadow: none;
+}
+
+#reviews .reviews-item::after {
+  /* hairline rule along the bottom edge — paper sheet, not card */
   content: "";
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  height: 2px;
-  background: var(--gold-leaf);
+  height: 1px;
+  background: var(--rule);
+}
+
+/* Ink-stamped open-quote glyph — display serif, large, crimson, slight rotation */
+#reviews .reviews-mark {
+  position: absolute;
+  top: -0.45em;
+  left: 0.4rem;
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  line-height: 1;
+  color: var(--crimson);
+  opacity: 0.88;
+  transform: rotate(-4deg);
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 1px 0 rgba(138, 20, 30, 0.25));
 }
 
 #reviews .reviews-stars {
-  font-size: 1.05rem;
+  font-size: 1rem;
   letter-spacing: 0.18em;
   color: var(--crimson);
   line-height: 1;
+  margin-top: var(--space-md);
 }
 
 #reviews .reviews-quote {
   font-family: var(--font-body);
-  font-size: var(--step-1);
-  line-height: 1.45;
+  font-size: var(--step-0);
+  line-height: 1.55;
   color: var(--ink);
   margin: 0;
   text-wrap: pretty;
@@ -618,11 +680,18 @@
 
 #reviews .reviews-attribution {
   margin-top: auto;
-  font-size: 0.72rem;
+  padding-top: var(--space-sm);
+  font-size: 0.7rem;
   font-weight: 500;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ink-soft);
+}
+
+@media (max-width: 600px) {
+  #reviews .reviews-item {
+    padding: 1.25rem;
+  }
 }
 
 /* ============================================
@@ -638,15 +707,36 @@
   max-width: 86rem;
 }
 
+/* Enamel-painted board — flat ink-black surface with subtle vignette,
+   gold-leaf hairline top + bottom punctuating like a hand-painted sign. */
+#cta {
+  background-color: var(--enamel);
+  border-top: 1px solid var(--gold-leaf);
+  border-bottom: 1px solid var(--gold-leaf);
+}
+
 #cta::before {
   content: "";
   position: absolute;
   inset: 0;
+  /* very subtle linear vignette only, no bokeh radials */
   background:
-    radial-gradient(circle at 20% 30%, oklch(25% 0.05 25) 0%, transparent 55%),
-    radial-gradient(circle at 80% 75%, oklch(15% 0.03 25) 0%, transparent 55%);
+    linear-gradient(180deg, oklch(22% 0.04 25) 0%, oklch(15% 0.025 25) 100%);
   pointer-events: none;
   z-index: 0;
+}
+
+/* Crimson stamped accent — single bold sign-painter mark in corner */
+#cta::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: clamp(120px, 18vw, 240px);
+  height: 4px;
+  background: var(--crimson);
+  z-index: 1;
+  pointer-events: none;
 }
 
 #cta > * {
@@ -689,29 +779,62 @@
   margin: 0;
 }
 
+/* Two-store block — each store its own column with address + phone */
 #cta .cta-stores {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+@media only screen and (min-width: 40em) {
+  #cta .cta-stores {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
 }
 
 #cta .cta-store {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.15rem;
-  padding: var(--space-md) 0;
+  gap: 0.2rem;
+  padding: var(--space-md) var(--space-md) var(--space-md) 0;
   border-top: 1px solid var(--gold-leaf);
   text-decoration: none;
   color: var(--paper);
-  transition: padding-left .2s ease;
+  transition: padding-left .2s ease, background-color .2s ease;
+}
+
+@media only screen and (min-width: 40em) {
+  #cta .cta-store {
+    padding-right: var(--space-lg);
+    border-right: 1px solid rgba(225, 197, 117, 0.25);
+  }
+  #cta .cta-store:last-child {
+    border-right: 0;
+    padding-right: 0;
+    padding-left: var(--space-lg);
+  }
 }
 
 #cta .cta-store:last-child {
   border-bottom: 1px solid var(--gold-leaf);
 }
 
+@media only screen and (min-width: 40em) {
+  #cta .cta-store,
+  #cta .cta-store:last-child {
+    border-bottom: 1px solid var(--gold-leaf);
+  }
+}
+
 #cta .cta-store:hover {
   padding-left: var(--space-sm);
+}
+
+@media only screen and (min-width: 40em) {
+  #cta .cta-store:hover { padding-left: 0; }
+  #cta .cta-store:last-child:hover { padding-left: calc(var(--space-lg) + var(--space-sm)); }
+  #cta .cta-store:first-child:hover { padding-left: var(--space-sm); }
 }
 
 #cta .cta-store-label {
@@ -729,10 +852,20 @@
   color: var(--paper);
 }
 
+#cta .cta-store-addr {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: oklch(82% 0.012 75);
+  line-height: 1.4;
+  margin-top: 0.15rem;
+}
+
 #cta .cta-store-phone {
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
-  color: oklch(88% 0.012 75);
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  color: var(--paper);
+  margin-top: 0.25rem;
+  font-weight: 500;
 }
 
 #cta .cta-action {
@@ -741,17 +874,38 @@
   justify-content: flex-start;
 }
 
+/* Larger primary CTA + gold-leaf underline accent */
 #cta .cta-btn {
   background: var(--crimson);
   color: var(--paper);
   border-color: var(--crimson);
-  padding: 1.1rem 1.8rem;
+  padding: 1.25rem 2.25rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+  position: relative;
+  min-height: 3.75rem;
+}
+
+#cta .cta-btn::after {
+  content: "";
+  position: absolute;
+  left: 1.25rem;
+  right: 1.25rem;
+  bottom: 0.55rem;
+  height: 1px;
+  background: var(--gold-leaf);
+  opacity: 0;
+  transition: opacity .2s ease;
 }
 
 #cta .cta-btn:hover {
-  background: var(--gold-leaf);
-  color: var(--enamel);
-  border-color: var(--gold-leaf);
+  background: var(--crimson-deep);
+  color: var(--paper);
+  border-color: var(--crimson-deep);
+}
+
+#cta .cta-btn:hover::after {
+  opacity: 1;
 }
 
 /* ============================================
@@ -775,7 +929,11 @@ body.dark-mode #reviews .reviews-quote {
 
 body.dark-mode #reviews .reviews-item {
   background: var(--enamel);
-  border-color: var(--rule);
+  border-top-color: var(--gold-leaf);
+}
+
+body.dark-mode #reviews .reviews-mark {
+  color: var(--gold-leaf);
 }
 
 body.dark-mode .local-cart__drawer {

@@ -32,9 +32,12 @@
     inset: 0;
     z-index: -1;
     pointer-events: none;
+    /* Ink-black gradient anchored bottom-left for headline legibility,
+       crimson radial echo top-right for warmth. */
     background:
-      linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.7) 100%),
-      radial-gradient(circle at 70% 30%, rgba(193, 28, 42, 0.18) 0%, transparent 55%);
+      linear-gradient(110deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.55) 55%, rgba(0, 0, 0, 0.45) 100%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.7) 100%),
+      radial-gradient(circle at 80% 25%, rgba(193, 28, 42, 0.22) 0%, transparent 55%);
   }
 
   #hero .hero-inner {
@@ -56,40 +59,42 @@
   }
 
   #hero .hero-title {
+    margin: 0 0 var(--space-xl);
+    max-width: 22ch;
+    display: block;
+  }
+
+  #hero .hero-title-display {
+    display: block;
     font-family: var(--font-display);
     font-weight: 400;
     font-size: var(--step-6);
-    line-height: 0.92;
-    letter-spacing: -0.015em;
+    line-height: 0.9;
+    letter-spacing: -0.018em;
     color: var(--paper);
     text-wrap: balance;
-    margin: 0 0 var(--space-xl);
-    max-width: 18ch;
   }
 
-  #hero .hero-title-mark {
+  #hero .hero-title-sub {
+    display: block;
+    margin-top: var(--space-md);
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--step-2);
+    line-height: 1.1;
+    letter-spacing: -0.005em;
     color: var(--gold-leaf);
-    display: inline-block;
-    position: relative;
-  }
-
-  #hero .hero-title-mark::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0.05em;
-    height: 4px;
-    background: var(--crimson);
+    text-wrap: balance;
+    max-width: 28ch;
   }
 
   #hero .hero-lede {
     font-family: var(--font-body);
     font-size: var(--step-1);
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.5;
-    color: oklch(92% 0.01 75);
-    max-width: 38ch;
+    color: #f4ead8; /* cream — raises contrast on dark hero photo */
+    max-width: 42ch;
     margin: 0 0 var(--space-2xl);
     text-wrap: pretty;
   }
@@ -130,53 +135,83 @@
     border-color: var(--crimson-deep);
   }
 
+  /* Secondary CTA — outlined cream, distinct from crimson primary */
   #hero .hero-btn--ghost {
     background: transparent;
-    color: var(--gold-leaf);
-    border-color: var(--gold-leaf);
+    color: var(--paper);
+    border-color: var(--paper);
   }
 
   #hero .hero-btn--ghost:hover {
-    background: var(--gold-leaf);
+    background: var(--paper);
     color: var(--enamel);
+    border-color: var(--paper);
   }
 
-  /* Stamped seal */
+  /* Rubber-stamp seal — concentric rings, ink-bleed feel.
+     Stacked text lines (EST / 1984 / MICHIGAN). */
   #hero .hero-seal {
     position: absolute;
     right: clamp(1rem, 4vw, 3rem);
     bottom: clamp(1.5rem, 4vw, 3rem);
-    background: rgba(20, 14, 14, 0.4);
-    color: var(--gold-leaf);
-    border: 2px solid var(--gold-leaf);
-    box-shadow: 0 0 0 1px rgba(255, 200, 90, 0.4) inset;
-    border-radius: 50%;
-    width: 6rem;
-    height: 6rem;
-    display: inline-flex;
+    width: 6.5rem;
+    height: 6.5rem;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 0.05rem;
     text-align: center;
-    padding: 0.85rem;
+    background: transparent;
+    color: var(--gold-leaf);
+    border: 2.5px solid var(--gold-leaf);
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 4px transparent,
+      0 0 0 5px var(--gold-leaf) inset,
+      0 0 0 6px rgba(0, 0, 0, 0) inset;
+    /* outer ring + inner hairline ring */
+    outline: 1px solid rgba(255, 200, 90, 0.45);
+    outline-offset: 4px;
+    transform: rotate(-7deg);
     font-family: var(--font-mono);
-    font-size: 0.65rem;
     font-weight: 500;
-    letter-spacing: 0.25em;
     text-transform: uppercase;
-    line-height: 1.2;
-    transform: rotate(-6deg);
+    line-height: 1;
+    /* ink-bleed: subtle drop-shadow + slight opacity */
+    filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.35));
+    opacity: 0.92;
+    padding: 0.75rem;
+  }
+
+  #hero .hero-seal-top,
+  #hero .hero-seal-bot {
+    font-size: 0.55rem;
+    letter-spacing: 0.22em;
+  }
+
+  #hero .hero-seal-mid {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin: 0.18rem 0;
   }
 }
 
 @media only screen and (min-width: 48em) {
-  #hero .hero-title {
-    max-width: 22ch;
-  }
   #hero .hero-seal {
-    width: 7.5rem;
-    height: 7.5rem;
-    font-size: 0.72rem;
+    width: 8rem;
+    height: 8rem;
   }
+  #hero .hero-seal-top,
+  #hero .hero-seal-bot { font-size: 0.65rem; }
+  #hero .hero-seal-mid { font-size: 1.85rem; }
+}
+
+/* Hide stamp on small mobile to avoid crop / collision with CTA */
+@media (max-width: 480px) {
+  #hero .hero-seal { display: none; }
 }
 
 /* Reduced motion: static poster */

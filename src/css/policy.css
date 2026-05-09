@@ -30,6 +30,7 @@
   .policy-page .policy-title {
     margin: 0 0 var(--space-lg);
     color: var(--ink);
+    max-width: 22ch;
   }
 
   .policy-page .policy-text {
@@ -66,6 +67,29 @@
     );
   }
 
+  .policy-page .policy-section-head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-sm);
+  }
+
+  .policy-page .policy-section-head .policy-eyebrow { margin-bottom: 0; }
+
+  .policy-page .policy-schedule {
+    transform: rotate(-2deg);
+    background: var(--paper);
+    box-shadow: 0 0 0 1px var(--paper-deep) inset;
+  }
+
+  .policy-page .policy-schedule--gold {
+    color: var(--gold-leaf);
+    border-color: var(--gold-leaf);
+    background: transparent;
+    box-shadow: 0 0 0 1px oklch(60% 0.1 85 / 0.5) inset;
+  }
+
   /* ---------- HERO — enamel painted board ---------- */
   /* Reset legacy #int-hero defaults */
   .policy-page #int-hero.policy-hero {
@@ -96,6 +120,24 @@
   .policy-page .policy-hero {
     padding: clamp(4rem, 9vw, 7.5rem) var(--space-md);
     text-align: left;
+    position: relative;
+  }
+
+  /* Subtle paint-stroke noise on enamel hero */
+  .policy-page .policy-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 12% 18%, oklch(30% 0.05 25 / 0.35) 0%, transparent 38%),
+      radial-gradient(circle at 88% 82%, oklch(15% 0.04 25 / 0.5) 0%, transparent 45%),
+      repeating-linear-gradient(135deg,
+        oklch(20% 0.04 25 / 0.06) 0 1px,
+        transparent 1px 4px);
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    opacity: 0.85;
+    z-index: 0;
   }
 
   .policy-page .policy-hero__inner {
@@ -103,6 +145,13 @@
     grid-template-columns: 1fr;
     gap: var(--space-lg);
     position: relative;
+    z-index: 1;
+  }
+
+  .policy-page .policy-hero__head {
+    display: grid;
+    gap: var(--space-md);
+    max-width: 52rem;
   }
 
   .policy-page .policy-hero__topper {
@@ -132,12 +181,36 @@
   }
 
   .policy-page .policy-hero__seal {
-    position: absolute;
-    top: 0;
-    right: 0;
+    /* Default mobile: inline below head, no rotation */
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: rotate(-3deg);
     color: var(--gold-leaf);
     border-color: var(--gold-leaf);
-    box-shadow: 0 0 0 1px oklch(60% 0.1 85) inset;
+    background: oklch(20% 0.04 25 / 0.45);
+    box-shadow: 0 0 0 1px oklch(60% 0.1 85 / 0.7) inset;
+    align-self: start;
+    flex-direction: column;
+    gap: 0.2em;
+    width: 7.5rem;
+    height: 7.5rem;
+    padding: 0.85rem;
+  }
+
+  .policy-page .policy-hero__seal-line {
+    display: block;
+    line-height: 1.15;
+  }
+
+  .policy-page .policy-hero__seal-rev {
+    display: block;
+    margin-top: 0.35em;
+    padding-top: 0.35em;
+    border-top: 1px solid oklch(60% 0.1 85 / 0.5);
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    color: oklch(82% 0.08 85);
   }
 
   /* ---------- TOC — numbered chip row ---------- */
@@ -163,16 +236,17 @@
     gap: 0.55em;
     padding: 0.55rem 0.95rem;
     color: var(--paper);
-    background: transparent;
-    border: 1px solid oklch(70% 0.05 85 / 0.6);
+    background: oklch(28% 0.05 25 / 0.4);
+    border: 1px solid oklch(70% 0.05 85 / 0.9);
     border-radius: 0;
     text-decoration: none;
     font-weight: 500;
     transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
   }
 
-  .policy-page .policy-toc a:hover {
-    background: oklch(28% 0.05 25);
+  .policy-page .policy-toc a:hover,
+  .policy-page .policy-toc a:focus-visible {
+    background: oklch(20% 0.05 25 / 0.7);
     border-color: var(--gold-leaf);
     color: var(--gold-leaf);
   }
@@ -195,15 +269,19 @@
   }
 
   .policy-page .policy-highlight {
-    /* Drop gradient + soft card. Hairline top + bottom only. */
+    /* Ink-stamp wrapper: top + bottom hairline, side rules */
     background: var(--paper-deep);
     border-top: 2px solid var(--ink);
-    border-bottom: 1px solid var(--rule);
+    border-bottom: 2px solid var(--ink);
+    border-left: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
     padding: var(--space-lg) var(--space-md);
     display: grid;
     gap: var(--space-md);
     border-radius: 0;
     box-shadow: none;
+    /* Bleed to edge on small viewports */
+    margin-inline: calc(var(--space-md) * -1);
   }
 
   .policy-page .policy-highlight__title {
@@ -222,13 +300,13 @@
     margin-top: var(--space-xs);
     font-family: var(--font-mono);
     font-size: var(--step--1);
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--crimson);
     text-decoration: none;
-    border-bottom: 1px solid var(--crimson);
-    padding-bottom: 0.25em;
+    border-bottom: 2px solid var(--gold-leaf);
+    padding-bottom: 0.3em;
     align-self: start;
     transition: color 0.18s ease, border-color 0.18s ease, gap 0.18s ease;
   }
@@ -259,13 +337,13 @@
 
   .policy-page .policy-table thead th {
     background: var(--paper-deep);
-    color: var(--ink-soft);
+    color: var(--ink);
     text-align: left;
-    padding: 0.85rem 1rem;
+    padding: 1rem 1rem;
     font-family: var(--font-mono);
-    font-size: var(--step--1);
-    font-weight: 500;
-    letter-spacing: 0.2em;
+    font-size: var(--step-0);
+    font-weight: 600;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     border-top: 2px solid var(--ink);
     border-bottom: 1px solid var(--ink);
@@ -273,7 +351,7 @@
 
   .policy-page .policy-table tbody th,
   .policy-page .policy-table tbody td {
-    padding: 1.05rem 1rem;
+    padding: 1.15rem 1rem 1.4rem;
     color: var(--ink);
     font-size: var(--step-0);
     line-height: 1.6;
@@ -291,16 +369,21 @@
     width: 30%;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.55rem;
   }
 
   .policy-page .policy-class {
     align-self: flex-start;
   }
 
-  .policy-page .policy-class__abbr {
-    text-decoration: none;
-    cursor: help;
+  .policy-page .policy-class__caption {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: 400;
+    color: var(--ink-soft);
+    letter-spacing: 0;
+    text-transform: none;
+    line-height: 1.35;
   }
 
   .policy-page .policy-table tbody tr:nth-of-type(even) th,
@@ -327,7 +410,7 @@
 
     .policy-page .policy-table tbody tr {
       border-top: 1px solid var(--rule);
-      padding: var(--space-sm) 0;
+      padding: var(--space-sm) 0 var(--space-md);
     }
 
     .policy-page .policy-table tbody tr:first-child {
@@ -338,7 +421,7 @@
     .policy-page .policy-table tbody td {
       border-top: 0;
       border-bottom: 0;
-      padding: 0.4rem var(--space-sm);
+      padding: 0.5rem var(--space-sm) 0.85rem;
       width: 100%;
     }
 
@@ -357,7 +440,7 @@
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.4rem;
     }
   }
 
@@ -374,7 +457,7 @@
 
   .policy-page .policy-step {
     position: relative;
-    padding: var(--space-lg) 0 var(--space-lg) clamp(4rem, 10vw, 6rem);
+    padding: var(--space-lg) 0 var(--space-lg) var(--space-md);
     counter-increment: policy-step;
     border-top: 1px solid var(--rule);
   }
@@ -383,18 +466,18 @@
     border-bottom: 1px solid var(--rule);
   }
 
+  /* Mobile: numeral inline above title */
   .policy-page .policy-step::before {
     content: counter(policy-step, decimal-leading-zero);
-    position: absolute;
-    top: var(--space-lg);
-    left: 0;
+    display: block;
     color: var(--crimson);
     font-family: var(--font-display);
-    font-size: var(--step-4);
+    font-size: var(--step-3);
     font-weight: 400;
-    line-height: 0.85;
+    line-height: 0.9;
     letter-spacing: -0.01em;
     font-feature-settings: "tnum" 1;
+    margin-bottom: var(--space-xs);
   }
 
   .policy-page .policy-step__title {
@@ -402,9 +485,12 @@
     color: var(--ink);
     font-family: var(--font-display);
     font-size: var(--step-2);
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.05;
     letter-spacing: -0.005em;
+    border-bottom: 1px solid oklch(80% 0.05 85 / 0.5);
+    padding-bottom: 0.4em;
+    display: inline-block;
   }
 
   .policy-page .policy-step p {
@@ -416,9 +502,35 @@
     max-width: 65ch;
   }
 
+  .policy-page .policy-step ul {
+    padding-left: 1.2rem;
+    margin: 0;
+  }
+
   .policy-page .policy-step p:last-child,
   .policy-page .policy-step ul:last-child {
     margin-bottom: 0;
+  }
+
+  .policy-page .policy-step__aside {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.04em;
+    color: var(--ink) !important;
+    margin-top: var(--space-sm);
+  }
+
+  .policy-page .policy-step__aside a {
+    color: var(--crimson);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold-leaf);
+    padding-bottom: 0.15em;
+    font-weight: 600;
+  }
+
+  .policy-page .policy-step__aside a:hover {
+    color: var(--ink);
+    border-color: var(--ink);
   }
 
   /* ---------- LISTS ---------- */
@@ -470,6 +582,13 @@
     padding-top: var(--space-lg);
   }
 
+  .policy-page .policy-block--paper {
+    background: var(--paper-deep);
+    border-top: 2px solid var(--ink);
+    padding: var(--space-lg) var(--space-md);
+    align-content: start;
+  }
+
   .policy-page .policy-block__title {
     margin: 0;
     font-family: var(--font-display);
@@ -493,6 +612,10 @@
   }
 
   /* ---------- ENAMEL section overrides ---------- */
+  .policy-page .policy-section--enamel {
+    position: relative;
+  }
+
   .policy-page .policy-section--enamel .policy-title,
   .policy-page .policy-section--enamel .policy-block__title {
     color: var(--paper);
@@ -508,11 +631,13 @@
 
   .policy-page .policy-section--enamel .policy-block p,
   .policy-page .policy-section--enamel .policy-list {
-    color: oklch(90% 0.012 75);
+    color: oklch(92% 0.012 75);
+    line-height: 1.8;
   }
 
   .policy-page .policy-section--enamel abbr[title] {
-    text-decoration-color: oklch(70% 0.05 85 / 0.5);
+    text-decoration-color: oklch(70% 0.05 85 / 0.6);
+    color: var(--paper);
   }
 
   .policy-page .policy-section--enamel .h-spec-list dt {
@@ -524,15 +649,45 @@
   }
 
   .policy-page .policy-section--enamel .h-spec-list > div {
-    border-bottom-color: oklch(70% 0.05 85 / 0.25);
+    border-bottom-color: oklch(70% 0.05 85 / 0.4);
+    padding: var(--space-sm) 0;
   }
 
   /* ---------- DEADLINE STAMP ---------- */
+  .policy-page .policy-deadline-row {
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 0 0 var(--space-xl);
+    padding: var(--space-md);
+    background: oklch(96% 0.018 70);
+    border-top: 2px solid var(--crimson);
+    border-bottom: 1px solid var(--rule);
+  }
+
   .policy-page .policy-deadline {
-    margin: 0 0 var(--space-lg);
-    font-size: 0.85rem;
-    padding: 0.5em 0.95em;
+    margin: 0;
+    font-size: var(--step-0);
+    padding: 0.7em 1.1em;
     letter-spacing: 0.22em;
+    transform: rotate(-3deg);
+    flex-shrink: 0;
+    box-shadow: 0 0 0 1px var(--paper) inset, 0 0 0 2px var(--crimson) inset;
+  }
+
+  .policy-page .policy-deadline-note {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    line-height: 1.6;
+    color: var(--ink);
+    max-width: 50ch;
+  }
+
+  .policy-page .policy-deadline-note strong {
+    color: var(--crimson);
+    font-weight: 600;
   }
 
   /* ---------- BUTTONS ---------- */
@@ -552,6 +707,7 @@
     border: 1px solid var(--ink);
     border-radius: 0;
     transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+    align-self: start;
   }
 
   .policy-page .policy-btn:hover {
@@ -584,14 +740,76 @@
     border-color: var(--gold-leaf);
   }
 
-  /* ---------- FINAL CTA ---------- */
+  .policy-page .policy-btn--ink {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+
+  .policy-page .policy-btn--ink:hover {
+    background: var(--crimson);
+    color: var(--paper);
+    border-color: var(--crimson);
+  }
+
+  .policy-page .policy-btn-hint {
+    margin: var(--space-xs) 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .policy-page .policy-btn-hint code {
+    font-family: var(--font-mono);
+    background: var(--paper);
+    padding: 0.05em 0.4em;
+    border: 1px solid var(--rule);
+    color: var(--ink);
+  }
+
+  /* ---------- FINAL CTA — ink board variant ---------- */
   .policy-page .policy-cta-section {
     text-align: left;
+  }
+
+  .policy-page .policy-cta-section--ink {
+    background: var(--ink);
+    color: var(--paper);
+    position: relative;
+  }
+
+  .policy-page .policy-cta-section--ink::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(135deg,
+        oklch(100% 0 0 / 0.015) 0 1px,
+        transparent 1px 5px);
+    pointer-events: none;
   }
 
   .policy-page .policy-cta__inner {
     display: grid;
     gap: var(--space-md);
+    position: relative;
+  }
+
+  .policy-page .policy-cta__divider {
+    margin-bottom: var(--space-lg);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--gold-leaf) 20%,
+      var(--gold-leaf) 80%,
+      transparent
+    );
+  }
+
+  .policy-page .policy-cta-section--ink .policy-eyebrow {
+    color: var(--gold-leaf);
   }
 
   .policy-page .policy-cta__title {
@@ -602,11 +820,13 @@
     line-height: 0.95;
   }
 
+  .policy-page .policy-cta-section--ink .policy-cta__title { color: var(--paper); }
+
   .policy-page .policy-cta__lede {
     font-family: var(--font-body);
     font-size: var(--step-1);
     line-height: 1.55;
-    color: oklch(90% 0.012 75);
+    color: oklch(88% 0.012 75);
     margin: 0;
     max-width: 55ch;
   }
@@ -614,38 +834,116 @@
   .policy-page .policy-cta__buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-sm);
+    gap: var(--space-md);
+    align-items: center;
     margin-top: var(--space-sm);
+  }
+
+  .policy-page .policy-cta__secondary {
+    color: var(--gold-leaf);
+    border-color: var(--gold-leaf);
+  }
+
+  .policy-page .policy-cta__secondary:hover {
+    color: var(--paper);
+    border-color: var(--paper);
   }
 
   /* legacy .policy-updated kept hidden — replaced by hero lede */
   .policy-page .policy-updated { display: none; }
+
+  /* ---------- MOBILE — TOC chips, table cells ---------- */
+  @media (max-width: 40rem) {
+    .policy-page .policy-toc a {
+      padding: 0.45rem 0.7rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+    }
+  }
+
+  /* Quick start order — mobile flips correctly because aside is first in DOM */
 }
 
-/* ---------- DESKTOP ---------- */
+/* ---------- TABLET / DESKTOP ---------- */
 @media only screen and (min-width: 48rem) {
   .policy-page .policy-blocks {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: clamp(2rem, 4vw, 3.5rem);
+    align-items: start;
+  }
+
+  .policy-page .policy-section--enamel .policy-blocks {
+    grid-auto-rows: max-content;
+  }
+
+  /* Process steps: numeral floats left at desktop */
+  .policy-page .policy-step {
+    padding-left: clamp(4rem, 10vw, 6rem);
+  }
+
+  .policy-page .policy-step::before {
+    position: absolute;
+    top: var(--space-lg);
+    left: 0;
+    font-size: var(--step-4);
+    line-height: 0.85;
+    margin-bottom: 0;
+  }
+
+  /* Overview grid drops to 2-col earlier so aside doesn't swim */
+  .policy-page .policy-overview__grid {
+    grid-template-columns: minmax(16rem, 0.5fr) minmax(0, 1.4fr);
+    gap: clamp(2rem, 4vw, 3.5rem);
+    align-items: start;
+  }
+
+  .policy-page .policy-highlight {
+    margin-inline: 0;
+    position: sticky;
+    top: 6rem;
+  }
+
+  /* Hero head + seal sit side-by-side at tablet+ */
+  .policy-page .policy-hero__inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "head seal"
+      "toc  toc";
+    column-gap: var(--space-xl);
+    row-gap: var(--space-lg);
+  }
+
+  .policy-page .policy-hero__head { grid-area: head; }
+  .policy-page .policy-toc       { grid-area: toc;  margin-top: 0; }
+  .policy-page .policy-hero__seal { grid-area: seal; align-self: start; }
+
+  .policy-page .policy-deadline-row {
+    padding: var(--space-lg);
+    gap: var(--space-lg);
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .policy-page .policy-deadline {
+    font-size: var(--step-1);
   }
 }
 
 @media only screen and (min-width: 64rem) {
   .policy-page .policy-overview__grid {
-    grid-template-columns: minmax(0, 1.4fr) minmax(18rem, 0.6fr);
+    grid-template-columns: minmax(18rem, 0.55fr) minmax(0, 1.45fr);
     gap: clamp(2.5rem, 5vw, 4.5rem);
-  }
-
-  .policy-page .policy-hero__seal {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%) rotate(-6deg);
   }
 
   .policy-page #int-hero h1.policy-hero__headline {
     font-size: var(--step-5);
-    max-width: 16ch;
+    max-width: 18ch;
+  }
+
+  .policy-page .policy-hero__seal {
+    width: 8.5rem;
+    height: 8.5rem;
+    font-size: 0.75rem;
   }
 }
 
@@ -659,5 +957,112 @@
   body.dark-mode .policy-page .policy-list,
   body.dark-mode .policy-page .policy-block p {
     /* let heritage tokens drive */
+  }
+
+  body.dark-mode .policy-page .policy-cta-section--ink {
+    background: var(--ink);
+    color: var(--paper);
+  }
+}
+
+/* ============================================
+   PRINT — paperwork audience
+   Strip enamel, force ink-on-white, keep stamps.
+   ============================================ */
+@media print {
+  .policy-page,
+  .policy-page .h-paper,
+  .policy-page .h-paper-deep,
+  .policy-page .h-enamel,
+  .policy-page .policy-cta-section--ink {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .policy-page .policy-hero::after,
+  .policy-page .policy-cta-section--ink::before { display: none !important; }
+
+  .policy-page .policy-section,
+  .policy-page .policy-hero {
+    padding: 1rem 0 !important;
+    page-break-inside: avoid;
+    border-top: 1px solid #000 !important;
+  }
+
+  .policy-page .policy-hero__headline,
+  .policy-page .policy-cta__title,
+  .policy-page .policy-title,
+  .policy-page .policy-block__title,
+  .policy-page .policy-step__title,
+  .policy-page .policy-hero__lede,
+  .policy-page .policy-section--enamel .policy-block p,
+  .policy-page .policy-section--enamel .policy-list,
+  .policy-page .policy-cta__lede,
+  .policy-page .policy-text,
+  .policy-page .policy-list,
+  .policy-page .policy-block p,
+  .policy-page .policy-step p,
+  .policy-page .policy-deadline-note,
+  .policy-page .policy-section--enamel .h-spec-list dd {
+    color: #000 !important;
+  }
+
+  .policy-page .policy-eyebrow,
+  .policy-page .policy-hero__topper,
+  .policy-page .policy-section--enamel .h-spec-list dt {
+    color: #000 !important;
+  }
+
+  .policy-page .policy-toc,
+  .policy-page .policy-cta__buttons,
+  .policy-page .policy-btn,
+  .policy-page .policy-link-cta,
+  .policy-page .policy-step__aside a,
+  .policy-page .policy-btn-hint {
+    /* Keep for paperwork copies */
+    color: #000 !important;
+    background: transparent !important;
+    border-color: #000 !important;
+  }
+
+  .policy-page .policy-hero__seal,
+  .policy-page .policy-deadline,
+  .policy-page .h-stamp {
+    color: #000 !important;
+    background: transparent !important;
+    border-color: #000 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  .policy-page .h-stamp--filled {
+    background: #000 !important;
+    color: #fff !important;
+  }
+
+  .policy-page abbr[title] {
+    text-decoration-color: #000 !important;
+  }
+
+  .policy-page abbr[title]::after {
+    content: " (" attr(title) ")";
+    font-size: 0.85em;
+    color: #333;
+  }
+
+  .policy-page .policy-divider,
+  .policy-page .policy-divider--gold,
+  .policy-page .policy-cta__divider {
+    background: #000 !important;
+  }
+
+  .policy-page .policy-deadline-row {
+    background: #fff !important;
+    border-top: 2px solid #000 !important;
+  }
+
+  .policy-page .policy-deadline-note strong {
+    color: #000 !important;
+    text-decoration: underline;
   }
 }
