@@ -426,15 +426,20 @@ body.dark-mode #navigation[data-heritage-nav] .logo .dark { display: block !impo
 
 /* Desktop nav links — mono caps, ink-soft */
 @media (min-width: 1024px) {
+  #navigation[data-heritage-nav] #navbar-menu ul li {
+    margin-left: clamp(1rem, 1.6vw, 1.875rem) !important;
+  }
+
   #navigation[data-heritage-nav] #navbar-menu ul li a {
     font-family: var(--font-mono) !important;
     font-weight: 500 !important;
     font-size: var(--step--1) !important;
-    letter-spacing: 0.18em !important;
+    letter-spacing: 0.14em !important;
     text-transform: uppercase !important;
     color: var(--ink-soft) !important;
     transition: color 0.2s ease !important;
     padding-bottom: 0.25rem;
+    white-space: nowrap !important;
   }
 
   #navigation[data-heritage-nav] #navbar-menu ul li a:before {
@@ -520,39 +525,24 @@ body.dark-mode #navigation[data-heritage-nav] .logo .dark { display: block !impo
   }
 }
 
-/* Day/Night toggle label */
+/* Day/Night toggle — icon-only, matches login + cart icon-buttons */
 .h-mode-toggle {
   position: relative !important;
   width: auto !important;
-  min-width: 3.5rem !important;
-  padding: 0.4rem 0.65rem !important;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  min-width: 0 !important;
+  padding: 0.4rem !important;
   border: 1px solid var(--rule) !important;
   background: transparent !important;
   border-radius: 0 !important;
   display: inline-flex !important;
   align-items: center;
-  gap: 0.4rem;
+  justify-content: center;
 }
 
 .h-mode-toggle .moon,
 .h-mode-toggle .sun {
-  width: 0.95rem !important;
-  height: 0.95rem !important;
-}
-
-.h-mode-toggle__label--day { display: inline; }
-.h-mode-toggle__label--night { display: none; }
-body.dark-mode .h-mode-toggle__label--day { display: none; }
-body.dark-mode .h-mode-toggle__label--night { display: inline; }
-
-@media (max-width: 600px) {
-  .h-mode-toggle__label--day,
-  .h-mode-toggle__label--night { display: none !important; }
-  .h-mode-toggle { min-width: 0 !important; padding: 0.4rem !important; }
+  width: 1rem !important;
+  height: 1rem !important;
 }
 
 /* Cart count badge — crimson square, Tanker numeral */
