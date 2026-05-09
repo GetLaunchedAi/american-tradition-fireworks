@@ -1453,8 +1453,39 @@
   body.dark-mode .reviews-heritage__lede,
   body.dark-mode .contact-heritage__directory dd,
   body.dark-mode .reviews-heritage__quote,
-  body.dark-mode .contact-heritage__addr {
+  body.dark-mode .contact-heritage__addr,
+  body.dark-mode .contact-heritage__spec dd,
+  body.dark-mode .contact-heritage #cs-form-242 .cs-label,
+  body.dark-mode .contact-heritage #cs-form-242 .cs-label-text,
+  body.dark-mode .contact-heritage #cs-form-242 .cs-input,
+  body.dark-mode .contact-heritage #cs-form-242 .cs-textarea,
+  body.dark-mode .contact-heritage__map-caption,
+  body.dark-mode .reviews-heritage__attribution {
     color: var(--paper);
+  }
+  body.dark-mode .contact-heritage__spec dt,
+  body.dark-mode .contact-heritage__directory dt,
+  body.dark-mode .contact-heritage__addr-hours,
+  body.dark-mode .contact-heritage__addr-note,
+  body.dark-mode .contact-heritage__required-key,
+  body.dark-mode .contact-heritage__helper,
+  body.dark-mode .reviews-heritage__date {
+    color: oklch(78% 0.01 75);
+  }
+  body.dark-mode .contact-heritage #cs-form-242 .cs-input,
+  body.dark-mode .contact-heritage #cs-form-242 .cs-textarea {
+    border-bottom-color: var(--paper);
+  }
+  body.dark-mode .contact-heritage #cs-form-242 .cs-input::placeholder,
+  body.dark-mode .contact-heritage #cs-form-242 .cs-textarea::placeholder {
+    color: oklch(75% 0.012 75 / 0.6);
+  }
+  body.dark-mode .contact-heritage #cs-form-242 select.cs-input option {
+    background-color: var(--ink);
+    color: var(--paper);
+  }
+  body.dark-mode .contact-heritage__map-caption:hover {
+    color: var(--gold-leaf);
   }
   body.dark-mode .contact-heritage__info {
     background-color: oklch(22% 0.02 25);
@@ -1462,6 +1493,11 @@
   body.dark-mode .reviews-heritage__item {
     background: oklch(22% 0.02 25);
     border-color: oklch(40% 0.02 25);
+  }
+  /* Credentials strip keeps cream bg in both modes — ink text stays readable.
+     Re-assert in case the global dark-mode body rule bleeds through. */
+  body.dark-mode .contact-credentials__stamp {
+    color: var(--ink);
   }
 }
 
@@ -2199,8 +2235,14 @@
     background: oklch(18% 0.02 25);
   }
   body.dark-mode .wholesale-page .ws-policy,
-  body.dark-mode .wholesale-page #cs-form-242 {
+  body.dark-mode .wholesale-page #cs-form-242,
+  body.dark-mode .wholesale-page .ws-spec {
     border-top-color: var(--paper);
+  }
+  body.dark-mode .wholesale-page .ws-policy__seal .h-stamp--ink,
+  body.dark-mode .wholesale-page .ws-compliance__stamp.h-stamp--ink {
+    color: var(--paper);
+    border-color: var(--paper);
   }
   body.dark-mode .wholesale-page .ws-policy__title,
   body.dark-mode .wholesale-page .ws-form__title,

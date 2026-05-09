@@ -665,6 +665,18 @@
     padding: var(--space-sm) 0;
   }
 
+  /* Links inside enamel-section lists must lift off the dark board */
+  .policy-page .policy-section--enamel .policy-list a {
+    color: var(--gold-leaf);
+    border-bottom: 1px solid oklch(70% 0.05 85 / 0.5);
+    text-decoration: none;
+  }
+
+  .policy-page .policy-section--enamel .policy-list a:hover {
+    color: var(--paper);
+    border-bottom-color: var(--paper);
+  }
+
   /* ---------- DEADLINE STAMP ---------- */
   .policy-page .policy-deadline-row {
     display: flex;

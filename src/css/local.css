@@ -910,31 +910,50 @@
 
 /* ============================================
    Dark mode (legacy compat — light theme is canon)
-   Keep simple inversions only; no glow.
+   Heritage surfaces (.h-paper / .h-paper-deep / .h-enamel)
+   are reconciled in heritage.css. Only patch what slips
+   through dark.css's blanket `color: #fff` on p/li/h1..h6.
    ============================================ */
-body.dark-mode #lines,
-body.dark-mode #sbs,
-body.dark-mode #sbs-r,
-body.dark-mode #reviews {
-  background-color: var(--ink);
-  color: var(--paper);
-}
 
-body.dark-mode #lines .lines-title,
-body.dark-mode #lines .lines-text,
+/* Hero is dark in both themes — defend the gold/cream/paper
+   tones from dark.css's blanket `body.dark-mode * { color:#fff }`. */
+body.dark-mode #hero .hero-title-display { color: var(--paper); }
+body.dark-mode #hero .hero-title-sub { color: var(--gold-leaf); }
+body.dark-mode #hero .hero-lede { color: #f4ead8; }
+body.dark-mode #hero .hero-topper { color: var(--gold-leaf); }
+
+/* Trust strip stays cream-paper in dark mode (it's paper-deep);
+   defend ink-soft text from dark.css forcing white on li. */
+body.dark-mode .h-truststrip { background: var(--paper-deep); }
+body.dark-mode .h-truststrip .h-truststrip__item,
+body.dark-mode .h-truststrip .h-truststrip__list { color: var(--ink-soft); }
+body.dark-mode .h-truststrip .h-truststrip__sep { color: var(--crimson); }
+
+/* CTA enamel — defend gold/paper sub-text from dark.css blanket */
+body.dark-mode #cta .cta-store-label { color: var(--gold-leaf); }
+body.dark-mode #cta .cta-store-city,
+body.dark-mode #cta .cta-store-phone,
+body.dark-mode #cta .cta-store { color: var(--paper); }
+body.dark-mode #cta .cta-store-addr { color: oklch(82% 0.012 75); }
+body.dark-mode #cta .cta-lede { color: oklch(88% 0.012 75); }
+
+/* Lines / SBS / Reviews live on .h-paper(-deep) and remain light
+   in dark mode (heritage.css). Defend small text bits dark.css
+   would otherwise paint white on cream. */
+body.dark-mode #lines .lines-link,
+body.dark-mode .sbs-link,
+body.dark-mode .lines-link { color: var(--crimson); }
+body.dark-mode .sbs-meta,
+body.dark-mode #reviews .reviews-attribution,
+body.dark-mode .h-spec-list dt { color: var(--ink-soft); }
+body.dark-mode .h-spec-list dd,
 body.dark-mode .sbs-body,
-body.dark-mode #reviews .reviews-quote {
-  color: var(--paper);
-}
-
-body.dark-mode #reviews .reviews-item {
-  background: var(--enamel);
-  border-top-color: var(--gold-leaf);
-}
-
-body.dark-mode #reviews .reviews-mark {
-  color: var(--gold-leaf);
-}
+body.dark-mode #reviews .reviews-quote,
+body.dark-mode #lines .lines-title,
+body.dark-mode #lines .lines-text { color: var(--ink); }
+body.dark-mode #reviews .reviews-mark,
+body.dark-mode #reviews .reviews-stars { color: var(--crimson); }
+body.dark-mode .h-stamp { color: var(--crimson); border-color: var(--crimson); }
 
 body.dark-mode .local-cart__drawer {
   background: var(--enamel);
