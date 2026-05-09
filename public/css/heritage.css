@@ -407,7 +407,7 @@ body.dark-mode #navigation[data-heritage-nav] .logo .dark { display: block !impo
 @media (min-width: 1024px) {
   #navigation[data-heritage-nav] {
     top: 2rem;
-    height: 5rem;
+    height: 7.5rem;
   }
   body { padding-top: 2rem; }
 }
