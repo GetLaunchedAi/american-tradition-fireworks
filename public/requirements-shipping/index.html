@@ -108,14 +108,14 @@
                     <a  href="/about/">About Us</a>
                     
                 </li>
-                <li class="" id="Requirements &amp; Shipping">
-                    
-                    <a  class="active"  href="/requirements-shipping/">Requirements &amp; Shipping</a>
-                    
-                </li>
                 <li class="" id="Wholesale">
                     
                     <a  href="/wholesale/">Wholesale</a>
+                    
+                </li>
+                <li class="" id="Requirements &amp; Shipping">
+                    
+                    <a  class="active"  href="/requirements-shipping/">Requirements &amp; Shipping</a>
                     
                 </li>
                 <li class="" id="Contact">
@@ -165,9 +165,14 @@
 <section id="int-hero" data-aos="fade-in">
   <h1 id="home-h">Requirements & Shipping</h1>
   <p>
-    Restricted fireworks documentation, freight terms, and freight-claim steps
-    in one place.
+    Restricted fireworks paperwork, freight terms, and damage-claim steps.
   </p>
+  <p class="policy-updated">Last updated: May 2026</p>
+  <nav class="policy-toc" aria-label="On this page">
+    <a href="#policy-types">Product Classes</a>
+    <a href="#policy-shipping">Shipping</a>
+    <a href="#policy-claims">Freight Claims</a>
+  </nav>
   <picture class="">
   <source type="image/webp" srcset="/images/shop_banner_img-200w.webp 200w, /images/shop_banner_img-400w.webp 400w, /images/shop_banner_img-850w.webp 850w, /images/shop_banner_img-1920w.webp 1920w" sizes="(max-width: 400px) 400px, (max-width: 850px) 850px, 1920px">
   <source type="image/jpeg" srcset="/images/shop_banner_img-200w.jpeg 200w, /images/shop_banner_img-400w.jpeg 400w, /images/shop_banner_img-850w.jpeg 850w, /images/shop_banner_img-1920w.jpeg 1920w" sizes="(max-width: 400px) 400px, (max-width: 850px) 850px, 1920px">
@@ -176,19 +181,19 @@
     width="1920"
     height="463"
     alt="fireworks display"
-    loading="lazy"
+    loading="eager"
     decoding="async">
 </picture>
 </section>
 
-<section id="policy-overview" class="policy-section">
+<section id="policy-overview" class="policy-section" aria-labelledby="policy-overview-h" data-aos="fade-up">
   <div class="policy-container">
-    <div class="policy-copy" data-aos="fade-right">
+    <div class="policy-copy">
       <span class="policy-topper">Restricted Fireworks</span>
-      <h2 class="policy-title">Documentation is required before restricted orders can move forward</h2>
+      <h2 id="policy-overview-h" class="policy-title">Documentation is required before restricted orders can move forward</h2>
       <p class="policy-text">
-        American Tradition LLC offers both 1.4g articles pyrotechnic grade
-        fireworks and 1.3g display grade fireworks. These products require
+        American Tradition LLC offers both <abbr title="Consumer-grade fireworks classified by the U.S. DOT for limited explosive hazard">1.4g</abbr> articles pyrotechnic grade
+        fireworks and <abbr title="Display-grade fireworks classified by the U.S. DOT for mass explosion hazard">1.3g</abbr> display grade fireworks. These products require
         special documentation before we can order, hold, ship, or release them
         for pickup.
       </p>
@@ -200,7 +205,7 @@
       </p>
     </div>
 
-    <div class="policy-highlight" data-aos="fade-left">
+    <div class="policy-highlight">
       <p class="policy-highlight__eyebrow">Before We Start</p>
       <ul class="policy-list">
         <li>Send your documentation before we process the order.</li>
@@ -212,54 +217,49 @@
   </div>
 </section>
 
-<section id="policy-types" class="policy-section">
+<section id="policy-types" class="policy-section" aria-labelledby="policy-types-h" data-aos="fade-up">
   <div class="policy-container policy-container--stack">
-    <div class="policy-heading" data-aos="fade-up">
+    <div class="policy-heading">
       <span class="policy-topper">Restricted Product Types</span>
-      <h2 class="policy-title">Different product classes have different requirements</h2>
+      <h2 id="policy-types-h" class="policy-title">Different product classes have different requirements</h2>
     </div>
 
-    <div class="policy-grid">
-      <article class="policy-card" data-aos="fade-up" data-aos-delay="100">
-        <span class="policy-card__label">1.4g Articles Pyrotechnic</span>
-        <h3>Professional fireworks with training or FEL requirements</h3>
-        <p>
-          To purchase 1.4g articles pyrotechnic fireworks, the buyer must
-          provide either a PGI or certified training-course certificate, or a
-          Federal Explosives License.
-        </p>
-        <p>
-          These products do not require federal storage compliance for the
-          buyer.
-        </p>
-      </article>
-
-      <article class="policy-card" data-aos="fade-up" data-aos-delay="200">
-        <span class="policy-card__label">1.3g Display Fireworks</span>
-        <h3>Display products with Federal Explosives License requirements</h3>
-        <p>
-          To purchase 1.3g display fireworks, the buyer must provide a Federal
-          Explosives License.
-        </p>
-        <p>
-          Federal storage requirements apply when 1.3g display fireworks are
-          stored beyond one day.
-        </p>
-      </article>
+    <div class="policy-table-wrap">
+      <table class="policy-table">
+        <thead>
+          <tr>
+            <th scope="col">Product Class</th>
+            <th scope="col">Documentation</th>
+            <th scope="col">Storage Rule</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" data-label="Product Class"><abbr title="Consumer-grade fireworks classified by the U.S. DOT for limited explosive hazard">1.4g</abbr> Articles Pyrotechnic</th>
+            <td data-label="Documentation"><abbr title="Pyrotechnics Guild International">PGI</abbr> certificate, certified training-course certificate, or <abbr title="Federal Explosives License">FEL</abbr></td>
+            <td data-label="Storage Rule">None for buyer</td>
+          </tr>
+          <tr>
+            <th scope="row" data-label="Product Class"><abbr title="Display-grade fireworks classified by the U.S. DOT for mass explosion hazard">1.3g</abbr> Display</th>
+            <td data-label="Documentation">Federal Explosives License (<abbr title="Federal Explosives License">FEL</abbr>)</td>
+            <td data-label="Storage Rule">Federal storage if held more than 1 day</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
 
-<section id="policy-process" class="policy-section">
+<section id="policy-process" class="policy-section" aria-labelledby="policy-process-h" data-aos="fade-up">
   <div class="policy-container policy-container--stack">
-    <div class="policy-heading" data-aos="fade-up">
+    <div class="policy-heading">
       <span class="policy-topper">Ordering Process</span>
-      <h2 class="policy-title">What we need before order, hold, ship, or pickup</h2>
+      <h2 id="policy-process-h" class="policy-title">What we need before order, hold, ship, or pickup</h2>
     </div>
 
-    <div class="policy-columns">
-      <article class="policy-panel" data-aos="fade-up" data-aos-delay="100">
-        <h3>Documentation Review</h3>
+    <ol class="policy-steps">
+      <li class="policy-step">
+        <h3>Send documentation for review</h3>
         <p>
           Before we can get started with a restricted-fireworks order, you need
           to send the required documentation for review. If you want to order
@@ -271,30 +271,30 @@
           If you have questions about the basics, contact a sales representative
           for more information.
         </p>
-      </article>
+      </li>
 
-      <article class="policy-panel" data-aos="fade-up" data-aos-delay="200">
-        <h3>Recommended Information To Include</h3>
-        <ul class="policy-list">
+      <li class="policy-step">
+        <h3>Include this with your message</h3>
+        <ul>
           <li>Your full name and company name, if applicable</li>
           <li>The product category or SKU you want to order</li>
           <li>Your destination state and whether the order will ship or be picked up</li>
-          <li>Your PGI or training certificate, or Federal Explosives License</li>
+          <li>Your <abbr title="Pyrotechnics Guild International">PGI</abbr> or training certificate, or Federal Explosives License (<abbr title="Federal Explosives License">FEL</abbr>)</li>
         </ul>
-      </article>
-    </div>
+      </li>
+    </ol>
   </div>
 </section>
 
-<section id="policy-shipping" class="policy-section">
+<section id="policy-shipping" class="policy-section" aria-labelledby="policy-shipping-h" data-aos="fade-up">
   <div class="policy-container policy-container--stack">
-    <div class="policy-heading" data-aos="fade-up">
+    <div class="policy-heading">
       <span class="policy-topper">Shipping Policy</span>
-      <h2 class="policy-title">Freight terms, limits, and customer responsibilities</h2>
+      <h2 id="policy-shipping-h" class="policy-title">Freight terms, limits, and customer responsibilities</h2>
     </div>
 
     <div class="policy-columns">
-      <article class="policy-panel" data-aos="fade-up" data-aos-delay="100">
+      <article class="policy-panel">
         <h3>Where We Ship</h3>
         <p>
           American Tradition LLC cannot ship outside the continental United
@@ -303,13 +303,13 @@
         </p>
         <p>
           Shipping rates are subject to change and are calculated during
-          checkout before payment. Orders ship FOB origin, which means ownership
+          checkout before payment. Orders ship <abbr title="Free On Board — ownership transfers when goods leave the dock">FOB</abbr> origin, which means ownership
           transfers to the customer once the order is loaded on the freight
           carrier's truck.
         </p>
       </article>
 
-      <article class="policy-panel" data-aos="fade-up" data-aos-delay="200">
+      <article class="policy-panel">
         <h3>Delivery Services and Disputes</h3>
         <p>
           Extra freight services provided at delivery are the sole
@@ -327,15 +327,15 @@
   </div>
 </section>
 
-<section id="policy-claims" class="policy-section">
+<section id="policy-claims" class="policy-section" aria-labelledby="policy-claims-h" data-aos="fade-up">
   <div class="policy-container policy-container--stack">
-    <div class="policy-heading" data-aos="fade-up">
+    <div class="policy-heading">
       <span class="policy-topper">Freight Claims</span>
-      <h2 class="policy-title">Inspect deliveries immediately and document problems fast</h2>
+      <h2 id="policy-claims-h" class="policy-title">Inspect deliveries immediately and document problems fast</h2>
     </div>
 
     <div class="policy-columns">
-      <article class="policy-panel" data-aos="fade-up" data-aos-delay="100">
+      <article class="policy-panel">
         <h3>At Delivery</h3>
         <p>
           Inspect your shipment as soon as it arrives. Note any visible damage
@@ -349,31 +349,30 @@
         </p>
       </article>
 
-      <article class="policy-panel" data-aos="fade-up" data-aos-delay="200">
+      <article class="policy-panel">
         <h3>Helpful Information For Claims</h3>
         <ul class="policy-list">
           <li>Photos of outer and inner damage</li>
           <li>Order number</li>
           <li>First and last name</li>
           <li>List of damaged or missing items</li>
-          <li>Send to <a href="mailto:support@captainboom.com">support@captainboom.com</a></li>
-          <li>Use subject line: Freight Claim - Order [your order number]</li>
         </ul>
+        <a class="button-solid policy-cta-spaced" href="mailto:support@captainboom.com?subject=Freight%20Claim%20-%20Order%20%5Byour%20order%20number%5D">Email Freight Claim</a>
       </article>
     </div>
   </div>
 </section>
 
-<section id="policy-cta" class="policy-section" data-aos="zoom-in">
+<section id="policy-cta" class="policy-section" aria-labelledby="policy-cta-h" data-aos="fade-up">
   <div class="policy-container policy-container--stack policy-container--center">
     <span class="policy-topper">Need Help?</span>
-    <h2 class="policy-title">Send your paperwork or shipping questions to our team</h2>
-    <p class="policy-text policy-text--center">
+    <h2 id="policy-cta-h" class="policy-title">Send your paperwork or shipping questions to our team</h2>
+    <p class="policy-text policy-text--narrow">
       If you are ordering restricted fireworks or need help with freight
       questions, contact us before the order moves forward so we can review the
       documentation and explain the next step.
     </p>
-    <a class="button-solid" href="/contact/">Go To Contact Page</a>
+    <a class="button-solid" href="tel:2697314311">Call 269-731-4311</a>
   </div>
 </section>
 </main>
@@ -415,10 +414,10 @@
             <a href="/about/">About Us</a>
           </li>
           <li>
-            <a href="/requirements-shipping/">Requirements &amp; Shipping</a>
+            <a href="/wholesale/">Wholesale</a>
           </li>
           <li>
-            <a href="/wholesale/">Wholesale</a>
+            <a href="/requirements-shipping/">Requirements &amp; Shipping</a>
           </li>
           <li>
             <a href="/contact/">Contact</a>

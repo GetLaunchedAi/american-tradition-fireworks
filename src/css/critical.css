@@ -77,16 +77,15 @@
     left: 0;
   }
   #hero .cs-flex-group {
-    /* 60px - 220px */
-    margin-bottom: clamp(3.75em, 15.5vw, 13.75em);
     margin: auto;
-    width: 80vw;
-    /* 464px - 562px */
-    max-width: clamp(29em, 60vw, 35.125em);
+    width: 90vw;
+    /* 464px - 640px - widened so the long headline breathes */
+    max-width: clamp(29em, 70vw, 40em);
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0;
     box-sizing: border-box;
   }
   #hero .cs-topper {
@@ -95,35 +94,36 @@
     line-height: 1.2em;
     text-transform: uppercase;
     text-align: center;
-    letter-spacing: .1em;
+    letter-spacing: .14em;
     font-weight: 700;
     color: var(--primary);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     display: block;
   }
   #hero .cs-title {
     /* 39px - 61px */
     font-size: clamp(2.4375rem, 6.4vw, 3.8125rem);
     font-weight: 900;
-    line-height: 1.2em;
+    line-height: 1.15em;
+    letter-spacing: -0.01em;
     text-align: center;
     width: 100%;
-    /* 32px - 40px */
-    margin: 0 auto clamp(2rem, 4vw, 2.5rem) 0;
+    /* 24px - 32px - tighter, lets topper+title group breathe as one unit */
+    margin: 0 auto clamp(1.5rem, 3vw, 2rem);
     color: var(--bodyTextColorWhite);
     position: relative;
+    text-wrap: balance;
   }
   #hero .cs-text {
     /* 16px - 20px */
     font-size: clamp(1rem, 1.95vw, 1.25rem);
-    line-height: 1.5em;
+    line-height: 1.6em;
     text-align: center;
     width: 100%;
-    /* 32px - 40px */
-    margin: 0 auto clamp(2rem, 4vw, 2.5rem) 0;
-    /* 40px - 48px */
-    margin-bottom: clamp(2.5rem, 4vw, 3rem);
+    /* 40px - 48px - generous gap between body and CTA pair (rhythm) */
+    margin: 0 auto clamp(2.5rem, 4.5vw, 3rem);
     color: var(--bodyTextColorWhite);
+    text-wrap: pretty;
   }
   #hero .cs-button-solid {
     font-size: 1rem;
@@ -258,7 +258,7 @@
 /* Mobile */
 @media only screen and (min-width: 0em) {
   .services {
-    border-radius: 0.3125em;
+    border-radius: 0.5em;
     margin: auto;
     margin-top: -10.4375em;
     position: relative;
@@ -266,17 +266,18 @@
     background: #fff;
     width: 90%;
     max-width: 82.5em;
-    padding: 3.125em 1.25em;
+    padding: clamp(2.25em, 4vw, 3.5em) clamp(1.25em, 3vw, 2em);
     border-top: 0.375em solid var(--primary);
-    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 24px 56px rgba(0, 0, 0, 0.08);
     margin-bottom: 3.125em;
   }
   .services .card {
     display: block;
     width: 100%;
     max-width: 22.3125em;
-    margin: auto;
-    margin-bottom: 3.125em;
+    margin: 0 auto 2.5em;
+    padding: 0 0.5rem;
+    transition: transform .35s ease;
   }
   .services .card:last-of-type {
     margin-bottom: 0;
@@ -288,9 +289,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto;
-    margin-bottom: 1.4375em;
+    margin: 0 auto 1.25em;
     border-radius: 50%;
+    box-shadow: 0 8px 20px rgba(193, 28, 42, 0.18);
+    transition: transform .35s ease;
+  }
+  .services .card:hover picture {
+    transform: translateY(-4px);
   }
   .services .card picture img {
     width: 3em;
@@ -298,40 +303,61 @@
   }
   .services .card h2 {
     text-align: center;
-    font-size: 2em;
-    line-height: 1.35em;
+    font-size: clamp(1.5rem, 2vw, 1.875rem);
+    line-height: 1.25em;
     font-weight: 700;
+    letter-spacing: -0.01em;
     color: #1a1a1a;
-    margin-bottom: 0.65em;
+    margin-bottom: 0.6em;
   }
   .services .card p {
     text-align: center;
-    line-height: 1.33333333em;
+    line-height: 1.5em;
     width: 100%;
-    opacity: .7;
+    max-width: 22rem;
+    margin: 0 auto;
+    color: #575757;
   }
 }
-/* Inbetween */
+/* Inbetween — switch to grid for true rhythm + tighter row, taller center card emphasis */
 @media only screen and (min-width: 768px) {
   .services {
     font-size: min(1.8vw, 1em);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 98%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
+    column-gap: clamp(1.5rem, 3vw, 2.5rem);
+    width: 92%;
   }
   .services .card {
     margin: 0;
-    max-width: 20.3125em;
+    max-width: none;
+    padding: 1rem 0.75rem;
+    position: relative;
+  }
+  /* Subtle vertical divider between cards (rhythm without boxes) */
+  .services .card + .card::before {
+    content: "";
+    position: absolute;
+    left: calc(clamp(1.5rem, 3vw, 2.5rem) / -2);
+    top: 12%;
+    bottom: 12%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.08), transparent);
+  }
+  /* Center card lifts slightly — breaks monotonous grid */
+  .services .card:nth-child(2) {
+    transform: translateY(-0.75rem);
   }
 }
 /* Large Desktop */
 @media only screen and (min-width: 1300px) {
   .services {
-    padding: 3.125em 5em;
+    padding: 3.5em 5em;
+    column-gap: 3rem;
   }
   .services .card {
-    max-width: 22.3125em;
+    max-width: none;
   }
 }
 /* Dark mode */
@@ -345,5 +371,17 @@
   body.dark-mode .services h2 {
     color: #fff;
     font-weight: bold;
+  }
+}
+
+/* Reduced motion: replace hero video with static poster */
+@media (prefers-reduced-motion: reduce) {
+  #hero video.cs-picture {
+    display: none;
+  }
+  #hero {
+    background-image: url('/images/hero_img.png');
+    background-size: cover;
+    background-position: center;
   }
 }

@@ -4,6 +4,75 @@
 
 /* Mobile - 360px */
 @media only screen and (min-width: 0rem) {
+  #int-hero .cs-hero-subtitle {
+    font-size: clamp(0.95rem, 1.8vw, 1.125rem);
+    line-height: 1.5em;
+    color: #fff;
+    max-width: 40rem;
+    margin: -0.5rem auto 1.25rem;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+    letter-spacing: 0.04em;
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
+    opacity: 0.92;
+  }
+  #cs-contact-242 .cs-required-key {
+    width: 100%;
+    margin: 0 0 1.5rem;
+    padding-bottom: 0.875rem;
+    border-bottom: 1px solid #ececf2;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--bodyTextColor);
+    opacity: 0.75;
+  }
+  #cs-contact-242 .cs-helper-text {
+    margin-top: 0.375rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--bodyTextColor);
+    opacity: 0.75;
+  }
+  #cs-contact-242 #form-status {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(193, 28, 42, 0.08);
+    border-left: 3px solid var(--primary);
+    border-radius: 0.375rem;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    text-align: left;
+    color: var(--primary);
+  }
+  #cs-contact-242 .cs-row {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(1rem, 3vw, 1.5rem);
+    margin-bottom: clamp(1rem, 1em, 1.25rem);
+  }
+  #cs-contact-242 .cs-row .cs-label {
+    margin-bottom: 0;
+  }
+  #cs-contact-242 .cs-label-state {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  #cs-contact-242 .cs-label-state .cs-input {
+    max-width: 9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-align: center;
+    font-weight: 700;
+  }
+  #cs-contact-242 .cs-label-docs {
+    flex: 1 1 100%;
+  }
   #cs-contact-242 {
     padding: var(--sectionPadding);
   }
@@ -25,6 +94,7 @@
     flex-direction: column;
     /* centers content horizontally, set to flex-start to left align */
     align-items: center;
+    gap: 0.75rem;
   }
   #cs-contact-242 .cs-topper {
     font-size: var(--topperFontSize);
@@ -59,10 +129,11 @@
   #cs-contact-242 .cs-policy-note {
     width: 100%;
     max-width: 40rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     padding: clamp(1.25rem, 3vw, 1.75rem);
     border: 1px solid rgba(193, 28, 42, 0.14);
-    border-radius: 1rem;
+    border-left: 4px solid var(--primary);
+    border-radius: 0.75rem;
     background: linear-gradient(180deg, rgba(193, 28, 42, 0.05), rgba(248, 250, 252, 0.98));
     text-align: left;
   }
@@ -99,7 +170,41 @@
     /* prevents padding and border from affecting height and width */
     box-sizing: border-box;
     border: 1px solid #dad9e3;
+    border-top: 4px solid var(--primary);
     border-radius: 1rem;
+  }
+  #cs-contact-242 .cs-input:focus,
+  #cs-contact-242 .cs-textarea:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+  #cs-contact-242 select.cs-input {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: transparent;
+    background-image: linear-gradient(45deg, transparent 50%, var(--primary) 50%),
+      linear-gradient(135deg, var(--primary) 50%, transparent 50%);
+    background-position: calc(100% - 1.25rem) 50%, calc(100% - 0.875rem) 50%;
+    background-size: 0.375rem 0.375rem, 0.375rem 0.375rem;
+    background-repeat: no-repeat;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+  #int-hero .cs-hero-tel {
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0.6rem 1.25rem;
+    color: #fff;
+    font-weight: 700;
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
+    text-decoration: none;
+    border: 2px solid #fff;
+    border-radius: 0.375rem;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  #int-hero .cs-hero-tel:hover {
+    background-color: #fff;
+    color: var(--primary);
   }
   #cs-contact-242 .cs-label {
     /* 14px - 16px */
@@ -111,12 +216,63 @@
     color: var(--headerColor);
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: stretch;
     flex-direction: column;
   }
+  #cs-contact-242 .cs-label-text {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.125rem;
+    letter-spacing: 0.01em;
+  }
   #cs-contact-242 .cs-label-message {
-    /* 32px - 40px */
-    margin-bottom: clamp(2rem, 4.5vw, 2.5rem);
+    /* 24px - 32px */
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  }
+  #cs-contact-242 .cs-fieldset {
+    border: 1px solid #e5e5ec;
+    padding: 1.25rem 1.25rem 1rem;
+    border-radius: 0.625rem;
+    background: #fcfcfd;
+    margin: 0 0 clamp(1.5rem, 3vw, 2rem);
+  }
+  #cs-contact-242 .cs-fieldset > legend {
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--headerColor);
+    padding: 0 0.5rem;
+    margin-left: -0.5rem;
+  }
+  #cs-contact-242 .cs-check-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: 0.75rem;
+  }
+  #cs-contact-242 .cs-check-row {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    min-height: 2.5rem;
+    padding: 0.25rem 0;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--headerColor);
+    cursor: pointer;
+  }
+  #cs-contact-242 .cs-check-row:hover {
+    color: var(--primary);
+  }
+  #cs-contact-242 .cs-check-row input[type="checkbox"] {
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: var(--primary);
+  }
+  #cs-contact-242 .cs-required {
+    color: var(--primary);
+    margin-left: 0.125rem;
   }
   #cs-contact-242 .cs-input,
   #cs-contact-242 .cs-textarea {
@@ -183,8 +339,10 @@
   }
   #cs-contact-242 .cs-submit {
     width: 100%;
+    margin-top: 0.5rem;
     border: none;
     border-radius: 0.5rem;
+    letter-spacing: 0.02em;
   }
   #cs-contact-242 .cs-submit:hover {
     cursor: pointer;
@@ -201,15 +359,13 @@
   }
   #cs-contact-242 .cs-ul {
     padding: 0;
-    /* 16px - 32px */
-    padding-left: clamp(1rem, 3vw, 2rem);
     margin: 0;
     width: 100%;
     /* prevents padding from adding to height and width */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1.5rem;
   }
   #cs-contact-242 .cs-li {
     list-style: none;
@@ -220,9 +376,9 @@
   #cs-contact-242 .cs-li:hover .cs-icon-wrapper {
     transform: scale(1.2);
   }
-  #cs-contact-242 .cs-li:nth-of-type(2) {
-    padding-bottom: 1.25rem;
-    border-bottom: 1px solid #dad9e3;
+  #cs-contact-242 .cs-li + .cs-li {
+    padding-top: 1.25rem;
+    border-top: 1px solid #ececf2;
   }
   #cs-contact-242 .cs-header {
     /* 16px - 20px */
@@ -263,18 +419,24 @@
     display: block;
   }
   #cs-contact-242 .cs-icon-wrapper {
-    /* 32px - 36px */
-    margin-right: clamp(2rem, 2.5vw, 2.25rem);
+    width: 3rem;
+    height: 3rem;
+    margin-right: clamp(1rem, 2vw, 1.5rem);
     display: flex;
     justify-content: center;
     align-items: center;
+    background: rgba(193, 28, 42, 0.08);
+    border-radius: 0.625rem;
     /* prevents flexbox from squishing it */
     flex: none;
-    transition: transform 0.3s;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  #cs-contact-242 .cs-li:hover .cs-icon-wrapper {
+    background: rgba(193, 28, 42, 0.16);
   }
   #cs-contact-242 .cs-icon {
-    /* 32px -36px */
-    width: clamp(2rem, 3vw, 2.25rem);
+    /* 22px - 26px */
+    width: clamp(1.375rem, 2vw, 1.625rem);
     height: auto;
     display: block;
   }
@@ -310,15 +472,42 @@
   #cs-contact-242 .cs-label {
     width: 48%;
   }
-  #cs-contact-242 .cs-label-message {
+  #cs-contact-242 .cs-label-message,
+  #cs-contact-242 .cs-fieldset,
+  #cs-contact-242 .cs-row,
+  #cs-contact-242 .cs-required-key,
+  #cs-contact-242 #form-status {
     width: 100%;
+  }
+  #cs-contact-242 .cs-row .cs-label {
+    width: auto;
+  }
+  #cs-contact-242 .cs-label-state {
+    flex: 0 0 auto;
+  }
+  #cs-contact-242 .cs-label-docs {
+    flex: 1 1 0;
+    min-width: 16rem;
   }
   #cs-contact-242 .cs-button-solid {
     margin-left: 0;
   }
+  #cs-contact-242 .cs-submit {
+    width: auto;
+    min-width: 12rem;
+    margin-left: auto;
+    padding: 0 2.5rem;
+  }
   #cs-contact-242 .cs-right-section {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  #cs-contact-242 .cs-ul {
+    width: 50%;
+  }
+  #cs-contact-242 .cs-picture {
+    width: 50%;
   }
 }
 /* Small Desktop - 1024px */
@@ -345,15 +534,20 @@
     /* prevents flexbox from squishing it */
     flex: none;
     flex-direction: column;
+    gap: 2rem;
+  }
+  #cs-contact-242 .cs-ul,
+  #cs-contact-242 .cs-picture {
+    width: 100%;
   }
   #cs-contact-242 .cs-block {
     /* sets address stay in one line */
     display: inline-block;
   }
   #cs-contact-242 .cs-picture {
-    width: 100%;
     max-width: 100%;
     height: 27.375rem;
+    aspect-ratio: auto;
   }
 }
 /* Dark Mode */
@@ -371,6 +565,26 @@
     color: var(--bodyTextColorWhite);
   }
   body.dark-mode #cs-contact-242 .cs-policy-link {
+    color: #fecaca;
+  }
+  body.dark-mode #cs-contact-242 .cs-required-key,
+  body.dark-mode #cs-contact-242 .cs-helper-text {
+    color: var(--bodyTextColorWhite);
+  }
+  body.dark-mode #cs-contact-242 .cs-required-key {
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+  }
+  body.dark-mode #cs-contact-242 .cs-fieldset {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  body.dark-mode #cs-contact-242 .cs-fieldset > legend,
+  body.dark-mode #cs-contact-242 .cs-check-row {
+    color: var(--bodyTextColorWhite);
+  }
+  body.dark-mode #cs-contact-242 #form-status {
+    background: rgba(248, 113, 113, 0.12);
+    border-left-color: #fecaca;
     color: #fecaca;
   }
   body.dark-mode #cs-contact-242 #cs-form-242 label,
@@ -439,21 +653,20 @@
     width: 100%;
     max-width: 40.625rem;
     margin: 0 auto;
-    /* 88px - 104px */
-    margin-bottom: clamp(5.5em, 10.2vw, 6.5em);
+    /* 48px - 72px */
+    margin-bottom: clamp(3rem, 6vw, 4.5rem);
     color: var(--bodyTextColor);
   }
   #reviews .cs-card-group {
     padding: 0;
-    /* 48px - 64px */
-    margin: 0 auto clamp(3rem, 5vw, 4rem);
+    margin: 0 auto;
   }
   #reviews .cs-item {
     text-align: left;
     list-style: none;
     width: 100%;
     max-width: 33.875rem;
-    margin: 0 auto 4rem;
+    margin: 0 auto 2rem;
     /* Padding L & R - 16px - 32px */
     padding: 3.75rem clamp(1rem, 3.2vw, 2rem) 0;
     /* 32px - 40px */
@@ -490,8 +703,8 @@
     font-size: 1rem;
     line-height: 1.5em;
     font-weight: 700;
-    width: 40%;
-    margin: 0 auto 0 0;
+    flex: 1 1 auto;
+    margin: 0;
     display: block;
     color: var(--headerColor);
   }
@@ -511,12 +724,13 @@
   #reviews .cs-card-group {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
+    align-items: stretch;
+    gap: clamp(1.25rem, 3vw, 2rem);
   }
   #reviews .cs-item {
     /* reset margin so it won't interfere with flexbox */
     margin: 0;
+    flex: 1 1 0;
   }
 }
 /* Dark Mode */

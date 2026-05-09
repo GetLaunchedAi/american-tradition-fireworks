@@ -65,55 +65,67 @@
     line-height: 1.2em;
     text-transform: uppercase;
     text-align: left;
-    letter-spacing: .1em;
+    letter-spacing: .14em;
     font-weight: 700;
     color: var(--primary);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.625rem;
     display: block;
   }
   #sbs .cs-title {
     font-size: var(--headerFontSize);
     font-weight: 900;
-    line-height: 1.2em;
+    line-height: 1.15em;
+    letter-spacing: -0.01em;
     text-align: left;
     max-width: 50rem;
-    margin: 0 auto 1rem;
+    margin: 0 0 1.25rem;
     color: var(--headerColor);
     position: relative;
+    text-wrap: balance;
   }
   #sbs .cs-text {
     font-size: var(--bodyFontSize);
-    line-height: 1.5em;
+    line-height: 1.6em;
     text-align: left;
     width: 100%;
     max-width: 46.875rem;
-    margin: 0 auto;
-    margin-bottom: 1rem;
+    margin: 0 0 1rem;
     color: var(--bodyTextColor);
   }
   #sbs .cs-text:last-of-type {
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
   }
   #sbs .cs-flex-group {
-    /* 16px - 32px */
-    padding: clamp(1rem, 3vw, 2rem);
+    /* 20px - 36px */
+    padding: clamp(1.25rem, 3vw, 2.25rem);
+    /* Extra bottom space for the absolute quote icon */
+    padding-bottom: clamp(3.5rem, 7vw, 5rem);
     background-color: #F7F7F7;
     border-radius: 1rem;
+    border-left: 3px solid var(--primary);
     position: relative;
   }
   #sbs .cs-flex-p {
     /* 14px - 16px */
     font-size: clamp(0.875rem, 1.5vw, 1rem);
-    line-height: 1.5em;
+    line-height: 1.6em;
     margin: 0 0 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
     color: #767676;
+  }
+  #sbs .cs-flex-p:last-of-type {
+    border-bottom: 0;
+    padding-bottom: 0;
+    margin-bottom: 1.25rem;
   }
   #sbs .cs-name {
     font-size: 1rem;
     line-height: 1.2em;
     text-transform: uppercase;
+    letter-spacing: .04em;
     font-weight: bold;
-    margin: 0 0 0.25rem;
+    margin: 1rem 0 0.375rem;
     color: var(--headerColor);
     display: block;
   }
@@ -250,47 +262,50 @@
     line-height: 1.2em;
     text-transform: uppercase;
     text-align: left;
-    letter-spacing: .1em;
+    letter-spacing: .14em;
     font-weight: 700;
     color: var(--primary);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.625rem;
     display: block;
   }
   #sbs-r .cs-title {
     font-size: var(--headerFontSize);
     font-weight: 900;
-    line-height: 1.2em;
+    line-height: 1.15em;
+    letter-spacing: -0.01em;
     text-align: left;
     max-width: 50rem;
-    margin: 0 auto 1rem;
+    margin: 0 0 1.25rem;
     color: var(--headerColor);
     position: relative;
+    text-wrap: balance;
   }
   #sbs-r .cs-text {
     font-size: var(--bodyFontSize);
-    line-height: 1.5em;
+    line-height: 1.6em;
     text-align: left;
     width: 100%;
     max-width: 46.875rem;
-    margin: 0 auto;
-    margin-bottom: 1rem;
+    margin: 0 0 1rem;
     color: var(--bodyTextColor);
   }
   #sbs-r .cs-text:last-of-type {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
   #sbs-r .cs-flex-group {
-    /* 16px - 32px */
-    padding: clamp(1rem, 3vw, 2rem);
+    /* 20px - 36px */
+    padding: clamp(1.25rem, 3vw, 2.25rem);
     background-color: #F7F7F7;
     border-radius: 1rem;
+    border-left: 3px solid var(--primary);
     position: relative;
+    margin-bottom: 1.75rem;
   }
   #sbs-r .cs-flex-p {
     /* 14px - 16px */
     font-size: clamp(0.875rem, 1.5vw, 1rem);
-    line-height: 1.5em;
-    margin: 0 0 1rem;
+    line-height: 1.6em;
+    margin: 0;
     color: #767676;
   }
   #sbs-r .cs-name {
@@ -501,50 +516,49 @@
     line-height: 1.2em;
     text-transform: uppercase;
     text-align: center;
-    letter-spacing: .1em;
+    letter-spacing: .14em;
     font-weight: 700;
     color: var(--primary);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     display: block;
   }
   #reviews .cs-title {
     font-size: var(--headerFontSize);
     font-weight: 900;
-    line-height: 1.2em;
+    line-height: 1.15em;
+    letter-spacing: -0.01em;
     text-align: center;
     max-width: 43.75rem;
-    margin: 0 auto 1rem;
+    margin: 0 auto 1.25rem;
     color: var(--headerColor);
     position: relative;
+    text-wrap: balance;
   }
   #reviews .cs-text {
     font-size: var(--bodyFontSize);
-    line-height: 1.5rem;
+    line-height: 1.6em;
     text-align: center;
     width: 100%;
     max-width: 40.625rem;
     margin: 0 auto;
-    /* 88px - 104px */
-    margin-bottom: clamp(5.5em, 10.2vw, 6.5em);
+    /* 48px - 72px - tightened from oversized 88-104px gap */
+    margin-bottom: clamp(3rem, 6vw, 4.5rem);
     color: var(--bodyTextColor);
   }
   #reviews .cs-card-group {
     padding: 0;
-    /* 48px - 64px */
-    margin: 0 auto clamp(3rem, 5vw, 4rem);
+    margin: 0 auto;
   }
   #reviews .cs-item {
     text-align: left;
     list-style: none;
     width: 100%;
     max-width: 33.875rem;
-    margin: 0 auto 4rem;
-    /* Padding L & R - 16px - 32px */
-    padding: 3.75rem clamp(1rem, 3.2vw, 2rem) 0;
-    /* 32px - 40px */
-    padding-bottom: clamp(2rem, 5.4vw, 2.5rem);
-    box-shadow: 0px 20px 39px 0px rgba(0, 0, 0, 0.05);
-    border-radius: 0.25rem;
+    margin: 0 auto 2rem;
+    /* Padding L & R - 20px - 36px */
+    padding: clamp(1.75rem, 3.5vw, 2.5rem) clamp(1.25rem, 3.2vw, 2.25rem);
+    box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.06);
+    border-radius: 0.75rem;
     background: #fff;
     position: relative;
     display: flex;
@@ -564,8 +578,8 @@
     top: -2.5rem;
   }
   #reviews .cs-item-p {
-    font-size: 1rem;
-    line-height: 1.5em;
+    font-size: 1.0625rem;
+    line-height: 1.6em;
     margin: 0 0 1.25rem;
     padding-bottom: 1.25rem;
     color: var(--bodyTextColor);
@@ -573,10 +587,11 @@
   }
   #reviews .cs-reviewer {
     font-size: 1rem;
-    line-height: 1.5em;
+    line-height: 1.4em;
     font-weight: 700;
-    width: 40%;
-    margin: 0 auto 0 0;
+    width: auto;
+    flex: 1 1 auto;
+    margin: 0 1rem 0 0;
     display: block;
     color: var(--headerColor);
   }
@@ -595,13 +610,15 @@
 @media only screen and (min-width: 48em) {
   #reviews .cs-card-group {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
+    justify-content: center;
+    align-items: stretch;
+    gap: clamp(1.25rem, 3vw, 2rem);
+    max-width: 56rem;
   }
   #reviews .cs-item {
     /* reset margin so it won't interfere with flexbox */
     margin: 0;
+    flex: 1 1 0;
   }
 }
 /* Dark Mode */
@@ -662,26 +679,29 @@
   #cta .title {
     font-weight: 900;
     font-size: min(9vw, 3rem);
-    line-height: 1.20833333;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
     color: #fff;
     position: relative;
-    margin-bottom: 2.25rem;
+    margin-bottom: 1.25rem;
     text-align: center;
+    text-wrap: balance;
   }
   #cta p {
     color: #fff;
     text-align: center;
-    opacity: 1;
-    margin: auto;
-    margin-bottom: 2.25rem;
+    line-height: 1.6em;
+    opacity: 0.92;
+    margin: 0 auto 2.5rem;
     width: 96%;
     max-width: 37.375rem;
+    text-wrap: pretty;
   }
 }
 /* Small Desktop */
 @media only screen and (min-width: 64em) {
   #cta {
-    padding: 10.5rem 0;
+    padding: clamp(6rem, 11vw, 8.5rem) 0;
   }
 }
 /* Large Desktop */

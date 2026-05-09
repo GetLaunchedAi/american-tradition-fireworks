@@ -1,8 +1,9 @@
 ---
 layout: "base.html"
-description: "Request wholesale pricing on consumer and Pro-Series fireworks, or ask for the current Display (1.3g) fireworks list and pricing. Documentation reviewed before pricing is sent."
+description: "Request wholesale pricing on consumer and Pro-Series fireworks, or ask for our Display (1.3g) list. Documentation reviewed before pricing is sent."
 metaTitle: "Wholesale & Display Pricing | American Tradition LLC"
 tagTitle: "Wholesale"
+preloadImg: "/images/contact_banner_img.png"
 preloadCSS: "/css/contact.css"
 permalink: "wholesale/"
 eleventyNavigation:
@@ -10,12 +11,13 @@ eleventyNavigation:
   order: 500
 ---
 
-<section id="int-hero" data-aos="fade-in">
+<section id="int-hero" data-aos="fade-in" aria-labelledby="home-h">
   <h1 id="home-h">Wholesale & Display Pricing</h1>
-  {% image './src/images/contact_banner_img.png', 'wholesale fireworks', '', 'lazy', '(max-width: 400px) 400px, (max-width: 850px) 850px, 1920px' %}
+  <p class="cs-hero-subtitle">Verified buyers get pricing within 1 business day. Veteran-owned since 1984.</p>
+  {% image './src/images/contact_banner_img.png', 'American Tradition wholesale fireworks display', '', 'lazy', '(max-width: 400px) 400px, (max-width: 850px) 850px, 1920px' %}
 </section>
 
-<section id="cs-contact-242" data-aos="fade-up">
+<section id="cs-contact-242" data-aos="fade-in">
   <div class="cs-container">
     <div class="cs-content">
       <span class="cs-topper">Bulk Buyers & Show Operators</span>
@@ -26,7 +28,7 @@ eleventyNavigation:
       <div class="cs-policy-note">
         <p class="cs-policy-title">What we will need</p>
         <ul class="cs-policy-list">
-          <li><strong>Pro-Series 1.4g:</strong> PGI or certified training certificate, or a Federal Explosives License.</li>
+          <li><strong>Pro-Series 1.4g:</strong> PGI (Pyrotechnics Guild International) or certified training certificate, or a Federal Explosives License (FEL).</li>
           <li><strong>Display 1.3g:</strong> Federal Explosives License plus federal storage compliance for storage beyond one day.</li>
           <li><strong>Wholesale Consumer:</strong> business name, resale or tax exemption details, and ship-to state.</li>
         </ul>
@@ -37,71 +39,95 @@ eleventyNavigation:
     </div>
 
     <form
-      id="cs-form-wholesale"
+      id="cs-form-242"
       name="Wholesale Pricing Request"
       method="post"
       action="https://submit-form.com/U9CNXTECF"
-      data-aos="fade-right"
-      data-aos-delay="100"
     >
       <input type="hidden" name="_subject" value="Wholesale / Display Pricing Request" />
       <input type="hidden" name="form-source" value="Wholesale Page" />
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+      <p class="cs-required-key"><span aria-hidden="true" class="cs-required">*</span> = required field</p>
 
       <label class="cs-label">
-        Name
-        <input class="cs-input" required type="text" name="name" placeholder="Buyer or contact name" />
+        Name <span aria-hidden="true" class="cs-required">*</span>
+        <input class="cs-input" required type="text" name="name" autocomplete="name" placeholder="Buyer or contact name" />
       </label>
       <label class="cs-label">
         Business / Operation
-        <input class="cs-input" type="text" name="business" placeholder="Company, retailer, or show operator" />
+        <input class="cs-input" type="text" name="business" autocomplete="organization" placeholder="Company, retailer, or show operator" />
       </label>
       <label class="cs-label">
-        Email
-        <input class="cs-input" required type="email" name="email" placeholder="name@example.com" />
+        Email <span aria-hidden="true" class="cs-required">*</span>
+        <input class="cs-input" required type="email" name="email" autocomplete="email" inputmode="email" placeholder="name@example.com" />
       </label>
       <label class="cs-label">
-        Phone
-        <input class="cs-input" required type="tel" name="phone" placeholder="269-731-4311" />
-      </label>
-      <label class="cs-label">
-        Ship-to state
-        <input class="cs-input" type="text" name="state" placeholder="MI, OH, IN, etc." />
+        Phone <span aria-hidden="true" class="cs-required">*</span>
+        <input class="cs-input" required type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="(555) 555-5555" />
       </label>
 
-      <fieldset class="cs-label" style="border:0;padding:0;margin:0;">
-        <legend>Pricing list requested</legend>
-        <label style="display:flex;align-items:center;gap:.5rem;font-weight:600;">
-          <input type="checkbox" name="list_consumer_wholesale" value="yes" />
-          Consumer Fireworks – Wholesale pricing
+      <div class="cs-row">
+        <label class="cs-label cs-label-state">
+          Ship-to state
+          <input class="cs-input" type="text" name="state" autocomplete="address-level1" maxlength="2" pattern="[A-Za-z]{2}" placeholder="MI" />
+          <span class="cs-helper-text">2-letter code (e.g. MI)</span>
         </label>
-        <label style="display:flex;align-items:center;gap:.5rem;font-weight:600;">
-          <input type="checkbox" name="list_pro_wholesale" value="yes" />
-          Pro-Series 1.4g – Wholesale pricing
+        <label class="cs-label cs-label-docs">
+          Documentation on file?
+          <select class="cs-input" name="documentation">
+            <option value="" disabled selected>Select one</option>
+            <option value="PGI / Certified pyro training certificate">PGI / Certified pyro training certificate</option>
+            <option value="Federal Explosives License (FEL)">Federal Explosives License (FEL)</option>
+            <option value="Both PGI/training and FEL">Both PGI/training and FEL</option>
+            <option value="None yet — need guidance">None yet — need guidance</option>
+          </select>
         </label>
-        <label style="display:flex;align-items:center;gap:.5rem;font-weight:600;">
-          <input type="checkbox" name="list_display" value="yes" />
-          Display Fireworks (1.3g) – List & pricing
-        </label>
+      </div>
+
+      <fieldset class="cs-label cs-fieldset">
+        <legend>Pricing list requested <span aria-hidden="true" class="cs-required">*</span></legend>
+        <div class="cs-check-group">
+          <label class="cs-check-row">
+            <input type="checkbox" name="list_consumer_wholesale" value="yes" />
+            Consumer Fireworks – Wholesale pricing
+          </label>
+          <label class="cs-check-row">
+            <input type="checkbox" name="list_pro_wholesale" value="yes" />
+            Pro-Series 1.4g – Wholesale pricing
+          </label>
+          <label class="cs-check-row">
+            <input type="checkbox" name="list_display" value="yes" />
+            Display Fireworks (1.3g) – List & pricing
+          </label>
+        </div>
       </fieldset>
-
-      <label class="cs-label">
-        Documentation on file?
-        <select class="cs-input" name="documentation">
-          <option value="">Select one</option>
-          <option value="PGI">PGI / certified training certificate</option>
-          <option value="FEL">Federal Explosives License</option>
-          <option value="Both">Both PGI and FEL</option>
-          <option value="Resale">Resale / tax exemption (Consumer wholesale)</option>
-          <option value="None">None yet — need guidance</option>
-        </select>
-      </label>
 
       <label class="cs-label cs-label-message">
         Message
-        <textarea class="cs-input cs-textarea" name="Message" placeholder="Tell us volumes, target dates, show locations, or any items of specific interest."></textarea>
+        <textarea class="cs-input cs-textarea" name="message" placeholder="Tell us volumes, target dates, show locations, or any items of specific interest."></textarea>
       </label>
 
+      <div role="status" aria-live="polite" id="form-status" hidden></div>
       <button class="cs-button-solid cs-submit" type="submit">Request Pricing</button>
     </form>
   </div>
 </section>
+
+<script>
+  (function () {
+    var form = document.querySelector('#cs-form-242');
+    var status = document.querySelector('#form-status');
+    if (!form || !status) return;
+    form.addEventListener('submit', function (e) {
+      var fieldset = form.querySelector('fieldset.cs-fieldset');
+      var checked = fieldset ? fieldset.querySelectorAll('input[type="checkbox"]:checked').length : 0;
+      if (!checked) {
+        e.preventDefault();
+        status.hidden = false;
+        status.textContent = 'Please select at least one pricing list.';
+        status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  })();
+</script>
