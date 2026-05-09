@@ -225,7 +225,7 @@
       "price": 9.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -263,7 +263,7 @@
       "price": 9.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -301,7 +301,7 @@
       "price": 24.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -1213,7 +1213,7 @@
       "price": 12.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -1251,7 +1251,7 @@
       "price": 12.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -2051,7 +2051,7 @@
       "price": 14.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -2127,7 +2127,7 @@
       "price": 19.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -2165,7 +2165,7 @@
       "price": 9.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -2473,7 +2473,7 @@
       "price": 85.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -2511,7 +2511,7 @@
       "price": 34.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -2549,7 +2549,7 @@
       "price": 39.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -2587,7 +2587,7 @@
       "price": 49.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -2625,7 +2625,7 @@
       "price": 39.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -2663,7 +2663,7 @@
       "price": 64.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -2815,7 +2815,7 @@
       "price": 48.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "out-of-stock",
       "stockLabel": "Out of stock",
       "requiresDocumentation": false
@@ -2853,7 +2853,7 @@
       "price": 48.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "out-of-stock",
       "stockLabel": "Out of stock",
       "requiresDocumentation": false
@@ -2929,7 +2929,7 @@
       "price": 54.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -3835,7 +3835,7 @@
       "price": 59.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -3873,7 +3873,7 @@
       "price": 54.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "badge": "New",
@@ -3953,7 +3953,7 @@
       "price": 119.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "out-of-stock",
       "stockLabel": "Out of stock",
       "requiresDocumentation": false
@@ -4067,7 +4067,7 @@
       "price": 119.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -4869,7 +4869,7 @@
       "price": 109.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -5329,7 +5329,7 @@
       "price": null,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -7082,7 +7082,7 @@
       "price": 83.57,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7121,7 +7121,7 @@
       "price": 67.17,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7160,7 +7160,7 @@
       "price": 69.92,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7199,7 +7199,7 @@
       "price": null,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7238,7 +7238,7 @@
       "price": 1.47,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7277,7 +7277,7 @@
       "price": 4.78,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7316,7 +7316,7 @@
       "price": 4.78,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7355,7 +7355,7 @@
       "price": 5.96,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7394,7 +7394,7 @@
       "price": 5.96,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7433,7 +7433,7 @@
       "price": 10.75,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7472,7 +7472,7 @@
       "price": 11.52,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7511,7 +7511,7 @@
       "price": 19.3,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7550,7 +7550,7 @@
       "price": 18.29,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7589,7 +7589,7 @@
       "price": 18.89,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7628,7 +7628,7 @@
       "price": 17.11,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7667,7 +7667,7 @@
       "price": 17.11,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7706,7 +7706,7 @@
       "price": 18.18,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7745,7 +7745,7 @@
       "price": 18.18,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7784,7 +7784,7 @@
       "price": 32.93,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7823,7 +7823,7 @@
       "price": 61.07,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7862,7 +7862,7 @@
       "price": 68.75,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": true
@@ -7901,7 +7901,7 @@
       "price": null,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "out-of-stock",
       "stockLabel": "Out of stock",
       "requiresDocumentation": true
@@ -7939,7 +7939,7 @@
       "price": 9.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -7977,7 +7977,7 @@
       "price": 9.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -8015,7 +8015,7 @@
       "price": 9.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -8053,7 +8053,7 @@
       "price": 4.75,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -8091,7 +8091,7 @@
       "price": 4.75,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -8129,7 +8129,7 @@
       "price": 9.49,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -8167,7 +8167,7 @@
       "price": 18.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -8205,7 +8205,7 @@
       "price": 37.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "in-stock",
       "stockLabel": "In stock",
       "requiresDocumentation": false
@@ -8243,7 +8243,7 @@
       "price": 75.99,
       "youtubeUrl": "",
       "videoUrl": "",
-      "image": "/images/placeholder.png",
+      "image": "/images/placeholder.svg",
       "stockState": "out-of-stock",
       "stockLabel": "Out of stock",
       "requiresDocumentation": false
