@@ -12,6 +12,24 @@
    ============================================ */
 
 /* -----------------------------------------
+   Smooth in-page scroll. Skip when user has
+   prefers-reduced-motion. Sections account for
+   the ~6.25rem fixed nav via scroll-margin-top.
+   ----------------------------------------- */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+:where(section[id], [id^="about-"], [id^="policy-"], [id^="faq"], [id^="hero"]) {
+  scroll-margin-top: 7rem;
+}
+@media (max-width: 1023px) {
+  :where(section[id], [id^="about-"], [id^="policy-"], [id^="faq"], [id^="hero"]) {
+    scroll-margin-top: 5rem;
+  }
+}
+
+/* -----------------------------------------
    Hand-set headline — Tanker display, ink
    ----------------------------------------- */
 .h-headline {

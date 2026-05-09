@@ -562,9 +562,37 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
-            duration: 800,
+            duration: 650,
+            easing: 'ease-out-cubic',
             once: true,
-            offset: 100
+            offset: 80,
+            anchorPlacement: 'top-bottom',
+            disable: function () {
+                return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            }
+        });
+
+        // Smooth-scroll for in-page anchor clicks (a[href^="#..."]) so links
+        // from navs, anchors, and CTAs scroll consistently. Honors
+        // scroll-margin-top set in heritage.css for fixed-nav offset.
+        document.addEventListener('click', function (event) {
+            var link = event.target.closest('a[href^="#"], a[href*="#"]');
+            if (!link) return;
+            var href = link.getAttribute('href') || '';
+            var hashIndex = href.indexOf('#');
+            if (hashIndex < 0) return;
+            var hash = href.slice(hashIndex);
+            if (hash.length < 2) return;
+            // Only intercept same-page anchors.
+            var path = href.slice(0, hashIndex);
+            if (path && path !== window.location.pathname && path !== window.location.href.split('#')[0]) return;
+            var target = document.querySelector(hash);
+            if (!target) return;
+            event.preventDefault();
+            var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+            // Update URL hash without jumping.
+            if (history.pushState) history.pushState(null, '', hash);
         });
     </script>
 </body>
