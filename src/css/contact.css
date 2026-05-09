@@ -960,7 +960,11 @@
     font-family: var(--font-body);
     font-size: var(--step-0);
     color: var(--ink);
+    text-align: left;
     margin: 0;
+  }
+  .contact-heritage__spec dt {
+    text-align: left;
   }
   @media (max-width: 30rem) {
     .contact-heritage__spec > div {
@@ -1419,7 +1423,9 @@
     grid-column: 1 / -1 !important;
     grid-row: 1 !important;
     max-width: 75ch;
-    margin: 0;
+    margin-inline: auto;
+    justify-self: center;
+    width: 100%;
   }
   /* Override legacy 50% / 45% sizing — grid columns own width now */
   #cs-contact-242.contact-heritage #cs-form-242 {

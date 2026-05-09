@@ -378,14 +378,16 @@
     font-family: var(--font-body);
     font-weight: 600;
     text-align: left;
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
+    width: 28%;
   }
 
-  .policy-page .policy-class {
-    align-self: flex-start;
+  .policy-page .policy-table tbody th .policy-class {
+    display: inline-block;
+    margin-bottom: 0.55rem;
+  }
+
+  .policy-page .policy-table tbody th .policy-class__caption {
+    display: block;
   }
 
   .policy-page .policy-class__caption {
