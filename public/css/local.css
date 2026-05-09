@@ -176,10 +176,10 @@
 
   #hero .hero-inner {
     position: relative;
-    padding-top: clamp(7rem, 18vw, 13rem);
-    padding-bottom: clamp(6rem, 14vw, 11rem);
+    padding-top: clamp(5rem, 11vw, 8.5rem);
+    padding-bottom: clamp(3.5rem, 8vw, 6rem);
     text-align: left;
-    max-width: 80rem;
+    max-width: 86rem;
   }
 
   #hero .hero-topper {

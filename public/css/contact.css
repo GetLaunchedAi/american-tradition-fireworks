@@ -895,8 +895,8 @@
   }
   .contact-heritage .contact-heritage__intro,
   .contact-heritage .cs-content.contact-heritage__intro {
-    text-align: left;
-    align-items: flex-start;
+    text-align: left !important;
+    align-items: flex-start !important;
     max-width: 75ch;
     margin: 0;
     width: 100%;
@@ -904,8 +904,10 @@
     flex-direction: column;
     gap: 0;
   }
+  .contact-heritage .contact-heritage__intro * {
+    text-align: left !important;
+  }
   .contact-heritage .contact-heritage__intro .h-topper {
-    text-align: left;
     margin-bottom: var(--space-md);
   }
   .contact-heritage .contact-heritage__intro .cs-title,
@@ -913,7 +915,6 @@
     font-family: var(--font-display);
     font-weight: 400;
     color: var(--ink);
-    text-align: left;
     max-width: none;
     margin: 0 0 var(--space-lg);
   }
@@ -923,7 +924,6 @@
     font-size: var(--step-1);
     line-height: 1.55;
     color: var(--ink-soft);
-    text-align: left;
     max-width: 65ch;
     margin: 0;
   }

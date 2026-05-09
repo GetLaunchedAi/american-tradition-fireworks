@@ -59,7 +59,7 @@
   }
 
   #hero .hero-title {
-    margin: 0 0 var(--space-xl);
+    margin: 0 0 var(--space-lg);
     max-width: 22ch;
     display: block;
   }
@@ -68,7 +68,7 @@
     display: block;
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: var(--step-6);
+    font-size: var(--step-5);
     line-height: 0.9;
     letter-spacing: -0.018em;
     color: var(--paper);
@@ -95,7 +95,7 @@
     line-height: 1.5;
     color: #f4ead8; /* cream — raises contrast on dark hero photo */
     max-width: 42ch;
-    margin: 0 0 var(--space-2xl);
+    margin: 0 0 var(--space-xl);
     text-wrap: pretty;
   }
 
