@@ -57,6 +57,11 @@ eleventyNavigation:
             <dd>Pricing list returned within 1 business day</dd>
           </div>
         </dl>
+
+        <div class="ws-policy__seal" aria-hidden="true">
+          <span class="h-stamp h-stamp--ink">Verified &middot; Buyers &middot; Only</span>
+          <span class="ws-policy__hint">Est. 1984 &middot; Two MI Stores</span>
+        </div>
       </div>
 
       <form
@@ -74,22 +79,26 @@ eleventyNavigation:
         <h2 class="h-headline h-headline--sm ws-form__title">Request a pricing list.</h2>
         <p class="ws-required-key"><span aria-hidden="true" class="ws-required">*</span> fields needed</p>
 
-        <label class="ws-label">
-          <span class="ws-label__text">Name <span aria-hidden="true" class="ws-required">*</span></span>
-          <input class="ws-input" required type="text" name="name" autocomplete="name" placeholder="Buyer or contact name" />
-        </label>
-        <label class="ws-label">
-          <span class="ws-label__text">Business / Operation</span>
-          <input class="ws-input" type="text" name="business" autocomplete="organization" placeholder="Company, retailer, or show operator" />
-        </label>
-        <label class="ws-label">
-          <span class="ws-label__text">Email <span aria-hidden="true" class="ws-required">*</span></span>
-          <input class="ws-input" required type="email" name="email" autocomplete="email" inputmode="email" placeholder="name@example.com" />
-        </label>
-        <label class="ws-label">
-          <span class="ws-label__text">Phone <span aria-hidden="true" class="ws-required">*</span></span>
-          <input class="ws-input" required type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="(555) 555-5555" />
-        </label>
+        <div class="ws-pair">
+          <label class="ws-label">
+            <span class="ws-label__text">Name <span aria-hidden="true" class="ws-required">*</span></span>
+            <input class="ws-input" required type="text" name="name" autocomplete="name" placeholder="Buyer or contact name" />
+          </label>
+          <label class="ws-label">
+            <span class="ws-label__text">Business / Operation</span>
+            <input class="ws-input" type="text" name="business" autocomplete="organization" placeholder="Company, retailer, or show operator" />
+          </label>
+        </div>
+        <div class="ws-pair">
+          <label class="ws-label">
+            <span class="ws-label__text">Email <span aria-hidden="true" class="ws-required">*</span></span>
+            <input class="ws-input" required type="email" name="email" autocomplete="email" inputmode="email" placeholder="name@example.com" />
+          </label>
+          <label class="ws-label">
+            <span class="ws-label__text">Phone <span aria-hidden="true" class="ws-required">*</span></span>
+            <input class="ws-input" required type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="(555) 555-5555" />
+          </label>
+        </div>
 
         <div class="ws-row">
           <label class="ws-label ws-label-state">

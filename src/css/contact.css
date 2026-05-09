@@ -1579,6 +1579,25 @@
   .wholesale-page .ws-spec > div:last-child {
     border-bottom: 0;
   }
+
+  /* Policy seal — sign-painter punctuation, anchors sticky column */
+  .wholesale-page .ws-policy__seal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--gold-leaf);
+  }
+  .wholesale-page .ws-policy__hint {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: 0.75;
+  }
   /* Mobile collapse — DT/DD stack, dt becomes mono micro-cap label */
   @media only screen and (max-width: 30rem) {
     .wholesale-page .ws-spec > div {
@@ -1634,6 +1653,17 @@
   .wholesale-page .ws-label.ws-label-message,
   .wholesale-page .ws-row {
     margin-bottom: var(--space-lg);
+  }
+
+  /* Field pair — single column on mobile, 2-col on tablet+ */
+  .wholesale-page .ws-pair {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: var(--space-lg);
+    width: 100%;
+  }
+  .wholesale-page .ws-pair > .ws-label {
+    margin-bottom: var(--space-md);
   }
   .wholesale-page .ws-label__text {
     font-family: var(--font-mono);
@@ -1743,13 +1773,13 @@
     flex: 1 1 100%;
   }
 
-  /* Fieldset — flat, hairline-ruled */
+  /* Fieldset — flat, hairline-ruled, major group break */
   .wholesale-page .ws-fieldset {
     border: 0;
     border-top: 1px solid var(--rule);
     border-bottom: 1px solid var(--rule);
     padding: var(--space-lg) 0;
-    margin: var(--space-md) 0 var(--space-xl);
+    margin: var(--space-lg) 0 var(--space-xl);
     background: transparent;
     border-radius: 0;
     width: 100%;
@@ -2044,6 +2074,9 @@
     justify-self: start;
     margin-top: var(--space-md);
   }
+  .wholesale-page .ws-pair {
+    grid-template-columns: 1fr 1fr;
+  }
   .wholesale-page .ws-row {
     flex-wrap: nowrap;
   }
@@ -2150,7 +2183,8 @@
   body.dark-mode .wholesale-page .ws-label__text,
   body.dark-mode .wholesale-page .ws-fineprint,
   body.dark-mode .wholesale-page .ws-faq__a,
-  body.dark-mode .wholesale-page .ws-compliance__ribbon {
+  body.dark-mode .wholesale-page .ws-compliance__ribbon,
+  body.dark-mode .wholesale-page .ws-policy__hint {
     color: oklch(78% 0.01 75);
   }
   body.dark-mode .wholesale-page .ws-faq {
