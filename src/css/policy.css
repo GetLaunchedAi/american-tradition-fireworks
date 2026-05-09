@@ -96,8 +96,10 @@
     display: block;
     background-color: var(--enamel);
     background-image: none;
-    padding-top: 0;
-    padding-bottom: 0;
+    padding-top: clamp(8rem, 14vw, 11rem);
+    padding-bottom: clamp(4rem, 9vw, 7.5rem);
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
     min-height: 0;
     height: auto;
     background-attachment: scroll;
