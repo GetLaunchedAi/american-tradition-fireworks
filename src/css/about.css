@@ -425,13 +425,21 @@
 
 .about-heritage .about-timeline__node {
   display: grid;
-  grid-template-columns: minmax(6.5rem, 0.5fr) 1fr;
-  gap: var(--space-md) var(--space-lg);
+  grid-template-columns: minmax(6rem, 8rem) minmax(0, 1fr);
+  grid-template-areas:
+    "year head"
+    "year body";
+  column-gap: var(--space-lg);
+  row-gap: 0.4rem;
   padding: var(--space-md) 0;
   border-bottom: 1px solid var(--rule);
   align-items: start;
   position: relative;
 }
+
+.about-heritage .about-timeline__year { grid-area: year; }
+.about-heritage .about-timeline__h    { grid-area: head; }
+.about-heritage .about-timeline__p    { grid-area: body; }
 
 .about-heritage .about-timeline__node:last-child {
   border-bottom: 2px solid var(--ink);
@@ -481,8 +489,9 @@
 
 @media (min-width: 48rem) {
   .about-heritage .about-timeline__node {
-    grid-template-columns: 8rem 1fr;
-    gap: var(--space-lg) var(--space-2xl);
+    grid-template-columns: 9rem minmax(0, 1fr);
+    column-gap: var(--space-2xl);
+    row-gap: 0.5rem;
     padding: var(--space-lg) 0;
   }
 }
